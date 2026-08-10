@@ -304,7 +304,7 @@ export default function ChapterTestPage() {
             <p className="text-slate-600 mb-6 text-lg">Zkontrolujte si své odpovědi. Až budete připraveni, klikněte na vyhodnotit.</p>
             <button 
               onClick={() => setIsSubmitted(true)}
-              className="bg-blue-600 text-white font-bold py-3 px-8 rounded-lg shadow-sm hover:bg-blue-700 transition-colors text-lg"
+              className="bg-blue-600 text-white font-bold py-3 px-8 rounded-lg hover:bg-blue-700 hover:shadow-md transition-all text-lg"
             >
               Vyhodnotit test
             </button>

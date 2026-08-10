@@ -96,7 +96,7 @@ export default function MinigamesLibrary() {
                 {/* Tlačítko pro spuštění */}
                 <Link 
                   href={game.href}
-                  className={`w-full py-3.5 rounded-xl flex items-center justify-center gap-2 font-black text-white transition-transform active:scale-95 shadow-md ${game.color} hover:opacity-90`}
+                  className={`w-full py-3.5 rounded-xl flex items-center justify-center gap-2 font-black text-white transition-all active:scale-95 hover:shadow-md ${game.color} hover:opacity-90`}
                 >
                   <Play size={18} className="fill-white" />
                   Spustit hru

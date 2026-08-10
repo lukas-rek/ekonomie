@@ -28,9 +28,9 @@ export default function UvodDoEkonomie() {
           HRANICE PRODUKČNÍCH MOŽNOSTÍ A NÁKLADY OBĚTOVANÉ PŘÍLEŽITOSTI
         </h1>
         <div className="h-1 w-20 bg-blue-600 rounded-full"></div>
-        <p className="italic mt-3">
+       {/* <p className="italic mt-3">
             Lukáš Rek, 2026
-        </p>
+        </p>*/}
       </header>
 
       {/* HLAVNÍ TEXT */}
@@ -184,7 +184,6 @@ export default function UvodDoEkonomie() {
         href="/zakladni-koncepty/vyrobni-faktory" 
         className="group flex items-start gap-3 max-w-[280px] text-left transition-all"
       >
-        {/* Šipka zůstává nahoře u prvního řádku díky mt-1 */}
        
         <ArrowLeft size={20} className="shrink-0 text-slate-300 group-hover:text-blue-600 group-hover:-translate-x-1 transition-all mt-1" />
         <div className="flex flex-col">

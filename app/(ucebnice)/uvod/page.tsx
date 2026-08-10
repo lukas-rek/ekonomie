@@ -26,15 +26,12 @@ export default function Home() {
 
       {/* --- PŘIDANÁ HLAVIČKA --- */}
       <section className="px-6 pt-24 pb-12 text-center">
-        <div className="inline-flex items-center justify-center p-3 bg-blue-100 rounded-2xl mb-6">
-          <BookOpen size={32} className="text-blue-600" />
-        </div>
         <h1 className="text-4xl md:text-6xl font-black text-slate-800 mb-6 tracking-tight">
           Učebnice ekonomie
         </h1>
         <p className="text-lg md:text-xl text-slate-600 max-w-2xl mx-auto leading-relaxed">
           Interaktivní učebnice, která tě provede světem ekonomie od základních pojmů až po složité finanční systémy. 
-          Vyber si kapitolu a začni objevovat.
+          Vyber si kapitolu a začni!
         </p>
       </section>
 
@@ -43,7 +40,7 @@ export default function Home() {
         <div className="flex items-center gap-4 mb-12">
           <div className="h-px flex-1 bg-slate-200"></div>
           <h2 className="text-sm font-black uppercase tracking-[0.3em] text-slate-400 flex items-center gap-2">
-            <Map size={18} /> Výuková cesta
+            <Map size={18} />
           </h2>
           <div className="h-px flex-1 bg-slate-200"></div>
         </div>

@@ -250,7 +250,7 @@ export default function TextbookProgressBar() {
             </p>
             <button 
               onClick={() => setShowTestModal(false)}
-              className="w-full py-4 bg-purple-600 hover:bg-purple-700 text-white font-black text-lg rounded-xl transition-all shadow-lg hover:shadow-purple-500/30 active:scale-95 flex items-center justify-center gap-2"
+              className="w-full py-4 bg-indigo-600 hover:bg-indigo-700 text-white font-black text-lg rounded-xl transition-all hover:shadow-lg hover:shadow-indigo-500/30 active:scale-95 flex items-center justify-center gap-2"
             >
               Spustit test <ArrowRight size={24} />
             </button>
@@ -267,7 +267,7 @@ export default function TextbookProgressBar() {
           className={`mb-10 max-w-[220px] transition-opacity duration-300 ease-in-out
           ${showBubble ? 'opacity-100' : 'opacity-0'}`}
         >
-          <div className="bg-white px-5 py-3 rounded-2xl shadow-xl border border-slate-100 rounded-br-none animate-bounce">
+          <div className="bg-white px-5 py-3 rounded-2xl shadow-xl border border-slate-100 rounded-br-none transition-transform duration-300 ease-out">
             <p className="font-bold text-slate-800 text-sm leading-snug">{mascotMessage}</p>
           </div>
         </div>
@@ -286,7 +286,6 @@ export default function TextbookProgressBar() {
       </div>
       */}
       {/* 3. PROGRESS BAR SPODEK S MOŽNOSTÍ ZASUNUTÍ */}
-      {/* Celý kontejner má translate-y kalkulaci: když je zasunutý (false), klesne dolů o celou svou výšku MÍNUS 36px na tlačítko */}
       <div 
         className={`fixed bottom-0 left-0 w-full z-50 flex flex-col items-center transition-transform duration-500 ease-in-out
         ${isExpanded ? 'translate-y-0' : 'translate-y-[calc(100%-36px)]'}`}

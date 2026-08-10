@@ -47,13 +47,13 @@ export default function GoodsClassification() {
         <div className="flex bg-slate-100 p-1 rounded-xl">
           <button 
             onClick={() => {setMode('scarcity'); resetGame();}}
-            className={`px-4 py-1.5 text-xs font-bold rounded-lg transition-all ${mode === 'scarcity' ? 'bg-white shadow-sm text-blue-600' : 'text-slate-500 hover:text-slate-700'}`}
+            className={`px-4 py-1.5 text-xs font-bold rounded-lg transition-all ${mode === 'scarcity' ? 'bg-white text-blue-600 border border-slate-200' : 'text-slate-500 hover:text-slate-700'}`}
           >
             Dle vzácnosti
           </button>
           <button 
             onClick={() => {setMode('ownership'); resetGame();}}
-            className={`px-4 py-1.5 text-xs font-bold rounded-lg transition-all ${mode === 'ownership' ? 'bg-white shadow-sm text-blue-600' : 'text-slate-500 hover:text-slate-700'}`}
+            className={`px-4 py-1.5 text-xs font-bold rounded-lg transition-all ${mode === 'ownership' ? 'bg-white text-blue-600 border border-slate-200' : 'text-slate-500 hover:text-slate-700'}`}
           >
             Dle vylučitelnosti a rivality
           </button>
@@ -111,7 +111,7 @@ export default function GoodsClassification() {
                   key={item.id}
                   draggable
                   onDragStart={(e) => e.dataTransfer.setData("itemId", item.id.toString())}
-                  className="px-4 py-2 bg-slate-800 text-white rounded-xl text-sm font-bold cursor-grab active:cursor-grabbing hover:bg-slate-700 transition-colors shadow-md"
+                  className="px-4 py-2 bg-slate-800 text-white rounded-xl text-sm font-bold cursor-grab active:cursor-grabbing hover:bg-slate-700 hover:shadow-md transition-all"
                 >
                   {item.name}
                 </div>
@@ -125,7 +125,7 @@ export default function GoodsClassification() {
           <button 
             onClick={() => setShowResults(true)}
             disabled={Object.keys(placedItems).length === 0}
-            className="flex items-center gap-2 px-6 py-3 bg-blue-600 text-white rounded-full font-black uppercase tracking-widest text-xs hover:bg-blue-700 disabled:opacity-30 transition-all shadow-lg"
+            className="flex items-center gap-2 px-6 py-3 bg-blue-600 text-white rounded-full font-black uppercase tracking-widest text-xs hover:bg-blue-700 hover:shadow-lg disabled:opacity-30 transition-all"
           >
             <CheckCircle size={18} /> Zkontrolovat
           </button>

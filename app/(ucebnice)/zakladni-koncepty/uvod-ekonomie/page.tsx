@@ -39,7 +39,6 @@ export default function UvodDoEkonomie() {
           Proč jsou některé státy chudé a jiné bohaté? Těmito a mnoha dalšími problémy našeho světa se ekonomie zabývá.
         </p>
 
-        {/* BOX PRO DEFINICI */}
         <DefinitionBox title="definice ekonomie">
             Ekonomie je společenská věda, která studuje, jak lidé a společnost rozhodují o využití vzácných zdrojů k výrobě, distribuci a spotřebě statků a služeb.
         </DefinitionBox>
@@ -85,7 +84,6 @@ export default function UvodDoEkonomie() {
             Za neméně důležité však považuji i studium jiných ekonomických škol. Některými se zabýváme v kapitole <a href="/dejiny-ekonomickeho-mysleni" className="underline font-light italic text-blue-600">Dějiny ekonomického myšlení</a>. Za obzvláště zajímavou pak považuji zejména rakouskou ekonomickou školu (jejímu studiu se můžete věnovat <a href="/rakouska-ekonomicka-skola" className="underline font-light italic text-blue-600">zde</a>).
         </p>
 
-        {/* INTERAKTIVNÍ PRVEK (Otázka) */}
         <InteractiveQuestion 
           question="Co je podstatou ekonomické nauky?"
           options={[
@@ -112,7 +110,6 @@ export default function UvodDoEkonomie() {
         href="/zakladni-koncepty/predchozi-tema" 
         className="group flex items-start gap-3 max-w-[280px] text-left transition-all"
       >
-        {/* Šipka zůstává nahoře u prvního řádku díky mt-1 */}
        
         <div className="flex flex-col">
           

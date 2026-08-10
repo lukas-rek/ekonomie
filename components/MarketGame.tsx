@@ -123,7 +123,7 @@ export default function MarketGame() {
         disabled={status === 'checked'}
         className={`px-3 py-2 rounded-lg text-sm font-medium border transition-all ${
            isSelected 
-            ? 'bg-blue-600 text-white border-blue-600 shadow-md' 
+            ? 'bg-blue-600 text-white border-blue-600' 
             : 'bg-white text-slate-700 border-slate-200 hover:border-blue-300 hover:bg-slate-50'
         } ${status === 'checked' && !isSelected ? 'opacity-50 cursor-not-allowed' : ''}`}
       >
@@ -137,8 +137,12 @@ export default function MarketGame() {
       
       {/* LEVÁ ČÁST: Minimalistický graf a ovládání */}
       <div className="w-full md:w-1/2 flex flex-col items-center">
-        <div className="relative w-[300px] h-[300px] border-l-2 border-b-2 border-slate-800 bg-slate-50/50 rounded-tr-lg">
+        <div className="relative w-[300px] h-[300px] bg-slate-50/50 rounded-xl border border-slate-200 overflow-visible select-none">
            <svg width="300" height="300" className="absolute top-0 left-0">
+              {/* Hlavní osy P a Q */}
+              <line x1="0" y1="0" x2="0" y2="300" stroke="#1e293b" strokeWidth="2" />
+              <line x1="0" y1="300" x2="300" y2="300" stroke="#1e293b" strokeWidth="2" />
+
               {/* Pomocné osy */}
               <line x1="0" y1="150" x2="300" y2="150" stroke="#e2e8f0" strokeDasharray="4" />
               <line x1="150" y1="0" x2="150" y2="300" stroke="#e2e8f0" strokeDasharray="4" />
@@ -248,7 +252,7 @@ export default function MarketGame() {
             <button
               onClick={handleCheck}
               disabled={!action}
-              className="bg-slate-900 text-white px-8 py-3 rounded-xl font-bold hover:bg-slate-800 disabled:opacity-40 transition-all shadow-md mt-4"
+              className="bg-slate-900 text-white px-8 py-3 rounded-xl font-bold hover:bg-slate-800 hover:shadow-md disabled:opacity-40 transition-all mt-4"
             >
               Zkontrolovat řešení
             </button>
@@ -265,14 +269,14 @@ export default function MarketGame() {
                 {isCorrect ? 'Správně!' : 'Špatně!'}
               </div>
 
-              <div className="bg-blue-50/80 p-5 rounded-xl text-slate-700 text-sm border border-blue-100 mb-6 w-full shadow-sm">
-                <strong className="block text-blue-900 mb-1">Vysvětlení:</strong>
+              <div className="bg-blue-50 p-5 rounded-xl text-blue-950 text-sm border border-blue-200 mb-6 w-full shadow-sm">
+                <strong className="block text-blue-900 font-bold mb-1">Vysvětlení:</strong>
                 {level.explanation}
               </div>
 
               <button
                 onClick={handleNext}
-                className="bg-blue-600 text-white px-8 py-3 rounded-xl font-bold hover:bg-blue-700 transition-all shadow-md"
+                className="bg-blue-600 text-white px-8 py-3 rounded-xl font-bold hover:bg-blue-700 hover:shadow-md transition-all"
               >
                 Další situace
               </button>

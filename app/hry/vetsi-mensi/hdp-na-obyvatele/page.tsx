@@ -203,7 +203,7 @@ export default function GdpHigherLowerGame() {
           {/* Tlačítko s otazníkem */}
           <Link 
             href="/clanky/hdp-na-obyvatele" 
-            className="flex items-center justify-center w-10 h-10 bg-slate-200 text-slate-600 rounded-full hover:bg-purple-100 hover:text-purple-600 transition-all shadow-sm"
+            className="flex items-center justify-center w-10 h-10 bg-slate-100 text-slate-600 rounded-full hover:bg-blue-600 hover:text-white hover:shadow-sm transition-all border border-slate-200"
             title="Přečíst si vysvětlení konceptu"
           >
             <HelpCircle size={22} strokeWidth={2.5} />
@@ -247,7 +247,7 @@ export default function GdpHigherLowerGame() {
             <p className="text-2xl text-slate-200 mb-8 font-semibold">Tvé konečné skóre: <span className="text-emerald-400">{score}</span></p>
             <button 
               onClick={startGame}
-              className="bg-emerald-500 text-white px-10 py-4 rounded-xl font-black hover:bg-emerald-400 hover:scale-105 transition-all shadow-lg shadow-emerald-500/20 text-xl"
+              className="bg-emerald-500 text-white px-10 py-4 rounded-xl font-black hover:bg-emerald-400 hover:scale-105 hover:shadow-lg hover:shadow-emerald-500/20 transition-all text-xl"
             >
               Hrát znovu
             </button>
@@ -308,14 +308,14 @@ function CountryCard({
             <div className={`flex flex-col gap-4 w-full max-w-[220px] transition-all duration-500 ${hideButtons ? 'opacity-0 scale-90 pointer-events-none' : 'opacity-100 scale-100'}`}>
                <button 
                  onClick={() => onGuess && onGuess('higher')}
-                 className="group bg-slate-800/60 hover:bg-slate-700/80 border border-slate-600 text-white flex flex-col items-center justify-center py-4 rounded-xl hover:-translate-y-1 transition-all shadow-xl backdrop-blur-md"
+                 className="group bg-slate-800/60 hover:bg-slate-700/80 border border-slate-600 text-white flex flex-col items-center justify-center py-4 rounded-xl hover:-translate-y-1 hover:shadow-xl transition-all backdrop-blur-md"
                >
                  <span className="text-2xl font-black text-emerald-400 group-hover:text-emerald-300">▲ VĚTŠÍ</span>
                </button>
                
                <button 
                  onClick={() => onGuess && onGuess('lower')}
-                 className="group bg-slate-800/60 hover:bg-slate-700/80 border border-slate-600 text-white flex flex-col items-center justify-center py-4 rounded-xl hover:translate-y-1 transition-all shadow-xl backdrop-blur-md"
+                 className="group bg-slate-800/60 hover:bg-slate-700/80 border border-slate-600 text-white flex flex-col items-center justify-center py-4 rounded-xl hover:translate-y-1 hover:shadow-xl transition-all backdrop-blur-md"
                >
                  <span className="text-2xl font-black text-rose-400 group-hover:text-rose-300">▼ MENŠÍ</span>
                </button>

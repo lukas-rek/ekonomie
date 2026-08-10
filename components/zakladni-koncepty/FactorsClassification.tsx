@@ -95,7 +95,7 @@ export default function GoodsClassification() {
                   key={item.id}
                   draggable
                   onDragStart={(e) => e.dataTransfer.setData("itemId", item.id.toString())}
-                  className="px-4 py-2 bg-slate-800 text-white rounded-xl text-sm font-bold cursor-grab active:cursor-grabbing hover:bg-slate-700 transition-colors shadow-md"
+                  className="px-4 py-2 bg-slate-800 text-white rounded-xl text-sm font-bold cursor-grab active:cursor-grabbing hover:bg-slate-700 hover:shadow-md transition-all"
                 >
                   {item.name}
                 </div>
@@ -109,7 +109,7 @@ export default function GoodsClassification() {
           <button 
             onClick={() => setShowResults(true)}
             disabled={Object.keys(placedItems).length === 0}
-            className="flex items-center gap-2 px-6 py-3 bg-blue-600 text-white rounded-full font-black uppercase tracking-widest text-xs hover:bg-blue-700 disabled:opacity-30 transition-all shadow-lg"
+            className="flex items-center gap-2 px-6 py-3 bg-blue-600 text-white rounded-full font-black uppercase tracking-widest text-xs hover:bg-blue-700 hover:shadow-lg disabled:opacity-30 transition-all"
           >
             <CheckCircle size={18} /> Zkontrolovat
           </button>

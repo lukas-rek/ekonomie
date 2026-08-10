@@ -39,7 +39,7 @@ export default function SidebarLayout({ children }: { children: React.ReactNode 
         {/* Tlačítko (Ouško) s šipkou */}
         <button
         onClick={() => setIsOpen(!isOpen)}
-        className="absolute -right-5 top-1/2 -translate-y-1/2 bg-white border border-slate-200 p-1 rounded-full shadow-md text-slate-500 hover:text-blue-600 cursor-pointer flex items-center justify-center w-8 h-8 z-50"
+        className="absolute -right-5 top-1/2 -translate-y-1/2 bg-white border border-slate-200 p-1 rounded-full text-slate-500 hover:text-blue-600 hover:shadow-md transition-shadow cursor-pointer flex items-center justify-center w-8 h-8 z-50"
         title={isOpen ? "Zastrčit" : "Vysunout"}
         >
         {isOpen ? <ChevronLeft size={16} /> : <ChevronRight size={16} />}

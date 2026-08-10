@@ -31,9 +31,7 @@ export default function Home() {
       
       {/* HERO SEKCE */}
       <section className="max-w-5xl mx-auto pt-24 pb-12 px-6 text-center">
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 text-blue-600 text-xs font-bold uppercase tracking-widest mb-6">
-          <Lightbulb size={14} /> nauč se ekonomii
-        </div>
+
         
         <h1 className="text-5xl md:text-7xl font-black text-slate-900 mb-8 tracking-tighter leading-tight">
           Vítej v <br />
@@ -48,7 +46,7 @@ export default function Home() {
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16">
           <a 
             href="/uvod" 
-            className="w-full sm:w-auto px-10 py-4 bg-blue-600 text-white rounded-2xl font-black uppercase tracking-widest text-sm hover:bg-blue-700 transition-all shadow-xl shadow-blue-200 flex items-center justify-center gap-3 active:scale-95"
+            className="w-full sm:w-auto px-10 py-4 bg-blue-600 text-white rounded-2xl font-black uppercase tracking-widest text-sm hover:bg-blue-700 transition-all hover:shadow-xl hover:shadow-blue-200 flex items-center justify-center gap-3 active:scale-95"
           >
             Studovat teď <ArrowDown size={20} />
           </a>

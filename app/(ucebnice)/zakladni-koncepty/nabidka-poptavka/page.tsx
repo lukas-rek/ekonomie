@@ -26,9 +26,9 @@ export default function UvodDoEkonomie() {
           NABÍDKA, POPTÁVKA A TRŽNÍ ROVNOVÁHA
         </h1>
         <div className="h-1 w-20 bg-blue-600 rounded-full"></div>
-        <p className="italic mt-3">
+        {/* <p className="italic mt-3">
             Lukáš Rek, 2026
-        </p>
+        </p> */}
       </header>
 
       {/* HLAVNÍ TEXT */}
@@ -97,16 +97,16 @@ export default function UvodDoEkonomie() {
   <p>Nyní pojďme z těchto hodnot udělat grafické znázornění. Mějme na paměti, že u grafu nabídky a poptávky je ekonomickým konsenzem nanášet závislou proměnou na osu x a nezávislou na osu y, tedy naopak, než jsme běžně zvyklí.</p>
 
 <MarketChart 
-  // 1. ZDE DEFINUJEŠ KŘIVKU
+
   curves={[
     { 
-      startX: 10, startY: 90, // Začátek vlevo nahoře (Vysoká cena, malé množství)
-      endX: 90, endY: 10,     // Konec vpravo dole (Nízká cena, velké množství)
-      label: "",             // Název křivky (vykreslí se na jejím konci)
-      color: "#2563eb"        // Modrá barva
+      startX: 10, startY: 90, 
+      endX: 90, endY: 10,     
+      label: "",             
+      color: "#2563eb"        
     }
   ]}
-  // 2. ZDE DEFINUJEŠ BODY NA KŘIVCE
+
   points={[
     { 
       x: 20, y: 80,  
@@ -193,7 +193,6 @@ export default function UvodDoEkonomie() {
       color: "#eb2525"        
     }
   ]}
-  // 2. ZDE DEFINUJEŠ BODY NA KŘIVCE
   points={[
     { 
       x: 20, y: 20,  
@@ -242,7 +241,6 @@ export default function UvodDoEkonomie() {
       color: "#2563eb"        
     }
   ]}
-  // 2. ZDE DEFINUJEŠ BODY NA KŘIVCE
   points={[
     { 
       x: 50, y: 50,  
@@ -276,7 +274,6 @@ export default function UvodDoEkonomie() {
       color: "#2563eb"        
     }
   ]}
-  // 2. ZDE DEFINUJEŠ BODY NA KŘIVCE
   points={[
     { 
       x: 50, y: 50,  
@@ -324,7 +321,6 @@ export default function UvodDoEkonomie() {
       color: "#2563eb"        
     }
   ]}
-  // 2. ZDE DEFINUJEŠ BODY NA KŘIVCE
   points={[
     { 
       x: 50, y: 50,  
@@ -396,7 +392,6 @@ export default function UvodDoEkonomie() {
         href="/zakladni-koncepty/komparativni-absolutni-vyhoda" 
         className="group flex items-start gap-3 max-w-[280px] text-left transition-all"
       >
-        {/* Šipka zůstává nahoře u prvního řádku díky mt-1 */}
        
         <ArrowLeft size={20} className="shrink-0 text-slate-300 group-hover:text-blue-600 group-hover:-translate-x-1 transition-all mt-1" />
         <div className="flex flex-col">
@@ -418,7 +413,6 @@ export default function UvodDoEkonomie() {
             Test z kapitoly
           </span>
         </div>
-        {/* Šipka vpravo */}
         <ArrowRight size={20} className="shrink-0 text-slate-300 group-hover:text-blue-600 group-hover:translate-x-1 transition-all mt-1" />
       </Link>
     </div>

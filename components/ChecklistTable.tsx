@@ -127,7 +127,7 @@ export default function ChecklistTable({ options, questions, title }: ChecklistT
           <button
             onClick={() => setIsSubmitted(true)}
             disabled={Object.keys(answers).length < questions.length}
-            className="px-6 py-2 bg-blue-600 text-white font-bold rounded-lg hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed transition-all shadow-md shadow-blue-200"
+            className="px-6 py-2 bg-blue-600 text-white font-bold rounded-lg hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed transition-all hover:shadow-md hover:shadow-blue-200"
           >
             Zkontrolovat
           </button>

@@ -13,7 +13,6 @@ import {
   ChartPie
 } from 'lucide-react';
 
-// Seznam podkapitol pro snadnou správu
 const SUBCHAPTERS = [
   {
     title: "Úvod do ekonomie",
@@ -80,7 +79,7 @@ export default function ZakladniKonceptyHub() {
       <div className="mb-16 text-center md:text-left">
         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 text-blue-600 text-xs font-black uppercase tracking-widest mb-4">
           <span className="relative flex h-2 w-2">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
+            <span className="absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
             <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-500"></span>
           </span>
           Kapitola 1
@@ -135,7 +134,7 @@ export default function ZakladniKonceptyHub() {
         ))}
       </div>
 
-      {/* SPODNÍ MOTIVAČNÍ PANEL */}
+      {/* SPODNÍ PANEL */}
       <div className="mt-20 p-10 bg-slate-900 rounded-[3rem] text-center text-white relative overflow-hidden shadow-2xl">
         <div className="relative z-10">
           <h2 className="text-3xl font-bold mb-4">Jste připraveni začít?</h2>
@@ -144,12 +143,11 @@ export default function ZakladniKonceptyHub() {
           </p>
           <Link 
             href="/zakladni-koncepty/uvod-ekonomie"
-            className="inline-flex items-center gap-3 px-8 py-4 bg-blue-600 hover:bg-blue-500 text-white rounded-full font-black uppercase tracking-widest text-sm transition-all shadow-lg active:scale-95"
+            className="inline-flex items-center gap-3 px-8 py-4 bg-blue-600 hover:bg-blue-500 text-white rounded-full font-black uppercase tracking-widest text-sm transition-all hover:shadow-lg active:scale-95"
           >
             Spustit první lekci <ArrowRight size={20} />
           </Link>
         </div>
-        {/* Dekorativní prvek v pozadí */}
         <div className="absolute top-0 right-0 -mr-20 -mt-20 w-64 h-64 bg-blue-600/20 rounded-full blur-3xl"></div>
       </div>
     </div>

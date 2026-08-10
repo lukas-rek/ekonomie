@@ -91,7 +91,6 @@ export default function UvodDoEkonomie() {
         href="/zakladni-koncepty/statek-vzacnost-uzitek-hodnota" 
         className="group flex items-start gap-3 max-w-[280px] text-left transition-all"
       >
-        {/* Šipka zůstává nahoře u prvního řádku díky mt-1 */}
         <ArrowLeft size={20} className="shrink-0 text-slate-300 group-hover:text-blue-600 group-hover:-translate-x-1 transition-all mt-1" />
         <div className="flex flex-col">
           <span className="text-[10px] font-black uppercase tracking-widest text-slate-400 mb-1">Předchozí</span>

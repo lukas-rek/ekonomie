@@ -323,8 +323,11 @@ export default function MarketGame() {
           <span className="text-center leading-tight">{hintText}</span>
         </div>
 
-        <div className="relative w-[300px] h-[300px] border-l-2 border-b-2 border-slate-800 bg-slate-50/50 rounded-tr-lg overflow-visible select-none touch-none">
+        <div className="relative w-[300px] h-[300px] bg-slate-50/50 rounded-xl border border-slate-200 overflow-visible select-none touch-none">
            <svg width="300" height="300" className="absolute top-0 left-0 overflow-visible">
+              {/* Hlavní osy grafu P a Q */}
+              <line x1="0" y1="0" x2="0" y2="300" stroke="#1e293b" strokeWidth="2" />
+              <line x1="0" y1="300" x2="300" y2="300" stroke="#1e293b" strokeWidth="2" />
               <line x1="0" y1="150" x2="300" y2="150" stroke="#e2e8f0" strokeDasharray="4" />
               <line x1="150" y1="0" x2="150" y2="300" stroke="#e2e8f0" strokeDasharray="4" />
               <text x="280" y="295" fontSize="14" fontWeight="bold" fill="#1e293b">Q</text>
@@ -474,7 +477,7 @@ export default function MarketGame() {
             onClick={() => handleJump(0)}
             className={`px-4 py-2 rounded-xl font-bold text-sm transition-all border-2 ${
               !isElasticityLevel
-                ? 'bg-orange-500 border-orange-500 text-blue-900 shadow-md'
+                ? 'bg-orange-500 border-orange-500 text-white'
                 : 'bg-white border-orange-500 text-orange-500 hover:bg-orange-50'
             }`}
           >
@@ -484,7 +487,7 @@ export default function MarketGame() {
             onClick={() => handleJump(15)}
             className={`px-4 py-2 rounded-xl font-bold text-sm transition-all border-2 ${
               isElasticityLevel
-                ? 'bg-orange-500 border-orange-500 text-blue-900 shadow-md'
+                ? 'bg-orange-500 border-orange-500 text-white'
                 : 'bg-white border-orange-500 text-orange-500 hover:bg-orange-50'
             }`}
           >
@@ -511,7 +514,7 @@ export default function MarketGame() {
             <button
               onClick={handleCheck}
               disabled={!hasAction}
-              className="bg-slate-900 text-white px-8 py-3 rounded-xl font-bold hover:bg-slate-800 disabled:opacity-40 disabled:cursor-not-allowed transition-all shadow-md mt-4"
+              className="bg-slate-900 text-white px-8 py-3 rounded-xl font-bold hover:bg-slate-800 hover:shadow-md disabled:opacity-40 disabled:cursor-not-allowed transition-all mt-4"
             >
               Zkontrolovat řešení
             </button>
@@ -523,11 +526,11 @@ export default function MarketGame() {
                 {isCorrect ? <CheckCircle2 size={28} /> : <XCircle size={28} />}
                 {isCorrect ? 'Správně!' : 'Špatně!'}
               </div>
-              <div className="bg-orange-50/80 p-5 rounded-xl text-slate-700 text-sm border border-orange-100 mb-6 w-full shadow-sm">
-                <strong className="block text-orange-900 mb-1">Vysvětlení:</strong>
+              <div className="bg-orange-50 p-5 rounded-xl text-orange-950 text-sm border border-orange-200 mb-6 w-full shadow-sm">
+                <strong className="block text-orange-900 font-bold mb-1">Vysvětlení:</strong>
                 {level.explanation}
               </div>
-              <button onClick={handleNext} className="bg-orange-600 text-white px-8 py-3 rounded-xl font-bold hover:bg-orange-700 transition-all shadow-md">
+              <button onClick={handleNext} className="bg-orange-600 text-white px-8 py-3 rounded-xl font-bold hover:bg-orange-700 hover:shadow-md transition-all">
                 Další situace
               </button>
             </motion.div>

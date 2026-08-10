@@ -29,7 +29,7 @@ const SUBCHAPTERS = [
     title: "Elasticita",
     slug: "elasticita",
     desc: "Měření citlivosti spotřebitelů a výrobců na změny cen a příjmů v krátkém i dlouhém období.",
-    icon: <Activity className="text-purple-600"/>,
+    icon: <Activity className="text-indigo-600"/>,
     time: "12 min"
   },
   {
@@ -78,7 +78,7 @@ const SUBCHAPTERS = [
     title: "Záveřečný test kapitoly",
     slug: "test",
     desc: "Prověřte své pochopení mechanismů rozhodování tržních aktérů a získejte odznak kapitoly.",
-    icon: <Award className="text-purple-500" />,
+    icon: <Award className="text-indigo-500" />,
     time: "15 min"
   }
 ];
@@ -88,10 +88,10 @@ export default function MikroekonomieHub() {
     <div className="max-w-6xl mx-auto py-12 px-4">
       {/* HERO SEKCE */}
       <div className="mb-16 text-center md:text-left">
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-purple-50 text-purple-600 text-xs font-black uppercase tracking-widest mb-4">
+        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-50 text-blue-700 text-xs font-black uppercase tracking-widest mb-4">
           <span className="relative flex h-2 w-2">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-purple-400 opacity-75"></span>
-            <span className="relative inline-flex rounded-full h-2 w-2 bg-purple-500"></span>
+            <span className=" absolute inline-flex h-full w-full rounded-full bg-indigo-400 opacity-75"></span>
+            <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-500"></span>
           </span>
           Kapitola 2
         </div>
@@ -110,7 +110,7 @@ export default function MikroekonomieHub() {
           <Link 
             key={sub.slug} 
             href={`/mikroekonomie/${sub.slug}`}
-            className="group relative flex flex-col bg-white border border-slate-200 rounded-[2rem] p-8 hover:shadow-2xl hover:border-purple-200 transition-all duration-300 hover:-translate-y-2"
+            className="group relative flex flex-col bg-white border border-slate-200 rounded-[2rem] p-8 hover:shadow-2xl hover:border-indigo-200 transition-all duration-300 hover:-translate-y-2"
           >
             {/* Číslo kapitoly v pozadí */}
             <span className="absolute top-6 right-8 text-6xl font-black text-slate-50 opacity-[0.03] group-hover:opacity-[0.08] transition-opacity">
@@ -118,13 +118,13 @@ export default function MikroekonomieHub() {
             </span>
 
             {/* Ikona */}
-            <div className="mb-6 w-14 h-14 bg-slate-50 rounded-2xl flex items-center justify-center group-hover:bg-purple-50 transition-colors">
+            <div className="mb-6 w-14 h-14 bg-slate-50 rounded-2xl flex items-center justify-center group-hover:bg-indigo-50 transition-colors">
               {React.cloneElement(sub.icon as React.ReactElement, {})}
             </div>
 
             {/* Text */}
             <div className="flex-1">
-              <h3 className="text-xl font-bold text-slate-900 mb-3 group-hover:text-purple-600 transition-colors">
+              <h3 className="text-xl font-bold text-slate-900 mb-3 group-hover:text-indigo-600 transition-colors">
                 {sub.title}
               </h3>
               <p className="text-slate-500 text-sm leading-relaxed mb-6">
@@ -137,7 +137,7 @@ export default function MikroekonomieHub() {
               <span className="text-[10px] font-black uppercase tracking-widest text-slate-400">
                 Doba studia: {sub.time}
               </span>
-              <div className="w-8 h-8 rounded-full bg-slate-900 text-white flex items-center justify-center group-hover:bg-purple-600 transition-colors">
+              <div className="w-8 h-8 rounded-full bg-slate-900 text-white flex items-center justify-center group-hover:bg-indigo-600 transition-colors">
                 <ChevronRight size={18} />
               </div>
             </div>
@@ -154,13 +154,13 @@ export default function MikroekonomieHub() {
           </p>
           <Link 
             href="/mikroekonomie/trzni-sily-a-ceny"
-            className="inline-flex items-center gap-3 px-8 py-4 bg-purple-600 hover:bg-purple-500 text-white rounded-full font-black uppercase tracking-widest text-sm transition-all shadow-lg active:scale-95"
+            className="inline-flex items-center gap-3 px-8 py-4 bg-indigo-600 hover:bg-indigo-500 text-white rounded-full font-black uppercase tracking-widest text-sm transition-all hover:shadow-lg active:scale-95"
           >
             Spustit kapitolu mikroekonomie <ArrowRight size={20} />
           </Link>
         </div>
         {/* Dekorativní prvek v pozadí */}
-        <div className="absolute top-0 right-0 -mr-20 -mt-20 w-64 h-64 bg-purple-600/20 rounded-full blur-3xl"></div>
+        <div className="absolute top-0 right-0 -mr-20 -mt-20 w-64 h-64 bg-indigo-600/20 rounded-full blur-3xl"></div>
       </div>
     </div>
   );

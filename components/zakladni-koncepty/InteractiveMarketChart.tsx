@@ -93,10 +93,10 @@ export default function DraggableMarketChart() {
     <div className="my-8 flex flex-col items-center bg-slate-50 p-6 rounded-xl border border-slate-200 select-none">
 
       <div className="flex gap-4 mb-6 w-full max-w-lg">
-        <button onClick={addDemand} disabled={demands.length >= 4} className="flex-1 py-2 px-4 bg-blue-100 text-blue-700 font-bold rounded shadow-sm border border-blue-200 hover:bg-blue-200 disabled:opacity-50 transition-colors">
+        <button onClick={addDemand} disabled={demands.length >= 4} className="flex-1 py-2 px-4 bg-blue-100 text-blue-700 font-bold rounded border border-blue-200 hover:bg-blue-200 hover:shadow-sm disabled:opacity-50 transition-all">
           + Přidat poptávku (D)
         </button>
-        <button onClick={addSupply} disabled={supplies.length >= 4} className="flex-1 py-2 px-4 bg-red-100 text-red-700 font-bold rounded shadow-sm border border-red-200 hover:bg-red-200 disabled:opacity-50 transition-colors">
+        <button onClick={addSupply} disabled={supplies.length >= 4} className="flex-1 py-2 px-4 bg-red-100 text-red-700 font-bold rounded border border-red-200 hover:bg-red-200 hover:shadow-sm disabled:opacity-50 transition-all">
           + Přidat nabídku (S)
         </button>
       </div>

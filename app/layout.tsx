@@ -4,7 +4,11 @@ import SidebarLayout from "@/components/SidebarLayout";
 import { Inter } from "next/font/google";
 import "./globals.css";
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Inter({ 
+  subsets: ["latin", "latin-ext"],
+  variable: "--font-inter",
+  display: "swap"
+});
 
 export const metadata = {
   title: "Pracovní název",
@@ -17,8 +21,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="cs" className="scroll-smooth">
-      <body className={`${inter.className} bg-white text-slate-900 flex flex-col min-h-screen`}>
+    <html lang="cs" className={`scroll-smooth ${inter.variable}`}>
+      <body className={`${inter.className} font-sans bg-white text-slate-900 flex flex-col min-h-screen antialiased`}>
         
         <Navbar />
 

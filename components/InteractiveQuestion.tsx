@@ -23,7 +23,7 @@ export default function InteractiveQuestion({ question, options, correctAnswer, 
             disabled={selected !== null}
             className={`w-full text-left p-3 rounded-xl border-2 transition-all ${
               selected === null 
-                ? "border-white bg-white hover:border-blue-400 shadow-sm" 
+                ? "border-slate-200 bg-white hover:border-blue-400 hover:shadow-sm" 
                 : idx === correctAnswer 
                   ? "border-green-500 bg-green-50 text-green-700 font-bold"
                   : selected === idx 

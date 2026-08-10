@@ -88,7 +88,7 @@ export default function QuizCarousel({ children }: QuizCarouselProps) {
           className={`flex items-center gap-2 px-6 py-3 rounded-xl font-bold transition-all ${
             currentIndex === totalQuestions - 1
               ? 'text-slate-300 cursor-not-allowed'
-              : 'bg-blue-600 text-white hover:bg-blue-700 shadow-lg hover:shadow-blue-200 hover:-translate-y-1'
+              : 'bg-blue-600 text-white hover:bg-blue-700 hover:shadow-lg hover:shadow-blue-200 hover:-translate-y-1'
           }`}
         >
           Další otázka <ChevronRight size={20} />

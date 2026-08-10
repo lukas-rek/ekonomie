@@ -99,7 +99,7 @@ export default function Sidebar() {
                   href={`/${chapter.slug}`}
                   className={`flex-1 px-3 py-2 text-sm font-bold rounded-lg transition-all ${
                     isActive 
-                      ? 'bg-white text-blue-600 shadow-sm border border-slate-200' 
+                      ? 'bg-white text-blue-600 border border-slate-200' 
                       : 'text-slate-600 hover:bg-slate-200/50 hover:text-slate-900'
                   }`}
                 >
@@ -126,7 +126,7 @@ export default function Sidebar() {
                         key={sub.slug}
                         href={`/${chapter.slug}/${sub.slug}`}
                         className={`flex items-start px-3 py-1.5 text-xs transition-colors group rounded-md ${
-                          isSubActive ? 'text-blue-600 font-bold bg-blue-50/50' : 'text-slate-500 hover:text-slate-800 hover:bg-slate-100'
+                          isSubActive ? 'text-blue-700 font-bold bg-blue-50' : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100'
                         }`}
                       >
                         <Circle size={6} className={`mr-2 mt-1 shrink-0 ${isSubActive ? 'fill-blue-600 text-blue-600' : 'text-slate-300'}`} />
