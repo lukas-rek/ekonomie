@@ -318,8 +318,8 @@ export default function MarketGame() {
           </button>
         </div>
 
-        <div className="flex items-center gap-2 text-sm text-orange-600 bg-orange-50 px-4 py-2 rounded-lg mb-6 w-[300px] justify-center shadow-sm border border-orange-100">
-          <MousePointer2 size={16} />
+        <div className="flex items-center gap-2 text-sm text-black px-4 py-2 rounded-lg mb-6 w-[300px] justify-center">
+
           <span className="text-center leading-tight">{hintText}</span>
         </div>
 
