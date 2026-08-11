@@ -44,7 +44,6 @@ export default function MinigamesLibrary() {
         {/* HLAVIČKA STRÁNKY */}
         <div className="text-center mb-16">
           <div className="inline-flex items-center justify-center p-3 bg-purple-100 rounded-2xl mb-4">
-            <Gamepad2 size={32} className="text-purple-600" />
           </div>
           <h1 className="text-4xl md:text-5xl font-black text-slate-800 mb-4 tracking-tight">
             Ekonomické minihry
