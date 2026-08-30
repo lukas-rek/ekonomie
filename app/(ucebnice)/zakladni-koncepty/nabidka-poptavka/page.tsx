@@ -1,423 +1,281 @@
 "use client";
 import React from 'react';
 import Link from 'next/link';
-import { ArrowLeft, Info, Image as ImageIcon, ArrowRight } from 'lucide-react';
+import { ArrowLeft, ArrowRight } from 'lucide-react';
+import InteractiveQuestion from "@/components/InteractiveQuestion";
+import DefinitionBox from "@/components/DefinitionBox";
+import ExplanationBox from "@/components/ExplanationBox";
 import MarketChart from '@/components/zakladni-koncepty/MarketChart';
 import InteractiveMarketChart from '@/components/zakladni-koncepty/InteractiveMarketChart';
 import QuizCarousel from '@/components/QuizCarousel';
-import InteractiveQuestion from '@/components/InteractiveQuestion';
-import ExplanationBox from '@/components/ExplanationBox';
 
-export default function UvodDoEkonomie() {
+export default function NabidkaPoptavkaPage() {
   return (
-    <div className="max-w-4xl mx-auto pb-20 pt-5">
+    <div className="max-w-3xl mx-auto pb-20 pt-6">
       {/* Navigace zpět na rozcestník */}
       <Link 
         href="/zakladni-koncepty" 
-        className="flex items-center text-slate-400 hover:text-blue-600 transition-colors mb-8 group"
+        className="inline-flex items-center text-xs font-bold uppercase tracking-wider text-stone-500 hover:text-stone-900 transition-colors mb-8 group font-sans"
       >
-        <ArrowLeft size={18} className="mr-2 group-hover:-translate-x-1 transition-transform" />
+        <ArrowLeft size={16} className="mr-2 group-hover:-translate-x-1 transition-transform" />
         Zpět na kapitolu: Základní koncepty
       </Link>
 
       {/* HLAVIČKA PODKAPITOLY */}
-      <header className="mb-5">
-        <h1 className="text-4xl font-black text-slate-900 mb-3 tracking-tight">
-          NABÍDKA, POPTÁVKA A TRŽNÍ ROVNOVÁHA
+      <header className="mb-8">
+        <span className="text-xs font-mono font-bold text-orange-700 uppercase tracking-widest block mb-2">
+          Lekce 07
+        </span>
+        <h1 className="text-3xl md:text-4xl font-serif font-bold text-stone-900 mb-4 tracking-tight leading-tight">
+          Nabídka, poptávka a tržní rovnováha
         </h1>
-        <div className="h-1 w-20 bg-blue-600 rounded-full"></div>
-        {/* <p className="italic mt-3">
-            Lukáš Rek, 2026
-        </p> */}
+        <div className="h-[2px] w-16 bg-orange-700"></div>
       </header>
 
       {/* HLAVNÍ TEXT */}
-      <article className="prose prose-slate max-w-none space-y-5 text-slate-600 leading-relaxed text-lg">
+      <article className="space-y-6 text-stone-800 leading-relaxed text-base md:text-lg font-sans">
         <p>
-          Nyní se v rychlosti podíváme na jeden z nejzákladnějších konceptů ekonomie, který budeme podrobněji probírat v kapitole <a href="/Mikroekonomie" className="underline font-light italic text-blue-600">Mikroekonomie</a>.
-          Jde o princip sil, které jsou motorem celého tržního hospodářství, od rohlíků až po ceny akcií technologických gigantů. Jde o princip nabídky, poptávky a tržní rovnováhy. Protože jak kdysi s nadsázkou řekl skotský historik Thomas Carlyle: „Naučte papouška říkat ‚Nabídka a poptávka‘ a máte ekonoma.“
+          Pokud existuje v ekonomii jeden model, který zná téměř každý, je to <strong>Marshallův kříž nabídky a poptávky</strong>. 
+          Představuje srdce tržního hospodářství. Ukazuje, jak se z interakce milionů kupujících a prodávajících rodí <strong>tržní cena</strong>, 
+          která bez jakéhokoliv centrálního plánovače koordinuje celou společnost.
         </p>
-        <p className='text-3xl font-bold text-black'>
-          Poptávka
-        </p>
+
+        <h2 className="text-2xl font-serif font-bold text-stone-900 pt-4">
+          1. Poptávka (Demand – D)
+        </h2>
         <p>
-        Poptávka vyjadřuje vztah mezi cenou statku a množstvím, které jsou kupující ochotni a schopni při této ceně koupit.
-        Zákon poptávky nám říká, že ceteris paribus s rostoucí cenou klesá poptávané množství statku (množství statku, které jsou lidé ochotni koupit). 
-        Poptávková křivka má pro to v grafickém znázornění negativní sklon, tedy je klesající. 
-        Poptávkový zákon je intuitivní. Sami jako spotřebitelé každý den vnímáme, že čím je něco levnější, tím více si toho chceme koupit.
-        </p><p>Poptávku samozřejmě ovlivňují různé faktory, které její křivku mohou posunout doprava (nárust) nebo doleva (pokles). 
-        Prvním faktorem je <strong>důchod spotřebitele</strong>. U normálních statků s růstem důchodu, tedy příjmu spotřebitele roste i poptávka. 
-        Například čím větší budou lidé mít příjmy, tím více budou chtít cestovat a poroste poptávka po letenkách, ubytování, restauračních jídlech a podobně. Existují však i tzv. méněcenné neboli inferiorní statky, u nichž má zvášení důchodu spotřebitele efekt opařný, tedy snižuje poptávku po daném statku.
-        Příkladem budiž ojetá auta nebo nekvalitní levné potraviny. Čím více lidé vydělávají, tím méně takových statků budou kupovat.
-        </p><p>Dalším faktorem je pak <strong>cena souvisejících statků</strong> - substitutů a komplementů. Substituty jsou statky, které se dají vzájemně nahradit (například housky a rohlíky). Pokud vzroste cena substitutu našeho statku, zvýší se i poptávka. 
-        Pokud rohlíky zdraží, lidé budou více kupovat housky, tedy se po nich zvýší poptávka. Komplementy jsou statky, které se spotřebovávají společně (auta a benzín). Efekt ceny na poptávku je zde opačný než u substitutů, tedy když se zvýší cena komplementu, snížní se poptávka po našem statku. 
-        </p><p> <strong>Preference spotřebitelů</strong> také ovlivňují poptávku. Právě na tento faktor cílí reklamy, které se snaží zvýšit poptávku po inzerovaném produktu. Dále pak <strong>očekávání spotřebitelů</strong> - pokud lidé očekávají, že cena statku v budoucnu vzroste, nebo že se jim zvýší plat, mohou zvýšit svou současnou poptávku.
-        A naposled pak <strong>počet kupujících</strong>. Čím více lidí nakupuje, tím více poroste i poptávka.
-        </p><p> Musíme však rozlišovat mezi změnou poptávky a změnou poptávaného množství. Poptávané množství se mění pouze s cenou statku. Graficky se tak jedná o posun po poptávkové křivce v rámci vztahu mezi P (cenou) a právě Q (množstvím). 
-          Změna poptávky pak vyjadřuje posun celé křívky v důsledku vnějších faktorů.
+          Poptávka vyjadřuje vztah mezi <strong>cenou statku (P – Price)</strong> a <strong>množstvím (Q – Quantity)</strong>, které jsou kupující ochotni a schopni za tuto cenu koupit (za jinak nezměněných podmínek – <i>ceteris paribus</i>).
         </p>
-        <p>
-          Nyní si pojďme nakreslit poptávkovou křivku. Představme si, že vlastníme kavárnu a prodáváme zákusky. Ze zkušenosti víme, že při určitých cenách prodáme za den tato množství zákusků:
-        </p>
-          <div className="space-y-4">
-    <div className="overflow-hidden border border-slate-200 rounded-xl">
-       <table className="w-full text-left border-collapse">
-    <thead className="bg-slate-50 border-b border-slate-200">
-      <tr>
-        <th className="p-4 text-sm font-black uppercase tracking-wider text-slate-500">Cena</th>
-        <th className="p-4 text-sm font-black uppercase tracking-wider text-slate-500">Množství</th>
 
-      </tr>
-    </thead>
-    <tbody className="divide-y divide-slate-100">
-      <tr className="bg-slate-50 border-b border-slate-200">
-        <td className="p-4 text-sm text-slate-700 font-bold">20</td>
-        <td className="p-4 text-sm text-slate-700 font-bold">100</td>
-      </tr>
-      <tr className="bg-slate-50/50 hover:bg-blue-50/50 transition-colors">
-        <td className="p-4 text-sm text-slate-700 font-bold">40</td>
-        <td className="p-4 text-sm text-slate-700 font-bold">80</td>
-      </tr>
-      <tr className="bg-slate-50/50 hover:bg-blue-50/50 transition-colors">
-        <td className="p-4 text-sm text-slate-700 font-bold">60</td>
-        <td className="p-4 text-sm text-slate-700 font-bold">60</td>
-      </tr>
-      <tr className="bg-slate-50/50 hover:bg-blue-50/50 transition-colors">
-        <td className="p-4 text-sm text-slate-700 font-bold">80</td>
-        <td className="p-4 text-sm text-slate-700 font-bold">40</td>
-      </tr>
-      <tr className="bg-slate-50/50 hover:bg-blue-50/50 transition-colors">
-        <td className="p-4 text-sm text-slate-700 font-bold">100</td>
-        <td className="p-4 text-sm text-slate-700 font-bold">20</td>
-      </tr>
-    </tbody>
-  </table>
-    </div>
-  </div>
-  <p>Nyní pojďme z těchto hodnot udělat grafické znázornění. Mějme na paměti, že u grafu nabídky a poptávky je ekonomickým konsenzem nanášet závislou proměnou na osu x a nezávislou na osu y, tedy naopak, než jsme běžně zvyklí.</p>
+        <DefinitionBox title="Zákon klesající poptávky">
+          S rostoucí cenou statku klesá poptávané množství tohoto statku (a naopak). Křivka poptávky je proto <strong>klesající</strong> (má záporný sklon).
+        </DefinitionBox>
 
-<MarketChart 
-
-  curves={[
-    { 
-      startX: 10, startY: 90, 
-      endX: 90, endY: 10,     
-      label: "",             
-      color: "#2563eb"        
-    }
-  ]}
-
-  points={[
-    { 
-      x: 20, y: 80,  
-      xLabel: "20", yLabel: "100", 
-      showLines: true 
-    },
-    { 
-      x: 80, y: 20, 
-      xLabel: "100", yLabel: "20", 
-      showLines: true,
-    },    
-    { 
-      x: 35, y: 65,  
-      xLabel: "40", yLabel: "80", 
-      showLines: true 
-    },
-    { 
-      x: 65, y: 35, 
-      xLabel: "80", yLabel: "40", 
-      showLines: true,
-    },
-    { 
-      x: 50, y: 50,  
-      xLabel: "60", yLabel: "60", 
-      showLines: true 
-    }
-  ]}
-/>
-<p>
-  A teď se podíváme, jak vypadají posunu poptávkové křivky a pohyby na křivce. Vlevo vidíme, co se stane, když se zvedne cena z P<sub>1</sub> na P<sub>2</sub>. 
-  Vpravo je pak situace zvýšené poptávky, například vlivem vyššího důchodu spotřebitele u normálního statku.
-  Všimněme si, že v takovém případě je při stejné ceně vyšší poptávané množství.
-</p>
-<div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-start my-10">
-<div className="w-full">
-<MarketChart 
-  curves={[
-    { startX: 10, startY: 90, endX: 90, endY: 10, label: "D", color: "#2563eb" }
-  ]}
-  points={[
-    { x: 30, y: 70, label: "A", xLabel: "Q1", yLabel: "P1", showLines: true },
-    { x: 60, y: 40, label: "B", xLabel: "Q2", yLabel: "P2", showLines: true}
-  ]}
-  arrows={[
-    { startX: 25, startY: 65, endX: 55, endY: 35, color: "#334155" }
-  ]}
-/>
-</div>
-<MarketChart 
-  curves={[
-    { startX: 10, startY: 90, endX: 90, endY: 10, label: "D1", color: "#2563eb" },
-    { startX: 30, startY: 90, endX: 100, endY: 20, label: "D2", color: "#00c8ff" }
-  ]}
-  arrows={[
-    { startX: 57, startY: 45, endX: 73, endY: 45 }
-  ]}
-  points={[
-    { x: 40, y: 60, label: "A", xLabel: "Q1", yLabel: "P1,2", showLines: true },
-    { x: 60, y: 60, label: "B", xLabel: "Q2", showLines: true}
-  ]}
-/>
-</div>
-        <p className='text-3xl font-bold text-black'>
-          Nabídka
-        </p>
-        <p>
-          Zatímco poptávka sleduje vztah ceny a množství z pohledu spotřebitele, nabídka se na něj dívá pohledem prodávajícího.
-          Nabídka vyjadřuje vztah mezi cenou statku a množstvím, které jsou prodávající ochotni a schopni při této ceně vyrobit a prodat.
-          Zákon nabídky nám říká, že ceteris paribus s rostoucí cenou roste i nabízené množství. Stejně jako zákon poptávky je i zákon nabídky zcela intuitivní.
-          Čím větší je cena statku, tím více mohou prodávající vydělat a tedy je vyšší cena motivuje více vyrábět a prodávat. Z poptávkového zákona pak vyplývá i sklon křivky, který bude v tomto případě pozitivní.
-          </p><p>A co tedy ovlivňuje nabídku a může posunout nabídkovou křivku? První, co vás možná správně napadne je <strong>cena vstupů</strong>.
-          Firma k výrobě každého statku spotřebovává nějaké výrobní faktory. Pokud jejich cena vzroste, výroba se stane méně ziskovou a při stejné ceně tak budou prodávající nabízet menší množství produktu a naopak, při snížení cen vstupů budou ochotni vyrábět více.
-          <strong> Očekávání výrobců</strong> také ovlivňují nabídku. Pokud výrobci očekávají růst cen v budoucnu, část současné produkce mohou přesunout do budoucna a současná nabídka tak klesne.
-          Dalším faktorem je <strong>počet prodejců na trhu</strong>. Více firem na trhu znamená vyšší celkovou nabídku.
-          Dále zde hrají roli i <strong>přírodní a společenské faktory</strong>, například počasí v zemědělství nebo vládní zásahy.
-        </p>
-        <p>Níže vidíte grafické znázornění nabídky. Jak jsme již zmínili, s roustoucí cenou roste i nabízené množství.
-          <MarketChart
-           curves={[
-    { 
-      startX: 10, startY: 10, 
-      endX: 90, endY: 90,   
-      label: "",            
-      color: "#eb2525"        
-    }
-  ]}
-  points={[
-    { 
-      x: 20, y: 20,  
-      xLabel: "20", yLabel: "20", 
-      showLines: true 
-    },
-    { 
-      x: 35, y: 35, 
-      xLabel: "40", yLabel: "40", 
-      showLines: true,
-    },    
-    { 
-      x: 65, y: 65,  
-      xLabel: "80", yLabel: "80", 
-      showLines: true 
-    },
-    { 
-      x: 80, y: 80, 
-      xLabel: "100", yLabel: "100", 
-      showLines: true,
-    },
-    { 
-      x: 50, y: 50,  
-      xLabel: "60", yLabel: "60", 
-      showLines: true 
-    }
-  ]}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 my-6">
+          <MarketChart 
+            title="Křivka individuální poptávky (D)"
+            curves={[
+              { startX: 15, startY: 85, endX: 85, endY: 15, label: "D", color: "#2563EB" }
+            ]}
+            points={[
+              { x: 30, y: 70, label: "A", showLines: true, xLabel: "Q₁", yLabel: "P₁" },
+              { x: 70, y: 30, label: "B", showLines: true, xLabel: "Q₂", yLabel: "P₂" }
+            ]}
           />
-        </p>
-        <p>Stejně jako u poptávky i zde si musíme dávat pozor na rozdíl mezi posunem nabídky, tedy celé křivky a pouze změnou nabízeného množství.</p>
-        <p className='text-3xl font-bold text-black'>
-          Tržní rovnováha
-        </p>
-        <p>Spojme nabídku a poptávku a vznikne nám jednoduchý model trhu. Tam, kde se jejich křivky střetávají nastává <strong>rovnováha</strong>. Bod, ve kterém k tomu dochází, tedy nabídka je rovna poptávce nazýváme <strong>rovnovážný bod</strong>, který často značíme E.</p>          <MarketChart
-    curves={[
-    { 
-      startX: 10, startY: 10, 
-      endX: 90, endY: 90,   
-      label: "S",            
-      color: "#eb2525"        
-    },
-    { 
-      startX: 10, startY: 90,  
-      endX: 90, endY: 10,   
-      label: "D",            
-      color: "#2563eb"        
-    }
-  ]}
-  points={[
-    { 
-      x: 50, y: 50,  
-      label: "E",
-      xLabel: "PQ", yLabel: "PE", 
-      labelPosition: "right",
-      showLines: true 
-    }]}
-    />
-        <p>
-        Trh má přirozenou tendenci se vždy vracet do rovnováhy. Co se tedy stane, když cena není rovnovážná?
-        Když je cena vyšší (P1), nabízené množství převyšuje poptávané. Říkáme tomu <strong>přebytek (surplus)</strong> Co to znamená v praxi? Prodejci mají na skladech zboží, které ale nikdo není již ochoten koupit.
-        Aby zboží prodali, musí snížit cenu, čímž se zvýší poptávané množství a zboží půjde na odbyt. 
-        </p><p>Když je naopak cena nižší než rovnovážná (P2), nastává <strong>nedostatek (shortage)</strong>. Lidé by chtěli koupit více zboží, než mají prodejci k dispozci.
-        Prodejci vidí tento zájem a zvýší cenu, což sníží poptávané množství, motivuje prodejce k výrobě zboží a trh se vyrovná.
-        </p><p>Plocha zeleného trojúhelníku pak vyjadřuje hodnotu zboží, které je v přebytku nebo nedostatku.</p>
-<div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-start my-10">
-<div className="w-full">
-<MarketChart 
- curves={[
-    { 
-      startX: 10, startY: 10, 
-      endX: 90, endY: 90,   
-      label: "S",            
-      color: "#eb2525"        
-    },
-    { 
-      startX: 10, startY: 90,  
-      endX: 90, endY: 10,   
-      label: "D",            
-      color: "#2563eb"        
-    }
-  ]}
-  points={[
-    { 
-      x: 50, y: 50,  
-      label: "E",
-      xLabel: "PQ", yLabel: "PE", 
-      labelPosition: "right",
-      showLines: true 
-    },
-    {
-      x: 30, y: 70,  
-      label: "",
-      xLabel: "QS1", yLabel: "P1", 
-      labelPosition: "right",
-      showLines: true
-    },
-    {
-      x: 70, y: 70,  
-      label: "",
-      xLabel: "QD1", yLabel: "P1", 
-      labelPosition: "right",
-      showLines: true
-    }
-    ]}
-  arrows={[
-    { startX: 30, startY: 70, endX: 48, endY: 52 },
-    { startX: 70, startY: 70, endX: 52, endY: 52}
-  ]}
-  areas={[
-    {points:[{x:30, y: 70}, {x:50, y:50}, {x:70, y:70}], color:"green"}
-  ]}
-/>
-</div>
-<MarketChart 
-  curves={[
-    { 
-      startX: 10, startY: 10, 
-      endX: 90, endY: 90,   
-      label: "S",            
-      color: "#eb2525"        
-    },
-    { 
-      startX: 10, startY: 90,  
-      endX: 90, endY: 10,   
-      label: "D",            
-      color: "#2563eb"        
-    }
-  ]}
-  points={[
-    { 
-      x: 50, y: 50,  
-      label: "E",
-      xLabel: "PQ", yLabel: "PE", 
-      labelPosition: "right",
-      showLines: true 
-    },
-    {
-      x: 30, y: 30,  
-      label: "",
-      xLabel: "QS2", yLabel: "P2", 
-      labelPosition: "right",
-      showLines: true
-    },
-    {
-      x: 70, y: 30,  
-      label: "",
-      xLabel: "QD2", yLabel: "P2", 
-      labelPosition: "right",
-      showLines: true
-    }
-    ]}
-  arrows={[
-    { startX: 30, startY: 30, endX: 48, endY: 48 },
-    { startX: 70, startY: 30, endX: 52, endY: 48}
-  ]}
-  areas={[
-    {points:[{x:30, y: 30}, {x:50, y:50}, {x:70, y:30}], color:"green"}
-  ]}
-/>
-</div>
-<ExplanationBox title='Rovnováha v praxi'>Zamyslete se, jak překupníci lístků, kteří levně nakoupí a prodají za několikanásobnou cenu pomáhají dostat trh do rovnováhy. Jak vypadalo nabízené a poptávané množství před a po vstupu překupníků na trh?</ExplanationBox>
-<p>
-  Jaké faktory a jak ovlivňují nabídku a poptávku jsme si již řekli. Zkuste v s pomocí interaktivního grafu níže prozkoumat jejich efekt na tržní rovnováhu.
-  Kam se posune rovnovážný bod? Jak se změní rovnovážná cena a rovnovážné množství? Zkuste zobrazit různé scénáře. Co se stane, když se zvýší důchod spotřebitele? Co když se zvýší cena substitutu nebo komplementu? Co když se zvýší cena vstupů? A co když se změní více faktorů najednou?
+          <div className="flex flex-col justify-center text-sm space-y-3 font-sans">
+            <p>
+              <strong>Dva důvody, proč je poptávka klesající:</strong>
+            </p>
+            <ul className="list-disc pl-5 space-y-2 marker:text-stone-400">
+              <li>
+                <strong>Důchodový efekt:</strong> Když statek zdraží, spotřebitelé se cítí reálně chudší (za svůj příjem si koupí méně jednotek).
+              </li>
+              <li>
+                <strong>Substituční efekt:</strong> Když statek zdraží, spotřebitelé ho začnou nahrazovat jinými, relativně levnějšími statky (substituty – např. místo hovězího koupí kuřecí).
+              </li>
+            </ul>
+          </div>
+        </div>
 
-</p>
-<InteractiveMarketChart/>
-<p>Nyní již byste měli chápat, co je tržní rovnováha a co a jak ovlivňuje rovnovážné ceny a množství. Pojďme si nyní rychle vyzkoušet nejdůležitější znalosti z této podkapitoly.</p>
-<QuizCarousel>
+        <h3 className="font-serif font-bold text-stone-900 text-xl pt-2">Posun po křivce vs. Posun celé křivky</h3>
+        <p>
+          Je kriticky důležité rozlišovat mezi <strong>změnou poptávaného množství</strong> a <strong>změnou poptávky</strong>:
+        </p>
+        <ul className="list-disc pl-6 space-y-2 marker:text-stone-400">
+          <li>
+            <strong>Posun PO křivce (z A do B):</strong> Je vyvolán <i>pouze změnou ceny samotného statku</i>. Poptávková křivka se nehýbe, pouze se posouváme do jiného bodu.
+          </li>
+          <li>
+            <strong>Posun CELÉ křivky (z D do D'):</strong> Nastává, pokud se změní jiné faktory než cena daného statku (např. vzrostou příjmy lidí, změní se móda a preference, zdraží substitut nebo zlevní komplement).
+          </li>
+        </ul>
+
+        <MarketChart 
+          title="Posun poptávkové křivky (Růst poptávky)"
+          curves={[
+            { startX: 15, startY: 85, endX: 85, endY: 15, label: "D", color: "#A8A29E", isDashed: true },
+            { startX: 35, startY: 85, endX: 95, endY: 25, label: "D'", color: "#2563EB" }
+          ]}
+          arrows={[
+            { startX: 45, startY: 55, endX: 65, endY: 55, color: "#2563EB" }
+          ]}
+        />
+
+        <h2 className="text-2xl font-serif font-bold text-stone-900 pt-6">
+          2. Nabídka (Supply – S)
+        </h2>
+        <p>
+          Nabídka vyjadřuje vztah mezi <strong>cenou statku (P)</strong> a <strong>množstvím (Q)</strong>, které jsou výrobci ochotni a schopni vyrobit a prodat.
+        </p>
+
+        <DefinitionBox title="Zákon rostoucí nabídky">
+          S rostoucí cenou statku roste nabízené množství tohoto statku (a naopak). Křivka nabídky je proto <strong>rostoucí</strong> (má kladný sklon).
+        </DefinitionBox>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 my-6">
+          <MarketChart 
+            title="Křivka individuální nabídky (S)"
+            curves={[
+              { startX: 15, startY: 15, endX: 85, endY: 85, label: "S", color: "#DC2626" }
+            ]}
+            points={[
+              { x: 30, y: 30, label: "A", showLines: true, xLabel: "Q₁", yLabel: "P₁" },
+              { x: 70, y: 70, label: "B", showLines: true, xLabel: "Q₂", yLabel: "P₂" }
+            ]}
+          />
+          <div className="flex flex-col justify-center text-sm space-y-3 font-sans">
+            <p>
+              <strong>Proč je nabídka rostoucí?</strong>
+            </p>
+            <p>
+              Vyšší cena motivuje stávající výrobce zvýšit produkci, protože jim pokrývá rostoucí mezní náklady (viz zákon klesajících výnosů). 
+              Zároveň vyšší cena láká na trh <strong>nové výrobce</strong>, pro které byla dřívější nižší cena nevýhodná.
+            </p>
+          </div>
+        </div>
+
+        <p>
+          <strong>Co posouvá celou křivku nabídky (S)?</strong>
+        </p>
+        <ul className="list-disc pl-6 space-y-1 marker:text-stone-400">
+          <li>Změna cen výrobních faktorů (zdražení energií, surovin či mezd posune S doleva).</li>
+          <li>Technologický pokrok (nové vynálezy zlevňují výrobu – posun S doprava).</li>
+          <li>Očekávání výrobců a vládní regulace (např. nová daň posune S doleva).</li>
+          <li>Přírodní podmínky (např. sucho v zemědělství posune S doleva).</li>
+        </ul>
+
+        <h2 className="text-2xl font-serif font-bold text-stone-900 pt-6">
+          3. Tržní rovnováha (Equilibrium – E)
+        </h2>
+        <p>
+          Když dáme křivku poptávky a nabídky do jednoho grafu, protnou se v jediném bodě – <strong>bodě tržní rovnováhy (E)</strong>.
+        </p>
+
+        <MarketChart 
+          title="Tržní rovnováha (Marshallův kříž)"
+          curves={[
+            { startX: 15, startY: 85, endX: 85, endY: 15, label: "D", color: "#2563EB" },
+            { startX: 15, startY: 15, endX: 85, endY: 85, label: "S", color: "#DC2626" }
+          ]}
+          points={[
+            { x: 50, y: 50, label: "E (Rovnováha)", showLines: true, xLabel: "Q_E (Rovnovážné množství)", yLabel: "P_E (Rovnovážná cena)", color: "#1C1917" }
+          ]}
+        />
+
+        <p>
+          V bodě rovnováhy platí, že <strong>nabízené množství se přesně rovná poptávanému množství ($Q_D = Q_S$)</strong>. 
+          Cena $P_E$ se nazývá <strong>rovnovážná cena</strong> a množství $Q_E$ <strong>rovnovážné množství</strong>. Na trhu nedochází k žádným přebytkům ani nedostatkům.
+        </p>
+
+        <h3 className="font-serif font-bold text-stone-900 text-xl pt-2">Přebytek a nedostatek na trhu</h3>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 my-6">
+          <MarketChart 
+            title="Přebytek zboží na trhu (P > P_E)"
+            curves={[
+              { startX: 15, startY: 85, endX: 85, endY: 15, label: "D", color: "#2563EB" },
+              { startX: 15, startY: 15, endX: 85, endY: 85, label: "S", color: "#DC2626" }
+            ]}
+            points={[
+              { x: 30, y: 70, label: "Q_D", showLines: true, yLabel: "P_Vysoká" },
+              { x: 70, y: 70, label: "Q_S", showLines: true }
+            ]}
+            areas={[
+              { points: [{x: 30, y: 70}, {x: 70, y: 70}, {x: 50, y: 50}], color: "#DC2626", opacity: 0.15 }
+            ]}
+          />
+          <MarketChart 
+            title="Nedostatek zboží na trhu (P < P_E)"
+            curves={[
+              { startX: 15, startY: 85, endX: 85, endY: 15, label: "D", color: "#2563EB" },
+              { startX: 15, startY: 15, endX: 85, endY: 85, label: "S", color: "#DC2626" }
+            ]}
+            points={[
+              { x: 30, y: 30, label: "Q_S", showLines: true, yLabel: "P_Nízká" },
+              { x: 70, y: 30, label: "Q_D", showLines: true }
+            ]}
+            areas={[
+              { points: [{x: 30, y: 30}, {x: 70, y: 30}, {x: 50, y: 50}], color: "#2563EB", opacity: 0.15 }
+            ]}
+          />
+        </div>
+
+        <ul className="list-disc pl-6 space-y-2 marker:text-stone-400">
+          <li>
+            <strong>Při ceně vyšší než rovnovážné ($P &gt; P_E$):</strong> Výrobci chtějí prodat hodně ($Q_S$), ale kupující mají zájem jen o málo ($Q_D$). Vzniká <strong>přebytek zboží</strong>. Výrobci musí zlevnit, aby zboží udali, čímž cena klesá zpět k $P_E$.
+          </li>
+          <li>
+            <strong>Při ceně nižší než rovnovážné ($P &lt; P_E$):</strong> Kupující chtějí nakupovat ($Q_D$), ale výrobci za tuto cenu nabízejí málo ($Q_S$). Vzniká <strong>nedostatek zboží</strong> (fronty, prázdné regály). Kupující jsou ochotni přeplatit, což tlačí cenu nahoru zpět k $P_E$.
+          </li>
+        </ul>
+
+        <h2 className="text-2xl font-serif font-bold text-stone-900 pt-6">
+          Interaktivní tržní simulátor
+        </h2>
+        <p>
+          Vyzkoušejte si, jak reaguje tržní rovnováha na posuny nabídky a poptávky. Můžete uchopit křivky myší a pohybovat s nimi doprava a doleva:
+        </p>
+
+        <InteractiveMarketChart />
+
+        <QuizCarousel>
           <InteractiveQuestion
-            question="Jaký zákon nám říká, že s rostoucí cenou klesá ochota spotřebitelů nakupovat?"
-            options={[ "Zákon klesajícího mezního užitku", "Nabídkový zákon", "Poptávkový zákon"]}
+            question="Co způsobí nárůst ceny másla na trhu s máslem?"
+            options={[
+              "Posun celé poptávkové křivky doleva.",
+              "Posun po poptávkové křivce k menšímu poptávanému množství.",
+              "Posun celé nabídkové křivky doprava."
+            ]}
+            correctAnswer={1}
+            explanation="Změna ceny samotného statku nikdy neposouvá celou křivku – dochází pouze k posunu PO křivce k menšímu poptávanému množství."
+          />
+          <InteractiveQuestion
+            question="Pokud je na trhu stanovena cena nižší, než je rovnovážná cena, co nastane?"
+            options={[
+              "Přebytek zboží a tlak na další zlevňování.",
+              "Tržní rovnováha se stabilizuje.",
+              "Nedostatek zboží a přirozený tlak na růst ceny."
+            ]}
             correctAnswer={2}
-            explanation='Poptávkový zákon nám říká, že ceteris paribus s rostoucí cenou klesá poptávané množství statku (množství statku, které jsou lidé ochotni koupit). '
-            />
-            <InteractiveQuestion
-            question="Co se stane s rovnovážnou cenou a množstvím, když se zvýší důchod spotřebitelů u normálního statku?"
-            options={[ "Cena se zvýší a množství klesne", "Cena se sníží a množství se zvýší", "Cena se zvýší a množství se zvýší"]}
-            correctAnswer={2}
-            explanation='Zvýšení důchodu spotřebitelů zvyšuje jejich nakupovací schopnost, což vede ke zvýšení poptávky a tedy rovnovážnéceny u normálního statku.'
-            />
-            <InteractiveQuestion
-            question="Co se stane s rovnovážnou cenou a množstvím, když se zvýší cena substitutu a zároveň výrobci budou očekávat růst ceny statku v budoucnu?"
-            options={[ "Cena se zvýší a množství klesne", "Cena se zvýší a množství zůstane nezměněné", "Cena se zvýší a pohyb množství nemůžeme určit"]}
-            correctAnswer={2}
-            explanation='Zvýšení ceny substitutu vede ke zvýšení poptávky po statku, což zvýší cenu a množství. Očekávání růstu ceny v budoucnu však snižuje současnou nabídku, což dále zvyšuje cenu. Celkově tedy cena určitě vzroste, ale efekt na množství je nejasný, protože zvýšená poptávka zvyšuje množství, zatímco snížená nabídka ho snižuje (neznámo o kolik).'
-            />
-        </QuizCarousel> 
-</article>
+            explanation="Při příliš nízké ceně poptávka převyšuje nabídku (vzniká nedostatek), což vede ke konkurenci mezi kupujícími a růstu ceny."
+          />
+        </QuizCarousel>
+      </article>
+
       {/* NAVIGACE MEZI PODKAPITOLAMI */}
-     <footer className="mt-16 pt-8 border-t border-slate-100">
-  <div className="grid grid-cols-2 gap-4">
-    
-    {/* Předchozí kapitola */}
-    <div className="flex justify-start">
-      <Link 
-        href="/zakladni-koncepty/komparativni-absolutni-vyhoda" 
-        className="group flex items-start gap-3 max-w-[280px] text-left transition-all"
-      >
-       
-        <ArrowLeft size={20} className="shrink-0 text-slate-300 group-hover:text-blue-600 group-hover:-translate-x-1 transition-all mt-1" />
-        <div className="flex flex-col">
-          <span className="text-[10px] font-black uppercase tracking-widest text-slate-400 mb-1">Předchozí</span>
-          <span className="text-sm font-bold text-blue-600 group-hover:text-blue-700 leading-snug">
-            Komparativní a absolutní výhoda
-          </span>
+      <footer className="mt-16 pt-8 border-t border-stone-300">
+        <div className="flex justify-between items-center">
+          <div className="flex justify-start">
+            <Link 
+              href="/zakladni-koncepty/komparativni-absolutni-vyhoda" 
+              className="group flex items-start gap-3 max-w-[280px] text-left transition-all"
+            >
+              <ArrowLeft size={18} className="shrink-0 text-stone-400 group-hover:text-orange-700 group-hover:-translate-x-1 transition-all mt-1" />
+              <div className="flex flex-col">
+                <span className="text-[10px] font-black uppercase tracking-widest text-stone-500 mb-1 font-sans">Předchozí</span>
+                <span className="text-sm font-serif font-bold text-stone-900 group-hover:text-orange-700 leading-snug">
+                  Komparativní a absolutní výhoda
+                </span>
+              </div>
+            </Link>
+          </div>
+
+          <div className="flex justify-end">
+            <Link 
+              href="/zakladni-koncepty/test" 
+              className="group flex items-start text-right gap-3 max-w-[280px] transition-all"
+            >
+              <div className="flex flex-col">
+                <span className="text-[10px] font-black uppercase tracking-widest text-stone-500 mb-1 font-sans">Závěr kapitoly</span>
+                <span className="text-sm font-serif font-bold text-stone-900 group-hover:text-orange-700 leading-snug">
+                  Závěrečný test kapitoly
+                </span>
+              </div>
+              <ArrowRight size={18} className="shrink-0 text-stone-400 group-hover:text-orange-700 group-hover:translate-x-1 transition-all mt-1" />
+            </Link>
+          </div>
         </div>
-      </Link>
-    </div>
-<div className="flex justify-end">
-      <Link 
-        href="/zakladni-koncepty/test" 
-        className="group flex items-start text-right gap-3 max-w-[280px] transition-all"
-      >
-        <div className="flex flex-col">
-          <span className="text-[10px] font-black uppercase tracking-widest text-slate-400 mb-1">Další</span>
-          <span className="text-sm font-bold text-blue-600 group-hover:text-blue-700 leading-snug">
-            Test z kapitoly
-          </span>
-        </div>
-        <ArrowRight size={20} className="shrink-0 text-slate-300 group-hover:text-blue-600 group-hover:translate-x-1 transition-all mt-1" />
-      </Link>
-    </div>
-  </div>
-</footer>
+      </footer>
     </div>
   );
 }

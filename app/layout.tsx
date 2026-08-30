@@ -1,18 +1,25 @@
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import SidebarLayout from "@/components/SidebarLayout"; 
-import { Inter } from "next/font/google";
+import { Newsreader, Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
 
-const inter = Inter({ 
+const newsreader = Newsreader({
   subsets: ["latin", "latin-ext"],
-  variable: "--font-inter",
-  display: "swap"
+  variable: "--font-serif",
+  display: "swap",
+  style: ["normal", "italic"],
+});
+
+const plusJakartaSans = Plus_Jakarta_Sans({
+  subsets: ["latin", "latin-ext"],
+  variable: "--font-sans",
+  display: "swap",
 });
 
 export const metadata = {
-  title: "Pracovní název",
-  description: "Interaktivní učebnice",
+  title: "Ekonomie Přehledně | Interaktivní Učebnice",
+  description: "Moderní interaktivní učebnice ekonomie s grafy, příklady a cvičeními.",
 };
 
 export default function RootLayout({
@@ -21,22 +28,19 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="cs" className={`scroll-smooth ${inter.variable}`}>
-      <body className={`${inter.className} font-sans bg-white text-slate-900 flex flex-col min-h-screen antialiased`}>
+    <html lang="cs" className={`scroll-smooth ${newsreader.variable} ${plusJakartaSans.variable}`}>
+      <body className="font-sans bg-[#FBF9F5] text-stone-800 flex flex-col min-h-screen antialiased selection:bg-stone-200 selection:text-stone-900">
         
         <Navbar />
 
-        {/* pt-16 aby to nebylo pod navbarem */}
-        <div className="pt-16 flex flex-1 flex-col">
-          
-          {/* Všechno zabalíme do SidebarLayout */}
+        {/* pt-16 aby obsah nebyl pod navbarem */}
+        <div className="pt-16 flex flex-1 flex-col bg-[#FBF9F5]">
           <SidebarLayout>
             {children}
           </SidebarLayout>
-
         </div>
 
-        <div className="relative z-50 bg-white">
+        <div className="relative z-40 bg-stone-900 border-t border-stone-800">
            <Footer />
         </div>
         

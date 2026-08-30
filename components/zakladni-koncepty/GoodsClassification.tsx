@@ -1,8 +1,7 @@
 "use client";
 import React, { useState } from 'react';
-import { Box, CheckCircle, RotateCcw, Info, HelpCircle } from 'lucide-react';
+import { Box, CheckCircle, RotateCcw } from 'lucide-react';
 
-// Definice statků a jejich správného zařazení
 const GOODS_POOL = [
   { id: 1, name: "Mořská voda", scarcity: "Volné", ownership: "Veřejné" },
   { id: 2, name: "Šálek kávy", scarcity: "Ekonomické", ownership: "Soukromé" },
@@ -20,7 +19,7 @@ type Mode = 'scarcity' | 'ownership';
 
 export default function GoodsClassification() {
   const [mode, setMode] = useState<Mode>('scarcity');
-  const [placedItems, setPlacedItems] = useState<Record<number, string>>({}); // id -> název kategorie
+  const [placedItems, setPlacedItems] = useState<Record<number, string>>({});
   const [showResults, setShowResults] = useState(false);
 
   const categories = mode === 'scarcity' 
@@ -38,22 +37,22 @@ export default function GoodsClassification() {
   };
 
   return (
-    <div className="my-10 bg-slate-50 border border-slate-200 rounded-3xl overflow-hidden shadow-md">
+    <div className="my-8 bg-[#FDFCF9] border border-stone-300 rounded-xl overflow-hidden shadow-sm">
       {/* Horní lišta - Přepínač */}
-      <div className="p-4 bg-white border-b flex flex-col md:flex-row items-center justify-between gap-4">
-        <h3 className="font-black uppercase tracking-widest text-slate-500 text-sm flex items-center gap-2">
-          <Box size={18} className="text-blue-500" /> Cvičení: Třídění statků
+      <div className="p-4 bg-[#F7F4EE] border-b border-stone-200 flex flex-col md:flex-row items-center justify-between gap-4">
+        <h3 className="font-serif font-bold tracking-tight text-stone-900 text-base flex items-center gap-2">
+          <Box size={16} className="text-orange-700" /> Cvičení: Třídění statků
         </h3>
-        <div className="flex bg-slate-100 p-1 rounded-xl">
+        <div className="flex bg-stone-200/60 p-1 rounded-lg border border-stone-300">
           <button 
             onClick={() => {setMode('scarcity'); resetGame();}}
-            className={`px-4 py-1.5 text-xs font-bold rounded-lg transition-all ${mode === 'scarcity' ? 'bg-white text-blue-600 border border-slate-200' : 'text-slate-500 hover:text-slate-700'}`}
+            className={`px-3 py-1 text-xs font-bold font-sans rounded-md transition-all uppercase tracking-wider ${mode === 'scarcity' ? 'bg-white text-stone-900 border border-stone-300 shadow-xs' : 'text-stone-600 hover:text-stone-900'}`}
           >
             Dle vzácnosti
           </button>
           <button 
             onClick={() => {setMode('ownership'); resetGame();}}
-            className={`px-4 py-1.5 text-xs font-bold rounded-lg transition-all ${mode === 'ownership' ? 'bg-white text-blue-600 border border-slate-200' : 'text-slate-500 hover:text-slate-700'}`}
+            className={`px-3 py-1 text-xs font-bold font-sans rounded-md transition-all uppercase tracking-wider ${mode === 'ownership' ? 'bg-white text-stone-900 border border-stone-300 shadow-xs' : 'text-stone-600 hover:text-stone-900'}`}
           >
             Dle vylučitelnosti a rivality
           </button>
@@ -62,7 +61,7 @@ export default function GoodsClassification() {
 
       <div className="p-6">
         {/* Drop zóny (Kategorie) */}
-        <div className={`grid gap-4 mb-8 ${mode === 'scarcity' ? 'grid-cols-2' : 'grid-cols-3'}`}>
+        <div className={`grid gap-4 mb-6 ${mode === 'scarcity' ? 'grid-cols-2' : 'grid-cols-3'}`}>
           {categories.map(cat => (
             <div 
               key={cat}
@@ -71,9 +70,9 @@ export default function GoodsClassification() {
                 const id = Number(e.dataTransfer.getData("itemId"));
                 handleDrop(id, cat);
               }}
-              className="min-h-[150px] bg-white border-2 border-dashed border-slate-200 rounded-2xl p-4 flex flex-col items-center gap-2 transition-colors hover:border-blue-300"
+              className="min-h-[140px] bg-white border-2 border-dashed border-stone-300 rounded-xl p-4 flex flex-col items-center gap-2 transition-colors hover:border-stone-500"
             >
-              <span className="text-xs font-black uppercase text-slate-400 mb-2">{cat}</span>
+              <span className="text-[11px] font-black uppercase text-stone-500 tracking-wider font-sans mb-1">{cat}</span>
               <div className="flex flex-wrap justify-center gap-2">
                 {Object.entries(placedItems)
                   .filter(([_, category]) => category === cat)
@@ -84,10 +83,10 @@ export default function GoodsClassification() {
                     return (
                       <div 
                         key={id}
-                        className={`px-3 py-1.5 rounded-lg text-sm font-medium shadow-sm border ${
-                          isCorrect ? 'bg-green-100 border-green-500 text-green-700' :
-                          isWrong ? 'bg-red-100 border-red-500 text-red-700' :
-                          'bg-blue-50 border-blue-100 text-blue-700'
+                        className={`px-3 py-1.5 rounded-lg text-xs font-sans font-medium shadow-xs border ${
+                          isCorrect ? 'bg-emerald-50 border-emerald-600 text-emerald-800 font-bold' :
+                          isWrong ? 'bg-rose-50 border-rose-600 text-rose-800' :
+                          'bg-[#F7F4EE] border-stone-300 text-stone-800'
                         }`}
                       >
                         {item?.name}
@@ -100,18 +99,18 @@ export default function GoodsClassification() {
         </div>
 
         {/* Pool kartiček k rozřazení */}
-        <div className="bg-white p-6 rounded-2xl border border-slate-200 shadow-inner">
-          <p className="text-xs text-slate-400 mb-4 font-bold uppercase text-center italic">
-            Přetáhněte kartičky do boxů výše:
+        <div className="bg-[#F7F4EE] p-5 rounded-xl border border-stone-300">
+          <p className="text-xs text-stone-500 mb-3 font-bold uppercase tracking-wider text-center font-sans">
+            Přetáhněte položky do boxů výše:
           </p>
-          <div className="flex flex-wrap justify-center gap-3">
+          <div className="flex flex-wrap justify-center gap-2.5">
             {GOODS_POOL.map(item => (
               !placedItems[item.id] && (
                 <div
                   key={item.id}
                   draggable
                   onDragStart={(e) => e.dataTransfer.setData("itemId", item.id.toString())}
-                  className="px-4 py-2 bg-slate-800 text-white rounded-xl text-sm font-bold cursor-grab active:cursor-grabbing hover:bg-slate-700 hover:shadow-md transition-all"
+                  className="px-3.5 py-1.5 bg-[#1C1917] text-white rounded-lg text-xs font-sans font-bold cursor-grab active:cursor-grabbing hover:bg-stone-800 shadow-sm transition-all active:scale-95"
                 >
                   {item.name}
                 </div>
@@ -121,19 +120,19 @@ export default function GoodsClassification() {
         </div>
 
         {/* Ovládací tlačítka */}
-        <div className="mt-8 flex justify-center gap-4">
+        <div className="mt-6 flex justify-center gap-3">
           <button 
             onClick={() => setShowResults(true)}
             disabled={Object.keys(placedItems).length === 0}
-            className="flex items-center gap-2 px-6 py-3 bg-blue-600 text-white rounded-full font-black uppercase tracking-widest text-xs hover:bg-blue-700 hover:shadow-lg disabled:opacity-30 transition-all"
+            className="flex items-center gap-2 px-6 py-2.5 bg-stone-900 text-white rounded-lg font-sans font-bold text-xs uppercase tracking-wider hover:bg-stone-800 shadow-sm disabled:opacity-40 transition-all active:scale-95"
           >
-            <CheckCircle size={18} /> Zkontrolovat
+            <CheckCircle size={15} /> Zkontrolovat
           </button>
           <button 
             onClick={resetGame}
-            className="flex items-center gap-2 px-6 py-3 bg-slate-200 text-slate-600 rounded-full font-black uppercase tracking-widest text-xs hover:bg-slate-300 transition-all"
+            className="flex items-center gap-2 px-6 py-2.5 bg-white text-stone-700 border border-stone-300 rounded-lg font-sans font-bold text-xs uppercase tracking-wider hover:bg-stone-100 transition-all shadow-sm active:scale-95"
           >
-            <RotateCcw size={18} /> Reset
+            <RotateCcw size={15} /> Reset
           </button>
         </div>
       </div>

@@ -1,114 +1,89 @@
+"use client";
 import React from 'react';
 import Link from 'next/link';
 import { 
-  Gamepad2, 
-  Store, 
-  Landmark, 
+  LineChart, 
   ArrowUpDown, 
   Play, 
-  Trophy, 
-  ChartColumn
+  Sparkles, 
+  Gamepad2 
 } from 'lucide-react';
 
-const MINIGAMES = [
-  /*{
-    id: "vetsi-mensi",
-    title: "Větší / Menší",
-    description: "Myslíte si, že znáte reálné ceny, HDP nebo míry inflace? Otestujte svůj odhad a tipněte si, zda je další ekonomický ukazatel větší, nebo menší.",
-    href: "/hry/vetsi-mensi",
-    icon: ArrowUpDown,
-    color: "bg-blue-500",
-    lightColor: "bg-blue-100",
-    textColor: "text-blue-600",
-    tags: ["Data", "Odhad", "Rychlovka"]
-  },*/
-
+const GAMES = [
   {
     id: "trzni-principy",
-    title: "Tržní principy",
-    description: "Otestujte, jak dobře rozumíte základním tržním principům nabídky a poptávky. Řeště praktické scénáře a zjistěte, zda dokážete předvídat, jak se trh bude chovat.",
+    title: "Tržní principy (Trh s pivem)",
+    desc: "Vyzkoušej si roli trhu. Reaguj na nečekané události a posouvej křivky nabídky a poptávky.",
+    icon: LineChart,
     href: "/hry/trzni-principy",
-    icon: ChartColumn,
-    color: "bg-orange-500",
-    lightColor: "bg-orange-100",
-    textColor: "text-orange-600",
-    tags: ["Nabídka a poptávka", "Analýza"]
+    tag: "Mikroekonomie"
   },
+  {
+    id: "vetsi-mensi",
+    title: "Větší / Menší",
+    desc: "Uhádneš, která země má vyšší HDP na obyvatele nebo vyšší státní dluh? Otestuj svůj ekonomický přehled.",
+    icon: ArrowUpDown,
+    href: "/hry/vetsi-mensi",
+    tag: "Makroekonomie"
+  }
 ];
 
-export default function MinigamesLibrary() {
+export default function GamesHub() {
   return (
-    <div className="min-h-screen bg-slate-50 py-12 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-6xl mx-auto">
+    <div className="min-h-screen bg-[#FBF9F5] py-12 px-6">
+      <div className="max-w-4xl mx-auto">
         
-        {/* HLAVIČKA STRÁNKY */}
-        <div className="text-center mb-16">
-          <h1 className="text-4xl md:text-5xl font-black text-slate-800 mb-4 tracking-tight">
+        {/* HLAVIČKA SEKCE */}
+        <div className="text-center mb-12">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-stone-100 border border-stone-300 text-stone-700 text-xs font-bold uppercase tracking-widest mb-4">
+            <Gamepad2 size={14} className="text-orange-700" />
+            <span>Interaktivní simulace</span>
+          </div>
+          <h1 className="text-4xl md:text-5xl font-serif font-bold text-stone-900 mb-4 tracking-tight">
             Ekonomické minihry
           </h1>
-          <p className="text-lg text-slate-600 max-w-2xl mx-auto">
-            Teorie je fajn, ale praxe je lepší. Otestujte své ekonomické znalosti
-            v našich interaktivních minihrách.
+          <p className="text-base md:text-lg text-stone-600 max-w-xl mx-auto leading-relaxed font-sans">
+            Nejlepší způsob, jak pochopit ekonomické zákonitosti, je vyzkoušet si je v praxi.
           </p>
         </div>
 
-        {/* MŘÍŽKA S HRAMI */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {MINIGAMES.map((game) => {
+        {/* MŘÍŽKA HER */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-3xl mx-auto">
+          {GAMES.map((game) => {
             const Icon = game.icon;
-            
             return (
-              <div 
-                key={game.id} 
-                className="group bg-white rounded-3xl p-6 shadow-sm hover:shadow-xl transition-all duration-300 border border-slate-100 flex flex-col hover:-translate-y-1 relative overflow-hidden"
+              <Link 
+                key={game.id}
+                href={game.href}
+                className="group relative bg-[#FDFCF9] border border-stone-300 rounded-xl p-6 hover:border-stone-500 hover:shadow-sm transition-all duration-200 flex flex-col justify-between"
               >
-                {/* Dekorativní pozadí při hoveru */}
-                <div className={`absolute -right-10 -top-10 w-32 h-32 rounded-full opacity-0 group-hover:opacity-10 transition-opacity duration-300 ${game.color}`} />
-                
-                {/* Ikona hry */}
-                <div className={`w-14 h-14 rounded-2xl flex items-center justify-center mb-6 ${game.lightColor}`}>
-                  <Icon size={28} className={game.textColor} />
-                </div>
-
-                {/* Obsah karty */}
-                <h2 className="text-2xl font-bold text-slate-800 mb-3">
-                  {game.title}
-                </h2>
-                <p className="text-slate-600 mb-6 flex-grow leading-relaxed">
-                  {game.description}
-                </p>
-
-                {/* Štítky (Tags) */}
-                <div className="flex flex-wrap gap-2 mb-8">
-                  {game.tags.map((tag, i) => (
-                    <span 
-                      key={i} 
-                      className="px-3 py-1 bg-slate-100 text-slate-600 text-xs font-bold uppercase tracking-wider rounded-lg"
-                    >
-                      {tag}
+                <div>
+                  <div className="flex items-center justify-between mb-4">
+                    <div className="w-12 h-12 rounded-lg bg-[#F7F4EE] border border-stone-200 flex items-center justify-center text-stone-800 group-hover:bg-stone-900 group-hover:text-white transition-colors">
+                      <Icon size={22} />
+                    </div>
+                    <span className="text-[10px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded bg-stone-100 border border-stone-200 text-stone-600 font-sans">
+                      {game.tag}
                     </span>
-                  ))}
+                  </div>
+
+                  <h3 className="text-xl font-serif font-bold text-stone-900 mb-2 group-hover:text-orange-700 transition-colors leading-snug">
+                    {game.title}
+                  </h3>
+                  <p className="text-xs text-stone-600 leading-relaxed font-sans">
+                    {game.desc}
+                  </p>
                 </div>
 
-                {/* Tlačítko pro spuštění */}
-                <Link 
-                  href={game.href}
-                  className={`w-full py-3.5 rounded-xl flex items-center justify-center gap-2 font-black text-white transition-all active:scale-95 hover:shadow-md ${game.color} hover:opacity-90`}
-                >
-                  <Play size={18} className="fill-white" />
-                  Spustit hru
-                </Link>
-              </div>
+                <div className="mt-8 pt-4 border-t border-stone-200 flex items-center justify-between text-xs font-bold uppercase tracking-wider text-stone-600 group-hover:text-stone-900 font-sans">
+                  <span>Spustit hru</span>
+                  <div className="w-7 h-7 rounded-full bg-stone-100 border border-stone-300 flex items-center justify-center text-stone-700 group-hover:bg-stone-900 group-hover:text-white group-hover:border-stone-900 transition-colors">
+                    <Play size={12} className="ml-0.5" />
+                  </div>
+                </div>
+              </Link>
             );
           })}
-        </div>
-
-        {/* PRÁZDNÝ SLOT PRO BUDOUCÍ HRY */}
-        <div className="mt-12 text-center">
-          <div className="inline-flex items-center gap-2 px-4 py-2 bg-slate-200/50 rounded-full text-slate-500 text-sm font-bold">
-            <Trophy size={16} />
-            <span>Další minihry už brzy...</span>
-          </div>
         </div>
 
       </div>

@@ -1,8 +1,6 @@
 "use client";
 import React from 'react';
 
-// --- 1. DEFINICE DATOVÝCH TYPŮ ---
-
 export interface Curve {
   startX: number;
   startY: number;
@@ -33,13 +31,10 @@ export interface Point {
   labelPosition?: 'top-right' | 'top-left' | 'bottom-right' | 'bottom-left' | 'top' | 'bottom' | 'left' | 'right'; 
 }
 
-// NOVINKA: Definice vybarvené plochy
 export interface FilledArea {
-  // Pole bodů, které tvoří obvod plochy (např. 3 body pro trojúhelník)
-  // Musí být v logických souřadnicích 0-100
   points: { x: number; y: number }[]; 
-  color?: string;   // Barva výplně (např. "green", "#ff0000")
-  opacity?: number; // Průhlednost (0.0 až 1.0, výchozí 0.3)
+  color?: string;
+  opacity?: number;
 }
 
 interface MarketChartProps {
@@ -49,11 +44,9 @@ interface MarketChartProps {
   curves?: Curve[];
   arrows?: Arrow[];
   points?: Point[];
-  areas?: FilledArea[]; // <-- Přidáno do props
+  areas?: FilledArea[];
   className?: string;
 }
-
-// --- 2. SAMOTNÁ KOMPONENTA ---
 
 export default function MarketChart({
   title,
@@ -62,48 +55,45 @@ export default function MarketChart({
   curves = [],
   arrows = [],
   points = [],
-  areas = [], // <-- Výchozí prázdné pole
+  areas = [],
   className = ""
 }: MarketChartProps) {
 
-  // Rozměry grafu
   const width = 400;
   const height = 400;
   const padding = 50; 
   
-  // Převod 0-100 (logika) na pixely (obrazovka)
   const getX = (val: number) => padding + (val / 100) * (width - padding * 2);
   const getY = (val: number) => (height - padding) - (val / 100) * (height - padding * 2);
 
   return (
-    <div className={`my-8 flex flex-col items-center ${className}`}>
-      {title && <h4 className="font-bold text-slate-800 mb-2">{title}</h4>}
+    <div className={`my-8 flex flex-col items-center bg-[#FDFCF9] p-5 rounded-xl border border-stone-300 shadow-sm ${className}`}>
+      {title && <h4 className="font-serif font-bold text-stone-900 mb-3 text-base">{title}</h4>}
       
-      <svg width="100%" viewBox={`0 0 ${width} ${height}`} className="max-w-md overflow-visible font-sans">
+      <svg width="100%" viewBox={`0 0 ${width} ${height}`} className="max-w-md overflow-visible font-sans bg-[#F7F4EE] rounded-lg p-2 border border-stone-200">
         
         {/* --- DEFINICE ŠIPEK --- */}
         <defs>
           <marker id="axisArrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
-            <path d="M0,0 L0,6 L9,3 z" fill="#334155" />
+            <path d="M0,0 L0,6 L9,3 z" fill="#1C1917" />
           </marker>
           <marker id="axisArrow2" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="270">
-            <path d="M0,0 L0,6 L9,3 z" fill="#334155" />
+            <path d="M0,0 L0,6 L9,3 z" fill="#1C1917" />
           </marker>
           <marker id="shiftArrow" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto">
-            <path d="M0,0 L0,6 L8,3 z" fill="#94a3b8" />
+            <path d="M0,0 L0,6 L8,3 z" fill="#78716C" />
           </marker>
         </defs>
 
         {/* --- OSY --- */}
-        <line x1={padding} y1={padding - 10} x2={padding} y2={height - padding} stroke="#334155" strokeWidth="2" markerStart="url(#axisArrow2)" />
-        <text x={padding} y={padding - 25} textAnchor="middle" className="text-sm font-bold fill-slate-700">{yAxisLabel}</text>
+        <line x1={padding} y1={padding - 10} x2={padding} y2={height - padding} stroke="#1C1917" strokeWidth="2" markerStart="url(#axisArrow2)" />
+        <text x={padding} y={padding - 22} textAnchor="middle" className="text-xs font-serif font-bold fill-stone-900">{yAxisLabel}</text>
         
-        <line x1={padding} y1={height - padding} x2={width - padding + 10} y2={height - padding} stroke="#334155" strokeWidth="2" markerEnd="url(#axisArrow)" />
-        <text x={width - padding + 20} y={height - padding + 4} textAnchor="start" dominantBaseline="middle" className="text-sm font-bold fill-slate-700">{xAxisLabel}</text>
+        <line x1={padding} y1={height - padding} x2={width - padding + 10} y2={height - padding} stroke="#1C1917" strokeWidth="2" markerEnd="url(#axisArrow)" />
+        <text x={width - padding + 18} y={height - padding + 4} textAnchor="start" dominantBaseline="middle" className="text-xs font-serif font-bold fill-stone-900">{xAxisLabel}</text>
 
-        {/* --- 3. NOVINKA: VYBARVENÉ PLOCHY (Musí být vykresleny JAKO PRVNÍ, aby byly pod křivkami) --- */}
+        {/* --- VYBARVENÉ PLOCHY --- */}
         {areas.map((area, i) => {
-          // Převedeme pole bodů [{x,y}, ...] na řetězec pro SVG "x1,y1 x2,y2 ..."
           const pointsString = area.points
             .map(pt => `${getX(pt.x)},${getY(pt.y)}`)
             .join(' ');
@@ -112,8 +102,8 @@ export default function MarketChart({
             <polygon 
               key={`area-${i}`}
               points={pointsString}
-              fill={area.color || "#cbd5e1"} // Výchozí šedá
-              fillOpacity={area.opacity ?? 0.3} // Výchozí průhlednost 30%
+              fill={area.color || "#D6D3D1"}
+              fillOpacity={area.opacity ?? 0.25}
             />
           );
         })}
@@ -124,22 +114,24 @@ export default function MarketChart({
           const sy = getY(curve.startY);
           const ex = getX(curve.endX);
           const ey = getY(curve.endY);
-          const strokeColor = curve.color || "#2563eb";
+          const strokeColor = curve.color || "#2563EB";
 
           return (
             <g key={`curve-${i}`}>
               <line 
-                x1={sx} y1={sy} 
-                x2={ex} y2={ey} 
+                x1={sx} 
+                y1={sy} 
+                x2={ex} 
+                y2={ey} 
                 stroke={strokeColor} 
-                strokeWidth="3" 
+                strokeWidth="2.5" 
                 strokeLinecap="round"
                 strokeDasharray={curve.isDashed ? "6,6" : "none"}
               />
               <text 
                 x={ex + 8} 
                 y={ey + (curve.endY < curve.startY ? -5 : 15)} 
-                className="text-base font-black" 
+                className="text-sm font-sans font-bold" 
                 fill={strokeColor}
               >
                 {curve.label}
@@ -152,10 +144,12 @@ export default function MarketChart({
         {arrows.map((arr, i) => (
           <line 
             key={`arrow-${i}`}
-            x1={getX(arr.startX)} y1={getY(arr.startY)} 
-            x2={getX(arr.endX)} y2={getY(arr.endY)} 
-            stroke={arr.color || "#94a3b8"} 
-            strokeWidth="2" 
+            x1={getX(arr.startX)} 
+            y1={getY(arr.startY)} 
+            x2={getX(arr.endX)} 
+            y2={getY(arr.endY)} 
+            stroke={arr.color || "#78716C"} 
+            strokeWidth="1.5" 
             markerEnd="url(#shiftArrow)" 
           />
         ))}
@@ -165,12 +159,10 @@ export default function MarketChart({
           const px = getX(pt.x);
           const py = getY(pt.y);
 
-          // Výchozí pozice (top-right)
           let labelX = px + 8;
           let labelY = py - 8;
           let textAnchor = "start";
 
-          // Logika pro všech 8 směrů
           switch (pt.labelPosition) {
             case 'top-left':
               labelX = px - 8;
@@ -214,37 +206,37 @@ export default function MarketChart({
               {/* Vodicí čáry */}
               {pt.showLines && (
                 <>
-                  <line x1={padding} y1={py} x2={px} y2={py} stroke="#94a3b8" strokeWidth="1.5" strokeDasharray="4,4" />
-                  <line x1={px} y1={height - padding} x2={px} y2={py} stroke="#94a3b8" strokeWidth="1.5" strokeDasharray="4,4" />
+                  <line x1={padding} y1={py} x2={px} y2={py} stroke="#A8A29E" strokeWidth="1" strokeDasharray="3,3" />
+                  <line x1={px} y1={height - padding} x2={px} y2={py} stroke="#A8A29E" strokeWidth="1" strokeDasharray="3,3" />
                 </>
               )}
               
               {/* Label na ose X */}
               {pt.xLabel && (
                 <>
-                  <line x1={px} y1={height - padding - 4} x2={px} y2={height - padding + 4} stroke="black" strokeWidth="1.5" />
-                  <text x={px} y={height - padding + 20} textAnchor="middle" className="text-xs font-bold fill-slate-600">{pt.xLabel}</text>
+                  <line x1={px} y1={height - padding - 3} x2={px} y2={height - padding + 3} stroke="#1C1917" strokeWidth="1.5" />
+                  <text x={px} y={height - padding + 18} textAnchor="middle" className="text-xs font-mono font-bold fill-stone-700">{pt.xLabel}</text>
                 </>
               )}
               
               {/* Label na ose Y */}
               {pt.yLabel && (
                 <>
-                  <line x1={padding - 4} y1={py} x2={padding + 4} y2={py} stroke="black" strokeWidth="1.5" />
-                  <text x={padding - 10} y={py} textAnchor="end" dominantBaseline="middle" className="text-xs font-bold fill-slate-600">{pt.yLabel}</text>
+                  <line x1={padding - 3} y1={py} x2={padding + 3} y2={py} stroke="#1C1917" strokeWidth="1.5" />
+                  <text x={padding - 8} y={py} textAnchor="end" dominantBaseline="middle" className="text-xs font-mono font-bold fill-stone-700">{pt.yLabel}</text>
                 </>
               )}
               
               {/* Samotný puntík a písmeno */}
               {!pt.hidePoint && (
                 <>
-                  <circle cx={px} cy={py} r="5" fill={pt.color || "#0f172a"} stroke="white" strokeWidth="2" />
+                  <circle cx={px} cy={py} r="5" fill={pt.color || "#1C1917"} stroke="#FFFFFF" strokeWidth="1.5" />
                   {pt.label && (
                     <text 
                       x={labelX} 
                       y={labelY} 
                       textAnchor={textAnchor as any} 
-                      className="text-sm font-bold fill-slate-800"
+                      className="text-xs font-serif font-bold fill-stone-900"
                     >
                       {pt.label}
                     </text>

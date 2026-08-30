@@ -1,336 +1,382 @@
 "use client";
 import React, { useState } from 'react';
 import Link from 'next/link';
-import { CheckCircle2, XCircle, AlertCircle, ArrowLeft } from 'lucide-react';
+import { 
+  Award, 
+  ArrowLeft, 
+  ArrowRight, 
+  RotateCcw, 
+  CheckCircle2, 
+  XCircle, 
+  HelpCircle,
+  Clock,
+  Sparkles
+} from 'lucide-react';
+import confetti from 'canvas-confetti';
 
-// --- 1. STRUKTURA OTÁZEK ---
 const QUESTIONS = [
-  // --- SINGLE CHOICE ---
   {
-    id: 'q1',
-    type: 'single',
-    text: 'Který z následujících tvrzení je příkladem normativní ekonomie?',
+    id: 1,
+    question: "Co je hlavním předmětem zkoumání ekonomie?",
     options: [
-      'Míra nezaměstnanosti v ČR je 3,5 %.',
-      'Vláda by měla zvýšit minimální mzdu, aby pomohla chudším.',
-      'Zvýšení daní povede k poklesu spotřeby.',
-      'Inflace v minulém roce klesla.'
+      "Jak vydělat co nejvíce peněz na burze cenných papírů.",
+      "Jak lidé a společnost rozhodují o alokaci vzácných zdrojů k uspokojení potřeb.",
+      "Jak centrální banka tiskne peníze a stát vybírá daně.",
+      "Pouze účetnictví velkých nadnárodních korporací."
     ],
-    correctAnswer: 'Vláda by měla zvýšit minimální mzdu, aby pomohla chudším.'
+    correct: 1,
+    explanation: "Ekonomie je společenská věda o lidském jednání a rozhodování v podmínkách vzácnosti zdrojů."
   },
   {
-    id: 'q2',
-    type: 'single',
-    text: 'Co znamená ceteris paribus?',
+    id: 2,
+    question: "Co znamená předpoklad 'ceteris paribus'?",
     options: [
-      'Zákon klesajících výnosů',
-      'Neviditelná ruka trhu',
-      'Za jinak stejných okolností (ostatní proměnné se nemění)',
-      'Náklady obětované příležitosti'
+      "Člověk se vždy chová zcela racionálně.",
+      "Cena zboží se rovná jeho meznímu užitku.",
+      "Za jinak nezměněných podmínek (všechny ostatní proměnné zůstávají konstantní).",
+      "Trh vždy směřuje k okamžité rovnováze."
     ],
-    correctAnswer: 'Za jinak stejných okolností (ostatní proměnné se nemění)'
+    correct: 2,
+    explanation: "Ceteris paribus umožňuje ekonomům zkoumat vliv jedné proměnné na druhou s tím, že ostatní vlivy jsou zafixovány."
   },
   {
-    id: 'q3',
-    type: 'single',
-    text: 'Mezní užitek je nula když:',
+    id: 3,
+    question: "Které tvrzení je příkladem NORMATIVNÍ ekonomie?",
     options: [
-      'Spotřebitel nemá žádný důchod.',
-      'Celkový užitek začíná růst.',
-      'Cena statku je nulová.',
-      'Celkový užitek je maximální (bod nasycení).'
+      "Míra inflace v minulém roce dosáhla 2,5 %.",
+      "Zvýšení minimální mzdy může zvýšit nezaměstnanost mladých lidí.",
+      "Vláda by měla zavést daň na slazené nápoje, aby chránila zdraví občanů.",
+      "S růstem ceny klesá poptávané množství daného statku."
     ],
-    correctAnswer: 'Celkový užitek je maximální (bod nasycení).'
+    correct: 2,
+    explanation: "Normativní ekonomie obsahuje hodnotové soudy ('měla by') a doporučení, nikoli pouhý objektivní popis faktů ('co je')."
   },
   {
-    id: 'q4',
-    type: 'single',
-    text: 'Apple za hodinu vyrobí 28 000 mobilů a 2 800 notebooků. Samsung vyrobí 27 000 mobilů a 500 notebooků za stejnou dobu. Kdo má absolutní výhodu ve výrobě mobilů?',
+    id: 4,
+    question: "Který z následujících statků je typickým ČISTÝM VEŘEJNÝM STATKEM?",
     options: [
-      'Apple',
-      'Samsung',
-      'Obě firmy mají stejnou absolutní výhodu.',
-      'Z těchto dat nelze absolutní výhodu určit.'
+      "Dálnice s mýtnou bránou.",
+      "Obrana státu (armáda) a veřejné osvětlení.",
+      "Šálek kávy v kavárně.",
+      "Osobní automobil."
     ],
-    correctAnswer: 'Apple'
+    correct: 1,
+    explanation: "Veřejné statky jsou nevylučitelné ze spotřeby a nerivalitní (spotřeba jedné osoby neomezuje spotřebu ostatních)."
   },
   {
-    id: 'q5',
-    type: 'single',
-    text: 'Kdo má komparativní výhodu ve výrobě mobilů z příkladu výše?',
+    id: 5,
+    question: "Co říká zákon klesajícího mezního užitku (MU)?",
     options: [
-      'Apple',
-      'Samsung',
-      'Obě firmy mají stejnou komparativní výhodu.',
-      'Nelze určit, chybí nám cena mobilů.'
+      "S každou další spotřebovanou jednotkou statku celkový užitek klesá k nule.",
+      "Dodatečné uspokojení z každé další spotřebované jednotky statku postupně klesá.",
+      "Cena zboží na trhu s časem vždy klesá.",
+      "Mezní užitek je u všech lidí na světě naprosto stejný."
     ],
-    correctAnswer: 'Samsung'
+    correct: 1,
+    explanation: "Zákon klesajícího mezního užitku vysvětluje, proč je pro nás např. první sklenice vody na poušti cennější než ta desátá."
   },
   {
-    id: 'q6',
-    type: 'single',
-    text: 'Co se stane s poptávkou po inferiorním statku, pokud se sníží důchod spotřebitelů?',
+    id: 6,
+    question: "Co je odměnou (důchodem) za poskytnutí výrobního faktoru KAPITÁL?",
     options: [
-      'Poptávka se sníží (posun křivky doleva).',
-      'Poptávka se zvýší (posun křivky doprava).',
-      'Zvýší se pouze poptávané množství (posun po křivce).',
-      'Poptávka se nezmění.'
+      "Mzda",
+      "Pozemková renta",
+      "Úrok (nebo zisk)",
+      "Dividenda z půdy"
     ],
-    correctAnswer: 'Poptávka se zvýší (posun křivky doprava).'
+    correct: 2,
+    explanation: "Práci náleží mzda, půdě pozemková renta, kapitálu úrok a podnikavosti zisk."
   },
   {
-    id: 'q7',
-    type: 'single',
-    text: 'U normálního statku se zvýší počet výrobců na trhu a zároveň klesne cena jeho komplementu. Co se stane s rovnovážným množstvím a cenou?',
+    id: 7,
+    question: "Pokud se ekonomika nachází v bodě UVNITŘ (pod) křivkou PPF, znamená to, že:",
     options: [
-      'Množství i cena se jednoznačně zvýší.',
-      'Cena se jednoznačně sníží, množství může vzrůst i klesnout.',
-      'Množství se jednoznačně zvýší, cena může vzrůst i klesnout.',
-      'Cena i množství se jednoznačně sníží.'
+      "Využívá všechny dostupné technologie a zdroje na 100 %.",
+      "Dosahuje kombinace, která je za současných podmínek nemožná.",
+      "Vyrábí neefektivně – má nevyužité výrobní kapacity nebo nezaměstnanost.",
+      "Obchoduje s jinými státy na základě komparativní výhody."
     ],
-    correctAnswer: 'Množství se jednoznačně zvýší, cena může vzrůst i klesnout.'
+    correct: 2,
+    explanation: "Body uvnitř křivky PPF značí neefektivitu a plýtvání zdroji. Efektivní body leží přímo na křivce."
   },
-  
-  // --- MULTIPLE CHOICE ---
   {
-    id: 'q8',
-    type: 'multiple',
-    text: 'Vyberte, co patří mezi výrobní faktory:',
+    id: 8,
+    question: "Kdy má země KOMPARATIVNÍ výhodu ve výrobě piva?",
     options: [
-      'Práce (lidský kapitál)',
-      'Půda (přírodní zdroje)',
-      'Kapitál (stroje, budovy, technologie)',
-      'Peníze (bankovky a mince)'
+      "Pokud vyrobí absolutně nejvíce hektolitrů piva na světě.",
+      "Pokud má nižší náklady obětované příležitosti na výrobu piva než ostatní země.",
+      "Pokud má nejnižší platy v pivovarech.",
+      "Pokud pivo vůbec nedováží ze zahraničí."
     ],
-    correctAnswers: ['Práce (lidský kapitál)', 'Půda (přírodní zdroje)', 'Kapitál (stroje, budovy, technologie)'] 
+    correct: 1,
+    explanation: "Komparativní výhoda je založena výhradně na nižších alternativních nákladech (obětování menšího množství jiných statků)."
   },
   {
-    id: 'q9',
-    type: 'multiple',
-    text: 'Vyberte veřejné statky:',
+    id: 9,
+    question: "Co se stane na trhu s kávou, pokud prudce vzroste cena ČAJE (substitutu kávy)?",
     options: [
-      'Pouliční osvětlení',
-      'Lístek do kina',
-      'Národní obrana',
-      'Jablko v supermarketu'
+      "Poptávka po kávě klesne (křivka D se posune doleva).",
+      "Poptávka po kávě vzroste (křivka D se posune doprava).",
+      "Nabídka kávy se posune doprava.",
+      "Dojde pouze k posunu po nabídkové křivce kávy dolů."
     ],
-    correctAnswers: ['Pouliční osvětlení', 'Národní obrana'] 
+    correct: 1,
+    explanation: "Při zdražení čaje lidé přejdou k relativně levnější kávě – poptávka po kávě vzroste a posune se doprava."
   },
   {
-    id: 'q10',
-    type: 'multiple',
-    text: 'Co z následujícího zvýší poptávku po normálním statku:',
+    id: 10,
+    question: "Pokud stát stanoví maximální cenu chleba hluboko POD rovnovážnou tržní cenou, jaký bude důsledek?",
     options: [
-      'Růst důchodů spotřebitelů',
-      'Růst ceny substitutu',
-      'Pokles ceny komplementu',
-      'Růst nákladů na výrobu'
+      "Vznikne přebytek chleba na trhu a pekaři ho nebudou mít komu prodat.",
+      "Trh dosáhne dokonalé rovnováhy bez zásahu.",
+      "Vznikne nedostatek chleba (fronty, černý trh), protože poptávané množství převýší nabízené.",
+      "Pekaři začnou péct více chleba, aby ztrátu dohnali."
     ],
-    correctAnswers: ['Růst důchodů spotřebitelů', 'Růst ceny substitutu', 'Pokles ceny komplementu'] 
-  },
-
-  // --- FREE ANSWER ---
-  {
-    id: 'q11',
-    type: 'text',
-    text: 'Pomocí teorie komparativní výhody vysvětlete, proč je dělba práce a obchod výhodný:',
-    suggestedAnswer: 'Dělba práce a obchod jsou výhodné, protože umožňují subjektům specializovat se na činnost, ve které mají nejnižší náklady obětované příležitosti (komparativní výhodu). Díky specializaci a následné směně se celkově vyrobí více statků a obě strany si mohou polepšit (mohou spotřebovávat za hranicí svých vlastních produkčních možností).'
-  },
-  {
-    id: 'q12',
-    type: 'text',
-    text: 'Vysvětlete, co jsou náklady obětované příležitosti:',
-    suggestedAnswer: 'Náklady obětované příležitosti představují hodnotu druhé nejlepší (nevybrané) varianty, které jsme se museli vzdát při našem rozhodování. Vzhledem k tomu, že zdroje jsou vzácné, každé rozhodnutí něco dělat znamená vzdát se příležitosti dělat něco jiného.'
+    correct: 2,
+    explanation: "Při uměle nízké ceně chtějí lidé kupovat hodně, ale pekařům se nevyplatí péct – poptávka převýší nabídku a vznikne nedostatek."
   }
 ];
 
-export default function ChapterTestPage() {
-  const [answers, setAnswers] = useState<Record<string, any>>({});
-  const [isSubmitted, setIsSubmitted] = useState(false);
+export default function ZakladniKonceptyTest() {
+  const [currentStep, setCurrentStep] = useState<'intro' | 'quiz' | 'results'>('intro');
+  const [currentQuestionIdx, setCurrentQuestionIdx] = useState(0);
+  const [selectedAnswers, setSelectedAnswers] = useState<Record<number, number>>({});
+  const [isAnswerSubmitted, setIsAnswerSubmitted] = useState(false);
 
-  const handleSingleChange = (questionId: string, value: string) => {
-    if (isSubmitted) return; 
-    setAnswers(prev => ({ ...prev, [questionId]: value }));
+  const currentQ = QUESTIONS[currentQuestionIdx];
+
+  const handleSelectOption = (optIdx: number) => {
+    if (isAnswerSubmitted) return;
+    setSelectedAnswers(prev => ({
+      ...prev,
+      [currentQuestionIdx]: optIdx
+    }));
   };
 
-  const handleMultipleChange = (questionId: string, value: string) => {
-    if (isSubmitted) return;
-    setAnswers(prev => {
-      const currentSelection = prev[questionId] || [];
-      if (currentSelection.includes(value)) {
-        return { ...prev, [questionId]: currentSelection.filter((item: string) => item !== value) };
-      } else {
-        return { ...prev, [questionId]: [...currentSelection, value] };
+  const handleConfirmAnswer = () => {
+    setIsAnswerSubmitted(true);
+  };
+
+  const handleNextQuestion = () => {
+    setIsAnswerSubmitted(false);
+    if (currentQuestionIdx < QUESTIONS.length - 1) {
+      setCurrentQuestionIdx(prev => prev + 1);
+    } else {
+      setCurrentStep('results');
+      triggerConfetti();
+    }
+  };
+
+  const restartQuiz = () => {
+    setSelectedAnswers({});
+    setCurrentQuestionIdx(0);
+    setIsAnswerSubmitted(false);
+    setCurrentStep('quiz');
+  };
+
+  const calculateScore = () => {
+    let score = 0;
+    QUESTIONS.forEach((q, idx) => {
+      if (selectedAnswers[idx] === q.correct) {
+        score++;
       }
+    });
+    return score;
+  };
+
+  const triggerConfetti = () => {
+    confetti({
+      particleCount: 80,
+      spread: 70,
+      origin: { y: 0.6 },
+      colors: ['#C2410C', '#292524', '#D97706']
     });
   };
 
-  const handleTextChange = (questionId: string, value: string) => {
-    if (isSubmitted) return;
-    setAnswers(prev => ({ ...prev, [questionId]: value }));
-  };
-
   return (
-      <div className="max-w-4xl mx-auto pb-20 pt-5 px-4">
-      {/* Navigace zpět na rozcestník */}
+    <div className="max-w-3xl mx-auto pb-24 pt-6">
+      {/* Navigace zpět */}
       <Link 
         href="/zakladni-koncepty" 
-        className="flex items-center text-slate-400 hover:text-blue-600 transition-colors mb-8 group"
+        className="inline-flex items-center text-xs font-bold uppercase tracking-wider text-stone-500 hover:text-stone-900 transition-colors mb-8 group font-sans"
       >
-        <ArrowLeft size={18} className="mr-2 group-hover:-translate-x-1 transition-transform" />
-        Zpět na kapitolu: Základní koncepty
+        <ArrowLeft size={16} className="mr-2 group-hover:-translate-x-1 transition-transform" />
+        Zpět na přehled kapitoly
       </Link>
 
-      {/* HLAVIČKA PODKAPITOLY */}
-      <header className="mb-5">
-        <h1 className="text-4xl font-black text-slate-900 mb-4 tracking-tight">
-        TEST Z KAPITOLY: ZÁKLADNÍ EKONOMICKÉ KONCEPTY
-        </h1>
-        <div className="h-1 w-20 bg-blue-600 rounded-full"></div>
-      </header>
+      {/* --- 1. ÚVODNÍ OBRAZOVKA TESTU --- */}
+      {currentStep === 'intro' && (
+        <div className="bg-[#FDFCF9] border border-stone-300 rounded-xl p-8 md:p-12 shadow-sm text-center">
+          <div className="w-16 h-16 bg-stone-100 border border-stone-300 rounded-full flex items-center justify-center mx-auto mb-6 text-orange-700">
+            <Award size={32} />
+          </div>
 
-      {/* Seznam otázek */}
-      <div className="space-y-10 mt-10">
-        {QUESTIONS.map((q, index) => {
-          return (
-            <div key={q.id} className="bg-white p-6 rounded-xl border border-slate-200 shadow-sm">
-              <h3 className="text-lg font-bold text-slate-800 mb-4">
-                {index + 1}. {q.text}
-              </h3>
+          <span className="text-xs font-mono font-bold text-orange-700 uppercase tracking-widest block mb-2">
+            Závěrečné ověření
+          </span>
+          <h1 className="text-3xl md:text-4xl font-serif font-bold text-stone-900 mb-4 tracking-tight">
+            Závěrečný test: Základní koncepty
+          </h1>
+          
+          <p className="text-stone-600 text-base max-w-xl mx-auto leading-relaxed mb-8 font-sans">
+            Vyzkoušejte si své znalosti ze všech 7 podkapitol. Test obsahuje 10 otázek pokrývajících teorii vzácnosti, výrobních faktorů, PPF, komparativní výhody a nabídky s poptávkou.
+          </p>
 
-              {/* A) JEDNA SPRÁVNÁ ODPOVĚĎ */}
-              {q.type === 'single' && (
-                <div className="space-y-3">
-                  {q.options?.map(option => {
-                    const isSelected = answers[q.id] === option;
-                    const isCorrect = option === q.correctAnswer;
-                    
-                    let labelClass = "border-slate-200 hover:bg-slate-50";
-                    if (isSubmitted) {
-                      if (isCorrect) labelClass = "border-green-500 bg-green-50 text-green-900";
-                      else if (isSelected && !isCorrect) labelClass = "border-red-500 bg-red-50 text-red-900";
-                      else labelClass = "border-slate-200 opacity-50";
-                    } else if (isSelected) {
-                      labelClass = "border-blue-500 bg-blue-50";
-                    }
-
-                    return (
-                      <label key={option} className={`flex items-start gap-3 p-3 rounded-lg border-2 cursor-pointer transition-colors ${labelClass}`}>
-                        <input 
-                          type="radio" 
-                          name={q.id} 
-                          value={option}
-                          checked={isSelected}
-                          onChange={() => handleSingleChange(q.id, option)}
-                          disabled={isSubmitted}
-                          className="mt-1 w-4 h-4 text-blue-600 border-slate-300 focus:ring-blue-500"
-                        />
-                        <span className="flex-1">{option}</span>
-                        {isSubmitted && isCorrect && <CheckCircle2 className="text-green-600 shrink-0" size={20} />}
-                        {isSubmitted && isSelected && !isCorrect && <XCircle className="text-red-600 shrink-0" size={20} />}
-                      </label>
-                    );
-                  })}
-                </div>
-              )}
-
-              {/* B) VÍCE SPRÁVNÝCH ODPOVĚDÍ */}
-              {q.type === 'multiple' && (
-                <div className="space-y-3">
-                  {q.options?.map(option => {
-                    const isSelected = (answers[q.id] || []).includes(option);
-                    const isCorrect = q.correctAnswers?.includes(option);
-                    
-                    let labelClass = "border-slate-200 hover:bg-slate-50";
-                    if (isSubmitted) {
-                      if (isCorrect && isSelected) labelClass = "border-green-500 bg-green-50 text-green-900";
-                      else if (isCorrect && !isSelected) labelClass = "border-green-500 border-dashed opacity-60"; 
-                      else if (!isCorrect && isSelected) labelClass = "border-red-500 bg-red-50 text-red-900"; 
-                      else labelClass = "border-slate-200 opacity-50";
-                    } else if (isSelected) {
-                      labelClass = "border-blue-500 bg-blue-50";
-                    }
-
-                    return (
-                      <label key={option} className={`flex items-start gap-3 p-3 rounded-lg border-2 cursor-pointer transition-colors ${labelClass}`}>
-                        <input 
-                          type="checkbox" 
-                          checked={isSelected}
-                          onChange={() => handleMultipleChange(q.id, option)}
-                          disabled={isSubmitted}
-                          className="mt-1 w-4 h-4 text-blue-600 border-slate-300 rounded focus:ring-blue-500"
-                        />
-                        <span className="flex-1">{option}</span>
-                        {isSubmitted && isCorrect && isSelected && <CheckCircle2 className="text-green-600 shrink-0" size={20} />}
-                        {isSubmitted && !isCorrect && isSelected && <XCircle className="text-red-600 shrink-0" size={20} />}
-                      </label>
-                    );
-                  })}
-                </div>
-              )}
-
-              {/* C) VOLNÁ ODPOVĚĎ */}
-              {q.type === 'text' && (
-                <div className="space-y-4">
-                  <textarea
-                    rows={4}
-                    placeholder="Napište svou odpověď..."
-                    value={answers[q.id] || ''}
-                    onChange={(e) => handleTextChange(q.id, e.target.value)}
-                    disabled={isSubmitted}
-                    className="w-full p-3 border-2 border-slate-200 rounded-lg focus:border-blue-500 focus:ring-0 disabled:bg-slate-50 disabled:text-slate-500"
-                  />
-                  {isSubmitted && (
-                    <div className="bg-blue-50 p-4 rounded-lg border border-blue-100 flex gap-3">
-                      <AlertCircle className="text-blue-600 shrink-0 mt-0.5" size={20} />
-                      <div>
-                        <span className="block font-bold text-blue-900 mb-1">Vzorové řešení pro kontrolu:</span>
-                        <span className="text-blue-800 leading-relaxed">{q.suggestedAnswer}</span>
-                      </div>
-                    </div>
-                  )}
-                </div>
-              )}
-
+          <div className="grid grid-cols-2 gap-4 max-w-sm mx-auto mb-8 text-left font-sans">
+            <div className="bg-[#F7F4EE] p-4 rounded-lg border border-stone-200">
+              <span className="text-[10px] font-bold uppercase tracking-wider text-stone-500 block mb-1">Počet otázek</span>
+              <span className="text-xl font-bold text-stone-900">10 úkolů</span>
             </div>
-          );
-        })}
-      </div>
-
-      {/* --- 5. SPODNÍ PANEL (VYHODNOCENÍ) --- */}
-      <div className="mt-10 p-8 bg-slate-50 rounded-xl border border-slate-200 text-center">
-        {!isSubmitted ? (
-          <>
-            <p className="text-slate-600 mb-6 text-lg">Zkontrolujte si své odpovědi. Až budete připraveni, klikněte na vyhodnotit.</p>
-            <button 
-              onClick={() => setIsSubmitted(true)}
-              className="bg-blue-600 text-white font-bold py-3 px-8 rounded-lg hover:bg-blue-700 hover:shadow-md transition-all text-lg"
-            >
-              Vyhodnotit test
-            </button>
-          </>
-        ) : (
-          <div>
-            <h3 className="text-2xl font-bold text-slate-800 mb-2">Test byl vyhodnocen</h3>
-            <p className="text-slate-600 mb-8">Prohlédněte si správné odpovědi a vzorová řešení výše.</p>
-            <div className="flex flex-col sm:flex-row justify-center gap-4">
-              <button 
-                onClick={() => { setIsSubmitted(false); setAnswers({}); }}
-                className="bg-white text-slate-700 font-bold py-3 px-6 rounded-lg border-2 border-slate-300 hover:bg-slate-100 transition-colors"
-              >
-                Zkusit test znovu
-              </button>
-              <Link 
-                href="/mikroekonomie"
-                className="bg-slate-900 text-white font-bold py-3 px-6 rounded-lg hover:bg-slate-800 transition-colors"
-              >
-                Pokračovat na další kapitolu →
-              </Link>
+            <div className="bg-[#F7F4EE] p-4 rounded-lg border border-stone-200">
+              <span className="text-[10px] font-bold uppercase tracking-wider text-stone-500 block mb-1">Doporučený čas</span>
+              <span className="text-xl font-bold text-stone-900">8–10 min</span>
             </div>
           </div>
-        )}
-      </div>
 
+          <button
+            onClick={() => setCurrentStep('quiz')}
+            className="px-8 py-3.5 bg-stone-900 hover:bg-stone-800 text-white font-sans font-bold text-xs uppercase tracking-widest rounded-lg transition-all shadow-sm active:scale-95 inline-flex items-center gap-2"
+          >
+            Spustit test <ArrowRight size={16} />
+          </button>
+        </div>
+      )}
+
+      {/* --- 2. PRŮBĚH TESTU --- */}
+      {currentStep === 'quiz' && (
+        <div>
+          {/* Horní progress lišta */}
+          <div className="mb-6">
+            <div className="flex items-center justify-between text-xs font-bold uppercase tracking-wider text-stone-500 mb-2 font-sans">
+              <span>Otázka {currentQuestionIdx + 1} z {QUESTIONS.length}</span>
+              <span>{Math.round(((currentQuestionIdx + 1) / QUESTIONS.length) * 100)} % hotovo</span>
+            </div>
+            <div className="h-1.5 w-full bg-stone-200 rounded-full overflow-hidden">
+              <div 
+                className="h-full bg-orange-700 transition-all duration-300"
+                style={{ width: `${((currentQuestionIdx + 1) / QUESTIONS.length) * 100}%` }}
+              />
+            </div>
+          </div>
+
+          {/* Karta otázky */}
+          <div className="bg-[#FDFCF9] border border-stone-300 rounded-xl p-6 md:p-8 shadow-sm">
+            <h2 className="text-xl md:text-2xl font-serif font-bold text-stone-900 mb-6 leading-snug">
+              {currentQ.question}
+            </h2>
+
+            {/* Seznam možností */}
+            <div className="space-y-3 mb-6">
+              {currentQ.options.map((option, optIdx) => {
+                const isSelected = selectedAnswers[currentQuestionIdx] === optIdx;
+                const isCorrect = optIdx === currentQ.correct;
+
+                let btnStyle = "border-stone-300 bg-white hover:border-stone-500 hover:bg-stone-50 text-stone-800";
+
+                if (isSelected && !isAnswerSubmitted) {
+                  btnStyle = "border-stone-900 bg-stone-100 text-stone-900 font-bold ring-1 ring-stone-900";
+                }
+
+                if (isAnswerSubmitted) {
+                  if (isCorrect) {
+                    btnStyle = "border-emerald-700 bg-emerald-50 text-emerald-950 font-bold ring-1 ring-emerald-700/40";
+                  } else if (isSelected && !isCorrect) {
+                    btnStyle = "border-rose-700 bg-rose-50 text-rose-950 font-medium";
+                  } else {
+                    btnStyle = "border-stone-200 bg-stone-50 text-stone-400 opacity-50";
+                  }
+                }
+
+                return (
+                  <button
+                    key={optIdx}
+                    onClick={() => handleSelectOption(optIdx)}
+                    disabled={isAnswerSubmitted}
+                    className={`w-full text-left p-4 rounded-lg border transition-all text-sm flex items-center justify-between gap-3 ${btnStyle}`}
+                  >
+                    <span className="leading-relaxed font-sans">{option}</span>
+                    {isAnswerSubmitted && isCorrect && (
+                      <CheckCircle2 size={18} className="text-emerald-700 shrink-0" />
+                    )}
+                    {isAnswerSubmitted && isSelected && !isCorrect && (
+                      <XCircle size={18} className="text-rose-700 shrink-0" />
+                    )}
+                  </button>
+                );
+              })}
+            </div>
+
+            {/* Vysvětlení po odevzdání */}
+            {isAnswerSubmitted && (
+              <div className="p-4 bg-[#F5F2EB] border border-stone-300 rounded-lg text-sm text-stone-800 leading-relaxed mb-6">
+                <strong className="font-serif font-bold text-stone-900 block mb-1">
+                  {selectedAnswers[currentQuestionIdx] === currentQ.correct ? "Výborně, správná odpověď!" : "Bohužel, toto není správně."}
+                </strong>
+                {currentQ.explanation}
+              </div>
+            )}
+
+            {/* Ovládací tlačítko */}
+            <div className="flex justify-end pt-4 border-t border-stone-200">
+              {!isAnswerSubmitted ? (
+                <button
+                  onClick={handleConfirmAnswer}
+                  disabled={selectedAnswers[currentQuestionIdx] === undefined}
+                  className="px-6 py-2.5 bg-stone-900 text-white font-sans font-bold text-xs uppercase tracking-wider rounded-lg hover:bg-stone-800 disabled:opacity-40 disabled:cursor-not-allowed transition-all shadow-sm active:scale-95"
+                >
+                  Potvrdit odpověď
+                </button>
+              ) : (
+                <button
+                  onClick={handleNextQuestion}
+                  className="px-6 py-2.5 bg-orange-700 text-white font-sans font-bold text-xs uppercase tracking-wider rounded-lg hover:bg-orange-800 transition-all shadow-sm active:scale-95 flex items-center gap-2"
+                >
+                  {currentQuestionIdx < QUESTIONS.length - 1 ? "Další otázka" : "Zobrazit výsledky"} <ArrowRight size={14} />
+                </button>
+              )}
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* --- 3. VÝSLEDKY TESTU --- */}
+      {currentStep === 'results' && (
+        <div className="bg-[#FDFCF9] border border-stone-300 rounded-xl p-8 md:p-12 shadow-sm text-center">
+          <div className="w-16 h-16 bg-stone-100 border border-stone-300 rounded-full flex items-center justify-center mx-auto mb-6 text-stone-900">
+            <Award size={32} />
+          </div>
+
+          <h2 className="text-3xl font-serif font-bold text-stone-900 mb-2">Test dokončen!</h2>
+          <p className="text-stone-600 text-sm mb-6 font-sans">
+            Zde je vaše celkové vyhodnocení z kapitoly Základní ekonomické koncepty:
+          </p>
+
+          <div className="inline-block bg-[#F7F4EE] border border-stone-300 rounded-xl px-8 py-6 mb-8">
+            <span className="text-xs font-bold uppercase tracking-wider text-stone-500 block mb-1 font-sans">Vaše skóre</span>
+            <div className="text-4xl md:text-5xl font-serif font-bold text-stone-900">
+              {calculateScore()} <span className="text-2xl text-stone-400">/ {QUESTIONS.length}</span>
+            </div>
+            <span className="text-xs font-bold text-stone-600 mt-2 block font-sans">
+              Úspěšnost: {Math.round((calculateScore() / QUESTIONS.length) * 100)} %
+            </span>
+          </div>
+
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+            <button
+              onClick={restartQuiz}
+              className="w-full sm:w-auto px-6 py-3 bg-white border border-stone-300 text-stone-800 font-sans font-bold text-xs uppercase tracking-wider rounded-lg hover:bg-stone-50 transition-all shadow-sm active:scale-95 flex items-center justify-center gap-2"
+            >
+              <RotateCcw size={15} /> Zkusit test znovu
+            </button>
+            <Link
+              href="/mikroekonomie"
+              className="w-full sm:w-auto px-6 py-3 bg-stone-900 hover:bg-stone-800 text-white font-sans font-bold text-xs uppercase tracking-wider rounded-lg transition-all shadow-sm active:scale-95 flex items-center justify-center gap-2"
+            >
+              Pokračovat na Mikroekonomii <ArrowRight size={15} />
+            </Link>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

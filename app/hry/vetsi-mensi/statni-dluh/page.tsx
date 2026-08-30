@@ -1,14 +1,14 @@
 "use client";
 
 import React, { useState, useEffect, useCallback } from 'react';
-// Zkontroluj, že máš soubor uložený pod tímto názvem ve složce public/hry
 import COUNTRY_DATA from '@/public/hry/debt-to-gdp.json';
 import Link from 'next/link';
-import { HelpCircle } from 'lucide-react';
+import { HelpCircle, ArrowLeft } from 'lucide-react';
+
 // --- Typová definice ---
 type Country = {
   name: string;
-  gdp: number; // Hodnoty v JSONu jsme nechali jako "gdp" pro snazší kompatibilitu
+  gdp: number;
 };
 
 // Spolehlivý lokální slovník všech vlajek ve hře
@@ -59,14 +59,11 @@ const FLAG_MAP: Record<string, string> = {
   "Tchaj-wan": "tw", "Jemen": "ye", "Jižní Súdán": "ss", "Kuba": "cu", "Sýrie": "sy", "Eritrea": "er", "San Marino": "sm", "Mikronésie": "fm"
 };
 
-// Extrémně rychlý a bezchybný hook bez načítání
 function useFlag(countryName: string | undefined) {
   const [flagUrl, setFlagUrl] = useState<string>('');
 
   useEffect(() => {
     if (!countryName) return;
-    
-    // Očistíme text od letopočtu (např. " (2024)")
     const cleanName = countryName.replace(/\s*\(.*?\)\s*/g, '').trim();
     const code = FLAG_MAP[cleanName];
 
@@ -80,7 +77,6 @@ function useFlag(countryName: string | undefined) {
   return flagUrl;
 }
 
-// --- Komponenta pro plynulé najíždění čísla (Upraveno na procenta) ---
 function AnimatedNumber({ value, play, instant }: { value: number, play: boolean, instant?: boolean }) {
   const [displayValue, setDisplayValue] = useState(instant ? value : 0);
 
@@ -100,7 +96,6 @@ function AnimatedNumber({ value, play, instant }: { value: number, play: boolean
     const step = (timestamp: number) => {
       if (!startTimestamp) startTimestamp = timestamp;
       const progress = Math.min((timestamp - startTimestamp) / duration, 1);
-      
       const easeProgress = progress === 1 ? 1 : 1 - Math.pow(2, -10 * progress);
       setDisplayValue(value * easeProgress);
 
@@ -118,13 +113,12 @@ function AnimatedNumber({ value, play, instant }: { value: number, play: boolean
     <>
       {new Intl.NumberFormat('cs-CZ', {
         style: 'percent',
-        maximumFractionDigits: 1, // Jedno desetinné místo pro dluh bohatě stačí
+        maximumFractionDigits: 1,
       }).format(displayValue / 100)}
     </>
   );
 }
 
-// --- HLAVNÍ HRA ---
 export default function DebtHigherLowerGame() {
   const [currentCountry, setCurrentCountry] = useState<Country | null>(null);
   const [nextCountry, setNextCountry] = useState<Country | null>(null);
@@ -177,35 +171,45 @@ export default function DebtHigherLowerGame() {
     }, 1500);
   };
 
-  if (!currentCountry || !nextCountry) return <div className="p-8 text-center text-slate-500">Načítám ekonomická data...</div>;
+  if (!currentCountry || !nextCountry) return <div className="p-8 text-center text-stone-500 font-sans">Načítám ekonomická data...</div>;
 
   return (
-    <div className="w-full max-w-5xl mx-auto p-4 font-sans text-slate-800 relative">
+    <div className="w-full max-w-5xl mx-auto p-4 font-sans text-stone-800 relative min-h-screen py-10">
       
-      {/* Horní lišta se skóre a nápovědou */}
-      <div className="flex justify-between items-center mb-6 px-2">
-        <h2 className="text-2xl md:text-3xl font-bold text-slate-700">Státní dluh k HDP: Vyšší nebo Nižší?</h2>
+      {/* Horní lišta */}
+      <div className="flex flex-col sm:flex-row justify-between items-center gap-4 mb-8 px-2">
+        <div>
+          <Link 
+            href="/hry/vetsi-mensi" 
+            className="inline-flex items-center text-xs font-bold uppercase tracking-wider text-stone-500 hover:text-stone-900 transition-colors mb-2 group"
+          >
+            <ArrowLeft size={14} className="mr-1.5 group-hover:-translate-x-1 transition-transform" />
+            Zpět na výběr
+          </Link>
+          <h2 className="text-2xl md:text-3xl font-serif font-bold text-stone-900">
+            Státní dluh k HDP: Vyšší nebo Nižší?
+          </h2>
+        </div>
         
         <div className="flex items-center gap-3">
-          {/* Tlačítko s otazníkem */}
           <Link 
             href="/clanky/statni-dluh-k-hdp" 
-            className="flex items-center justify-center w-10 h-10 bg-slate-100 text-slate-600 rounded-full hover:bg-blue-600 hover:text-white hover:shadow-sm transition-all border border-slate-200"
+            className="flex items-center justify-center w-10 h-10 bg-white text-stone-700 rounded-lg hover:bg-stone-100 transition-all border border-stone-300 shadow-xs"
             title="Přečíst si vysvětlení konceptu"
           >
-            <HelpCircle size={22} strokeWidth={2.5} />
+            <HelpCircle size={18} strokeWidth={2} />
           </Link>
           
-          <div className="text-xl font-bold bg-slate-800 text-white px-6 py-2 rounded-xl shadow-lg border border-slate-700">
-            Skóre: <span className="text-emerald-400">{score}</span>
+          <div className="text-sm font-bold uppercase tracking-wider bg-stone-900 text-white px-5 py-2.5 rounded-lg shadow-sm border border-stone-800 font-mono">
+            Skóre: <span className="text-orange-400 font-bold ml-1">{score}</span>
           </div>
         </div>
       </div>
 
       {/* Hrací plocha */}
-      <div className="relative flex flex-col md:flex-row gap-4 h-[450px]">
+      <div className="relative flex flex-col md:flex-row gap-4 h-[460px]">
         
-        {/* === LEVÁ STRANA (VŽDY ODHALENÁ) === */}
+        {/* LEVÁ STRANA */}
         <CountryCard 
           country={currentCountry} 
           revealed={true} 
@@ -213,12 +217,12 @@ export default function DebtHigherLowerGame() {
           instantReveal={true}
         />
 
-        {/* VS Kolečko uprostřed */}
-        <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-30 bg-white rounded-full p-4 shadow-xl border-4 border-slate-800 font-black text-slate-800 text-xl md:text-2xl">
+        {/* VS Kolečko */}
+        <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-30 bg-white rounded-full p-3 shadow-md border-2 border-stone-900 font-serif font-bold text-stone-900 text-sm">
           VS
         </div>
 
-        {/* === PRAVÁ STRANA (HÁDANÁ) === */}
+        {/* PRAVÁ STRANA */}
         <CountryCard 
           country={nextCountry} 
           revealed={gameState !== 'waiting'} 
@@ -227,14 +231,14 @@ export default function DebtHigherLowerGame() {
           onGuess={handleGuess}
         />
 
-        {/* Překryvná obrazovka pro Konec Hry */}
+        {/* Konec Hry */}
         {gameState === 'gameover' && (
-          <div className="absolute z-50 flex flex-col items-center justify-center inset-0 bg-slate-900/80 rounded-2xl backdrop-blur-sm animate-in fade-in duration-500">
-            <p className="text-5xl font-black text-white mb-2 drop-shadow-lg">Konec hry!</p>
-            <p className="text-2xl text-slate-200 mb-8 font-semibold">Tvé konečné skóre: <span className="text-emerald-400">{score}</span></p>
+          <div className="absolute z-50 flex flex-col items-center justify-center inset-0 bg-stone-950/85 rounded-xl border border-stone-800 animate-in fade-in duration-300 p-6 text-center">
+            <p className="text-4xl md:text-5xl font-serif font-bold text-white mb-2">Konec hry</p>
+            <p className="text-lg text-stone-300 mb-8 font-sans">Konečné skóre: <span className="text-orange-400 font-bold font-mono text-xl">{score}</span></p>
             <button 
               onClick={startGame}
-              className="bg-emerald-500 text-white px-10 py-4 rounded-xl font-black hover:bg-emerald-400 hover:scale-105 hover:shadow-lg hover:shadow-emerald-500/20 transition-all text-xl"
+              className="bg-orange-700 text-white px-8 py-3.5 rounded-lg font-sans font-bold text-xs uppercase tracking-widest hover:bg-orange-800 transition-all shadow-sm active:scale-95"
             >
               Hrát znovu
             </button>
@@ -245,7 +249,6 @@ export default function DebtHigherLowerGame() {
   );
 }
 
-// --- DÍLČÍ KOMPONENTA PRO ZEMĚ (VZHLED KARTIČKY) ---
 function CountryCard({ 
   country, 
   revealed, 
@@ -264,48 +267,46 @@ function CountryCard({
   const flagUrl = useFlag(country.name);
 
   return (
-    <div className={`relative flex-1 flex flex-col justify-center items-center rounded-2xl p-6 shadow-xl border-2 transition-all duration-700 overflow-hidden
-      ${isWrong ? 'border-rose-500 shadow-rose-500/20' : 'border-slate-800'}
+    <div className={`relative flex-1 flex flex-col justify-center items-center rounded-xl p-6 shadow-sm border transition-all duration-700 overflow-hidden
+      ${isWrong ? 'border-rose-600 ring-2 ring-rose-600/50' : 'border-stone-300'}
     `}>
       {/* Pozadí s vlajkou */}
       {flagUrl && (
         <div 
-          className="absolute inset-0 z-0 bg-cover bg-center opacity-80"
+          className="absolute inset-0 z-0 bg-cover bg-center opacity-70"
           style={{ backgroundImage: `url('${flagUrl}')` }}
         />
       )}
       
       {/* Tmavý filtr na vlajku */}
-      <div className={`absolute inset-0 z-10 transition-colors duration-500 ${isWrong ? 'bg-rose-950/80' : 'bg-slate-900/75'}`} />
+      <div className={`absolute inset-0 z-10 transition-colors duration-500 ${isWrong ? 'bg-rose-950/85' : 'bg-stone-950/75'}`} />
 
-      {/* Obsah (nad filtrem) */}
+      {/* Obsah */}
       <div className="relative z-20 flex flex-col items-center text-white w-full">
-        <h3 className="text-4xl md:text-5xl font-black text-center mb-8 drop-shadow-[0_4px_4px_rgba(0,0,0,0.8)] leading-tight">{country.name}</h3>
+        <h3 className="text-3xl md:text-4xl font-serif font-bold text-center mb-6 leading-tight drop-shadow-sm">{country.name}</h3>
         
-        {/* Číslo nebo Tlačítka */}
         <div className="h-[120px] flex flex-col justify-center w-full items-center">
           {revealed ? (
-            <div className="flex flex-col items-center animate-in fade-in zoom-in duration-500">
-              {/* Změněný popisek na dluh */}
-              <p className="text-lg text-slate-300 mb-1 uppercase tracking-widest font-semibold drop-shadow-md">Státní dluh k HDP</p>
-              <div className={`text-5xl md:text-6xl font-black drop-shadow-[0_4px_8px_rgba(0,0,0,0.8)] transition-colors duration-300 ${isWrong ? 'text-rose-400' : 'text-emerald-400'}`}>
+            <div className="flex flex-col items-center animate-in fade-in zoom-in duration-300">
+              <p className="text-xs text-stone-300 mb-1 uppercase tracking-widest font-bold font-sans">Státní dluh k HDP</p>
+              <div className={`text-4xl md:text-5xl font-serif font-bold transition-colors duration-300 ${isWrong ? 'text-rose-400' : 'text-orange-400'}`}>
                 <AnimatedNumber value={country.gdp} play={revealed} instant={instantReveal} />
               </div>
             </div>
           ) : (
-            <div className={`flex flex-col gap-4 w-full max-w-[220px] transition-all duration-500 ${hideButtons ? 'opacity-0 scale-90 pointer-events-none' : 'opacity-100 scale-100'}`}>
+            <div className={`flex flex-col gap-3 w-full max-w-[200px] transition-all duration-300 ${hideButtons ? 'opacity-0 scale-90 pointer-events-none' : 'opacity-100 scale-100'}`}>
                <button 
                  onClick={() => onGuess && onGuess('higher')}
-                 className="group bg-slate-800/60 hover:bg-slate-700/80 border border-slate-600 text-white flex flex-col items-center justify-center py-4 rounded-xl hover:-translate-y-1 hover:shadow-xl transition-all backdrop-blur-md"
+                 className="group bg-stone-900/85 hover:bg-stone-900 border border-stone-600 text-white flex flex-col items-center justify-center py-3 rounded-lg hover:border-emerald-500 transition-all"
                >
-                 <span className="text-2xl font-black text-emerald-400 group-hover:text-emerald-300">▲ VĚTŠÍ</span>
+                 <span className="text-lg font-sans font-bold text-emerald-400 group-hover:text-emerald-300">▲ VYŠŠÍ</span>
                </button>
                
                <button 
                  onClick={() => onGuess && onGuess('lower')}
-                 className="group bg-slate-800/60 hover:bg-slate-700/80 border border-slate-600 text-white flex flex-col items-center justify-center py-4 rounded-xl hover:translate-y-1 hover:shadow-xl transition-all backdrop-blur-md"
+                 className="group bg-stone-900/85 hover:bg-stone-900 border border-stone-600 text-white flex flex-col items-center justify-center py-3 rounded-lg hover:border-rose-500 transition-all"
                >
-                 <span className="text-2xl font-black text-rose-400 group-hover:text-rose-300">▼ MENŠÍ</span>
+                 <span className="text-lg font-sans font-bold text-rose-400 group-hover:text-rose-300">▼ NIŽŠÍ</span>
                </button>
             </div>
           )}

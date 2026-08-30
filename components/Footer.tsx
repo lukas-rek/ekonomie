@@ -1,40 +1,27 @@
 import React from 'react';
-import { Heart } from 'lucide-react';
 
 export default function Footer() {
   return (
-    <footer className="bg-slate-900 text-slate-400 py-5 border-t border-slate-800 pt-5" >
+    <footer className="bg-[#1C1917] text-stone-400 py-10 border-t border-stone-800">
       <div className="max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-8">
         
         <div className="col-span-1 md:col-span-2">
-          <h4 className="text-white font-black text-lg mb-4 tracking-tight">PRACOVNÍ NÁZEV.CZ</h4>
-          <p className="text-sm leading-relaxed max-w-sm">
-            Vše o ekonomii na jednom místě.
+          <h4 className="text-stone-100 font-serif font-bold text-xl mb-3 tracking-tight">
+            PRACOVNÍ NÁZEV<span className="text-orange-500 font-sans text-xs ml-1 font-bold">.CZ</span>
+          </h4>
+          <p className="text-sm leading-relaxed max-w-sm text-stone-400 font-sans">
+            Interaktivní vzdělávací portál a učebnice moderní ekonomie.
           </p>
         </div>
-      {/*
-        <div>
-          <h5 className="text-white font-bold mb-4 text-sm uppercase tracking-wider">Odkazy</h5>
-          <ul className="space-y-2 text-sm">
-            <li><a href="/o-autorovi" className="hover:text-white transition-colors">O projektu</a></li>
-            <li><a href="/materialy" className="hover:text-white transition-colors">Ke stažení</a></li>
-            <li><a href="/clanky" className="hover:text-white transition-colors">Blog</a></li>
-          </ul>
-        </div>
-
-        <div>
-          <h5 className="text-white font-bold mb-4 text-sm uppercase tracking-wider">Kontakt</h5>
-          <ul className="space-y-2 text-sm">
-            <li>info@ekonomie.cz</li>
-            <li className="flex items-center gap-1">
-              
-            </li>
-          </ul>
-        </div>*/}
       </div>
       
-      <div className="mt-12 pt-2 border-t border-slate-800 text-center text-xs opacity-50">
-        © 2026 Všechna práva vyhrazena.
+      <div className="max-w-6xl mx-auto px-6 mt-8 pt-6 border-t border-stone-800/80 flex flex-col sm:flex-row items-center justify-between text-xs text-stone-500 font-sans">
+        <div>
+          © 2026 PRACOVNÍ NÁZEV. Všechna práva vyhrazena.
+        </div>
+        <div className="mt-2 sm:mt-0 italic font-serif text-stone-400">
+          Učební a metodický materiál
+        </div>
       </div>
     </footer>
   );

@@ -2,71 +2,72 @@
 import React from 'react';
 import Link from 'next/link';
 import { 
-  ArrowRight, 
-  User, 
-  GraduationCap, 
-  Map,
+  Compass,
   ChevronRight,
-  MousePointerClick,
   BookOpen
 } from 'lucide-react';
 
 const ROADMAP = [
-  { title: "Základní ekonomické koncepty", slug: "zakladni-koncepty", color: "bg-blue-500" },
-  { title: "Mikroekonomie", slug: "mikroekonomie", color: "bg-indigo-500" },
-  { title: "Makroekonomie", slug: "makroekonomie", color: "bg-violet-500" },
-  { title: "Peníze a bankovnictví", slug: "penize-a-bankovnictvi", color: "bg-purple-500" },
-  { title: "Dějiny ekonomického myšlení", slug: "dejiny-ekonomie", color: "bg-pink-500" },
-  { title: "Investice a podnikání", slug: "investice-a-podnikani", color: "bg-rose-500" },
+  { title: "Základní ekonomické koncepty", slug: "zakladni-koncepty", num: "I" },
+  { title: "Mikroekonomie", slug: "mikroekonomie", num: "II" },
+  { title: "Makroekonomie", slug: "makroekonomie", num: "III" },
+  { title: "Peníze a bankovnictví", slug: "penize-a-bankovnictvi", num: "IV" },
+  { title: "Dějiny ekonomického myšlení", slug: "dejiny-ekonomie", num: "V" },
+  { title: "Investice a podnikání", slug: "investice-a-podnikani", num: "VI" },
 ];
 
-export default function Home() {
+export default function UvodPage() {
   return (
-    <div className="min-h-screen bg-white scroll-smooth">
+    <div className="min-h-screen bg-[#FBF9F5] py-12">
 
-      {/* --- PŘIDANÁ HLAVIČKA --- */}
-      <section className="px-6 pt-24 pb-12 text-center">
-        <h1 className="text-4xl md:text-6xl font-black text-slate-800 mb-6 tracking-tight">
+      {/* HLAVIČKA */}
+      <section className="text-center mb-12">
+        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-stone-100 border border-stone-300 text-stone-700 text-xs font-bold uppercase tracking-widest mb-4">
+          <BookOpen size={14} className="text-orange-700" />
+          <span>Přehled Učebnice</span>
+        </div>
+        <h1 className="text-4xl md:text-6xl font-serif font-bold text-stone-900 mb-4 tracking-tight">
           Učebnice ekonomie
         </h1>
-        <p className="text-lg md:text-xl text-slate-600 max-w-2xl mx-auto leading-relaxed">
-          Interaktivní učebnice, která tě provede světem ekonomie od základních pojmů až po složité finanční systémy. 
+        <p className="text-base md:text-lg text-stone-600 max-w-2xl mx-auto leading-relaxed font-sans">
+          Interaktivní učebnice, která tě provede světem ekonomie od základních pojmů po složitější koncepty.
           Vyber si kapitolu a začni!
         </p>
       </section>
 
-      {/* --- ROADMAPA --- */}
-      <section id="roadmap" className="max-w-6xl mx-auto px-6 pb-24">
-        <div className="flex items-center gap-4 mb-12">
-          <div className="h-px flex-1 bg-slate-200"></div>
-          <h2 className="text-sm font-black uppercase tracking-[0.3em] text-slate-400 flex items-center gap-2">
-            <Map size={18} />
+      {/* ROADMAPA */}
+      <section id="roadmap" className="max-w-4xl mx-auto">
+        <div className="flex items-center gap-4 mb-8">
+          <div className="h-px flex-1 bg-stone-300"></div>
+          <h2 className="text-xs font-black uppercase tracking-[0.25em] text-stone-500 flex items-center gap-2 font-sans">
+            <Compass size={16} /> Sylabus
           </h2>
-          <div className="h-px flex-1 bg-slate-200"></div>
+          <div className="h-px flex-1 bg-stone-300"></div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
           {ROADMAP.map((step, idx) => (
             <Link 
               key={step.slug} 
               href={`/${step.slug}`}
-              className="group relative bg-white border border-slate-200 p-8 rounded-[2rem] hover:shadow-2xl hover:border-blue-300 transition-all duration-300 hover:-translate-y-2"
+              className="group relative bg-[#FDFCF9] border border-stone-300 p-6 rounded-xl hover:border-stone-600 hover:shadow-sm transition-all duration-200 flex flex-col justify-between"
             >
-              <div className="flex items-start justify-between mb-6">
-                <div className={`w-12 h-12 ${step.color} rounded-2xl flex items-center justify-center text-white font-black text-xl shadow-lg`}>
-                  {idx + 1}
+              <div>
+                <div className="flex items-center justify-between mb-4">
+                  <div className="w-8 h-8 rounded-md bg-stone-100 border border-stone-300 flex items-center justify-center text-stone-900 font-serif font-bold text-sm shadow-xs">
+                    {step.num}
+                  </div>
+                  <span className="text-xs font-mono text-stone-400">Kapitola {idx + 1}</span>
                 </div>
-                <div className="text-slate-200 group-hover:text-blue-100 transition-colors">
-                  <MousePointerClick size={32} />
-                </div>
+                
+                <h3 className="text-base font-serif font-bold text-stone-900 leading-snug group-hover:text-orange-700 transition-colors">
+                  {step.title}
+                </h3>
               </div>
               
-              <h3 className="text-xl font-bold text-slate-800 leading-tight group-hover:text-blue-600 transition-colors">
-                {step.title}
-              </h3>
-              
-              <div className="mt-6 flex items-center text-xs font-black uppercase tracking-widest text-blue-500 opacity-0 group-hover:opacity-100 transition-all transform translate-x-[-10px] group-hover:translate-x-0">
-                Otevřít kapitolu <ChevronRight size={14} className="ml-1" />
+              <div className="mt-6 pt-3 border-t border-stone-200 flex items-center justify-between text-xs font-bold uppercase tracking-wider text-stone-500 group-hover:text-stone-900 transition-all font-sans">
+                <span>Otevřít kapitolu</span>
+                <ChevronRight size={14} className="group-hover:translate-x-1 transition-transform" />
               </div>
             </Link>
           ))}

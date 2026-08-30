@@ -10,34 +10,40 @@ export default function GameModal({ isOpen, onClose, title, pages }: any) {
   const currentContent = pages[currentPage];
 
   return (
-    <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 md:p-8 bg-slate-900/60 backdrop-blur-sm animate-in fade-in duration-200">
+    <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 md:p-8 bg-stone-900/60 animate-in fade-in duration-200">
       
-      {/* Hlavní okno - přidáno flex-col a max-h-[90vh] pro ochranu před přetečením */}
-      <div className="bg-white rounded-[2rem] w-full max-w-2xl max-h-[90vh] flex flex-col shadow-2xl border border-white/20">
+      {/* Hlavní okno */}
+      <div className="bg-[#FDFCF9] rounded-xl w-full max-w-2xl max-h-[90vh] flex flex-col shadow-xl border border-stone-300">
         
-        {/* Horní lišta (fixní) */}
-        <div className="shrink-0 px-8 py-6 bg-slate-50 flex items-center justify-between rounded-t-[2rem] border-b border-slate-100">
-          <div className="w-10 h-10 bg-orange-100 rounded-xl flex items-center justify-center">
-            <LineChart size={20} className="text-orange-600" />
+        {/* Horní lišta */}
+        <div className="shrink-0 px-6 py-4 bg-[#F7F4EE] flex items-center justify-between rounded-t-xl border-b border-stone-200">
+          <div className="flex items-center gap-3">
+            <div className="w-8 h-8 bg-orange-100 border border-orange-200 rounded-lg flex items-center justify-center">
+              <LineChart size={16} className="text-orange-700" />
+            </div>
+            <h2 className="text-lg font-serif font-bold text-stone-900">{title}</h2>
           </div>
-          <h2 className="text-xl font-black text-slate-800 translate-x-[-170px]">{title}</h2>
-          <button onClick={onClose} className="p-2 hover:bg-slate-100 rounded-full transition-colors">
-            <X size={20} className="text-slate-400" />
+          <button 
+            onClick={onClose} 
+            className="p-1.5 text-stone-500 hover:text-stone-900 hover:bg-stone-200/50 rounded-lg transition-colors"
+            aria-label="Zavřít"
+          >
+            <X size={18} />
           </button>
         </div>
 
-        {/* Obsah (scrollovací, pokud je moc dlouhý) */}
-        <div className="p-8 overflow-y-auto grow custom-scrollbar">
+        {/* Obsah */}
+        <div className="p-6 md:p-8 overflow-y-auto grow font-sans">
           {currentContent}
         </div>
 
-        {/* Dolní lišta se šipkami (fixní) */}
-        <div className="shrink-0 px-8 py-6 bg-slate-50 flex items-center justify-between rounded-b-[2rem] border-t border-slate-100">
-          <div className="flex gap-2">
+        {/* Dolní lišta */}
+        <div className="shrink-0 px-6 py-4 bg-[#F7F4EE] flex items-center justify-between rounded-b-xl border-t border-stone-200">
+          <div className="flex gap-1.5">
             {pages.map((_: any, i: number) => (
               <div 
                 key={i} 
-                className={`h-2 rounded-full transition-all duration-300 ${i === currentPage ? 'w-6 bg-orange-600' : 'w-2 bg-slate-300'}`} 
+                className={`h-2 rounded-full transition-all duration-300 ${i === currentPage ? 'w-5 bg-orange-700' : 'w-2 bg-stone-300'}`} 
               />
             ))}
           </div>
@@ -50,10 +56,10 @@ export default function GameModal({ isOpen, onClose, title, pages }: any) {
                 setCurrentPage(prev => prev + 1);
               }
             }}
-            className="flex items-center gap-2 px-6 py-3 bg-orange-500 hover:bg-orange-500 text-white font-bold rounded-xl transition-all"
+            className="flex items-center gap-2 px-5 py-2.5 bg-stone-900 hover:bg-stone-800 text-white font-sans font-bold text-xs uppercase tracking-wider rounded-lg transition-all shadow-sm active:scale-95"
           >
             {currentPage === pages.length - 1 ? "Začít hrát" : "Další"} 
-            {currentPage !== pages.length - 1 && <ArrowRight size={18} />}
+            {currentPage !== pages.length - 1 && <ArrowRight size={14} />}
           </button>
         </div>
       </div>

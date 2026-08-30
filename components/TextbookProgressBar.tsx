@@ -2,8 +2,7 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { usePathname } from 'next/navigation';
 import confetti from 'canvas-confetti';
-import { Star, CheckCircle, ArrowRight, ChevronDown, ChevronUp } from 'lucide-react';
-import Image from 'next/image';
+import { Star, CheckCircle, ArrowRight, ChevronDown, ChevronUp, Award } from 'lucide-react';
 
 const SHOW_MASCOT = false;
 const CURRICULUM = [
@@ -46,7 +45,7 @@ const CURRICULUM = [
     ]
   },
   {
-    chapter: "Penize a bankovnictví",
+    chapter: "Peníze a bankovnictví",
     paths: [
       "/penize-a-bankovnictvi/podstata-penez-funkce-a-vyvoj",
       "/penize-a-bankovnictvi/bankovni-system-a-tvorba-penez",
@@ -149,16 +148,10 @@ export default function TextbookProgressBar() {
   
   const [showTestModal, setShowTestModal] = useState(false);
   const [currentChapName, setCurrentChapName] = useState("");
-  const [mascotMessage, setMascotMessage] = useState("");
   
-  const [showMascot, setShowMascot] = useState(false);
-  const [showBubble, setShowBubble] = useState(false);
-
-  // ZDE PŘIDÁVÁME STAV PRO ZASOUVÁNÍ
   const [isExpanded, setIsExpanded] = useState(true);
   
   const maxReachedIndex = useRef(-1);
-  const mascotTimerRef = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
     const currentIndex = ALL_PATHS.indexOf(pathname);
@@ -179,51 +172,21 @@ export default function TextbookProgressBar() {
             setShowTestModal(true);
             fireBigConfetti();
           }
-          setShowMascot(false); 
-          setShowBubble(false);
-        } 
-        else {
+        } else {
           if (currentIndex > maxReachedIndex.current) {
             maxReachedIndex.current = currentIndex;
           }
-
-          if (mascotTimerRef.current) clearTimeout(mascotTimerRef.current);
-
-          setShowMascot(false);
-          setShowBubble(false);
-
-          setTimeout(() => {
-            const currentPhrases = SUBCHAPTER_PHRASES[pathname] || [
-              "Skvělá práce! Pokračuj v objevování ekonomie.",
-              "Nová podkapitola, nové vědomosti! Jdeme na to."
-            ];
-            
-            const randomPhrase = currentPhrases[Math.floor(Math.random() * currentPhrases.length)];
-            setMascotMessage(randomPhrase);
-            
-            setShowMascot(true);
-            setShowBubble(true);
-            
-            mascotTimerRef.current = setTimeout(() => {
-              setShowBubble(false); 
-              setShowMascot(false); 
-            }, 4000);
-          }, 150); 
         }
       }
     }
-
-    return () => {
-      if (mascotTimerRef.current) clearTimeout(mascotTimerRef.current);
-    };
   }, [pathname]);
 
   const fireBigConfetti = () => {
-    const duration = 3000;
+    const duration = 2500;
     const end = Date.now() + duration;
     const frame = () => {
-      confetti({ particleCount: 5, angle: 60, spread: 55, origin: { x: 0, y: 0.8 }, colors: ['#a855f7', '#eab308', '#ec4899'] });
-      confetti({ particleCount: 5, angle: 120, spread: 55, origin: { x: 1, y: 0.8 }, colors: ['#a855f7', '#eab308', '#ec4899'] });
+      confetti({ particleCount: 4, angle: 60, spread: 55, origin: { x: 0, y: 0.8 }, colors: ['#C2410C', '#292524', '#D97706'] });
+      confetti({ particleCount: 4, angle: 120, spread: 55, origin: { x: 1, y: 0.8 }, colors: ['#C2410C', '#292524', '#D97706'] });
       if (Date.now() < end) requestAnimationFrame(frame);
     };
     frame();
@@ -236,89 +199,62 @@ export default function TextbookProgressBar() {
     <>
       {/* 1. POPUP PŘED TESTEM */}
       {showTestModal && (
-        <div className="fixed inset-0 z-[100] flex items-center justify-center bg-slate-900/60 backdrop-blur-sm p-4">
-          <div className="bg-white rounded-3xl p-8 max-w-md w-full shadow-2xl text-center animate-in zoom-in duration-300">
-            <div className="w-20 h-20 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-6">
-              <Star size={40} className="text-purple-600 fill-purple-600" />
+        <div className="fixed inset-0 z-[100] flex items-center justify-center bg-stone-900/60 p-4">
+          <div className="bg-[#FDFCF9] rounded-xl p-8 max-w-md w-full shadow-xl border border-stone-300 text-center animate-in zoom-in-95 duration-200">
+            <div className="w-16 h-16 bg-stone-100 border border-stone-300 rounded-full flex items-center justify-center mx-auto mb-5 text-stone-800">
+              <Award size={32} />
             </div>
-            <h2 className="text-3xl font-black text-slate-800 mb-2">Skvělá práce!</h2>
-            <p className="text-slate-600 mb-8 text-lg">
-              Právě jste úspěšně zdolali veškerou teorii z kapitoly <br/>
-              <span className="font-bold text-slate-800">{currentChapName}</span>. 
+            <h2 className="text-2xl font-serif font-bold text-stone-900 mb-2">Výborně!</h2>
+            <p className="text-stone-600 mb-6 text-sm leading-relaxed font-sans">
+              Úspěšně jste prošli celou teorii z kapitoly <br/>
+              <span className="font-bold text-stone-900 font-serif text-base">{currentChapName}</span>. 
               <br/><br/>
-              Nyní je čas ověřit vaše znalosti.
+              Nyní je čas ověřit vaše znalosti v závěrečném testu.
             </p>
             <button 
               onClick={() => setShowTestModal(false)}
-              className="w-full py-4 bg-indigo-600 hover:bg-indigo-700 text-white font-black text-lg rounded-xl transition-all hover:shadow-lg hover:shadow-indigo-500/30 active:scale-95 flex items-center justify-center gap-2"
+              className="w-full py-3 bg-stone-900 hover:bg-stone-800 text-white font-sans font-bold text-xs uppercase tracking-wider rounded-lg transition-all shadow-sm active:scale-95 flex items-center justify-center gap-2"
             >
-              Spustit test <ArrowRight size={24} />
+              Spustit test <ArrowRight size={16} />
             </button>
           </div>
         </div>
       )}
 
-      {/* 2. VYSKAKOVACÍ MASKOT A TEXTOVÁ BUBLINA 
+      {/* 2. PROGRESS BAR SPODEK */}
       <div 
-        className={`fixed right-8 z-[90] flex items-end gap-4 pointer-events-none transition-all duration-500 ease-in-out
-        ${isExpanded ? 'bottom-[130px]' : 'bottom-16'}`}
-      >
-        <div 
-          className={`mb-10 max-w-[220px] transition-opacity duration-300 ease-in-out
-          ${showBubble ? 'opacity-100' : 'opacity-0'}`}
-        >
-          <div className="bg-white px-5 py-3 rounded-2xl shadow-xl border border-slate-100 rounded-br-none transition-transform duration-300 ease-out">
-            <p className="font-bold text-slate-800 text-sm leading-snug">{mascotMessage}</p>
-          </div>
-        </div>
-        
-        <div 
-          className={`relative w-24 h-24 bg-slate-100 rounded-full flex items-center justify-center shadow-lg border-4 border-white overflow-hidden shrink-0 transition-transform duration-700 ease-in-out
-          ${showMascot ? 'translate-y-0' : 'translate-y-[150%]'}`}
-        >
-           <Image 
-             src="/maskot.png" 
-             alt="Maskot učebnice" 
-             fill 
-             className="object-cover" 
-           />
-        </div>
-      </div>
-      */}
-      {/* 3. PROGRESS BAR SPODEK S MOŽNOSTÍ ZASUNUTÍ */}
-      <div 
-        className={`fixed bottom-0 left-0 w-full z-50 flex flex-col items-center transition-transform duration-500 ease-in-out
-        ${isExpanded ? 'translate-y-0' : 'translate-y-[calc(100%-36px)]'}`}
+        className={`fixed bottom-0 left-0 w-full z-40 flex flex-col items-center transition-transform duration-300 ease-in-out
+        ${isExpanded ? 'translate-y-0' : 'translate-y-[calc(100%-32px)]'}`}
       >
         
-        {/* ZÁLOŽKA / TLAČÍTKO PRO VYSUNUTÍ/ZASUNUTÍ */}
+        {/* ZÁLOŽKA PRO VYSUNUTÍ/ZASUNUTÍ */}
         <button 
           onClick={() => setIsExpanded(!isExpanded)}
-          className="h-[36px] bg-white border border-slate-200 border-b-0 px-6 rounded-t-xl text-[10px] font-black uppercase tracking-widest text-slate-500 hover:text-blue-600 transition-colors flex items-center justify-center gap-2 shadow-[0_-4px_6px_-2px_rgba(0,0,0,0.05)] cursor-pointer"
+          className="h-[32px] bg-[#F7F4EE] border border-stone-300 border-b-0 px-5 rounded-t-lg text-[10px] font-black uppercase tracking-widest text-stone-600 hover:text-stone-900 transition-colors flex items-center justify-center gap-1.5 shadow-sm cursor-pointer"
         >
           {isExpanded ? (
-            <><ChevronDown size={14} strokeWidth={3} /> Skrýt postup</>
+            <><ChevronDown size={14} /> Skrýt postup</>
           ) : (
-            <><ChevronUp size={14} strokeWidth={3} /> Zobrazit postup</>
+            <><ChevronUp size={14} /> Zobrazit postup</>
           )}
         </button>
 
-        {/* SAMOTNÝ BÍLÝ PANEL */}
-        <div className="w-full bg-white border-t border-slate-200 px-4 py-10 shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.05)] relative">
+        {/* SAMOTNÝ PANEL */}
+        <div className="w-full bg-[#FDFCF9] border-t border-stone-300 px-6 py-6 shadow-sm relative">
           <div className="max-w-4xl mx-auto flex flex-col gap-2 relative">
             
-            <div className="flex justify-between items-center text-xs font-bold text-slate-500 uppercase tracking-widest absolute -top-6 w-full">
-              <span className="flex items-center gap-1">
-                <CheckCircle size={14} className="text-green-500" /> Váš postup
+            <div className="flex justify-between items-center text-xs font-bold text-stone-600 uppercase tracking-wider mb-2 w-full font-sans">
+              <span className="flex items-center gap-1.5">
+                <CheckCircle size={14} className="text-emerald-700" /> Průběh učebnicí
               </span>
-              <span className="translate-x-12 translate-y-6 text-green-600">{Math.round(progress)} %</span>
+              <span className="text-stone-900 font-bold">{Math.round(progress)} % hotovo</span>
             </div>
 
-            <div className="relative h-4 w-full">
+            <div className="relative h-3 w-full">
               
-              <div className="absolute inset-0 bg-slate-100 rounded-full overflow-hidden border border-slate-200/50">
+              <div className="absolute inset-0 bg-stone-200 rounded-full overflow-hidden border border-stone-300">
                 <div 
-                  className="absolute top-0 left-0 h-full bg-gradient-to-r from-blue-500 to-green-500 transition-all duration-1000 ease-out rounded-full"
+                  className="absolute top-0 left-0 h-full bg-stone-800 transition-all duration-500 ease-out rounded-full"
                   style={{ width: `${progress}%` }}
                 />
               </div>
@@ -330,27 +266,14 @@ export default function TextbookProgressBar() {
                   const isReached = currentIndex >= endOfChapterIndex;
                   
                   return (
-                    <div key={chap.chapter} className="h-full flex border-r-2 border-white/60 last:border-r-0 relative" style={{ width: `${chapWidth}%` }}>
+                    <div key={chap.chapter} className="h-full flex border-r border-stone-300 last:border-r-0 relative" style={{ width: `${chapWidth}%` }}>
                       
                       {chap.paths.map((_, pathIdx) => (
-                        <div key={pathIdx} className="h-full border-r border-white/30 last:border-r-0" style={{ width: `${100 / chap.paths.length}%` }} />
+                        <div key={pathIdx} className="h-full border-r border-stone-300/40 last:border-r-0" style={{ width: `${100 / chap.paths.length}%` }} />
                       ))}
                       
-                      <div className={`absolute right-0 top-1/2 -translate-y-1/2 translate-x-1/2 w-6 h-6 bg-white rounded-full border-2 flex items-center justify-center z-10 hidden md:flex shadow-sm transition-colors ${isReached ? 'border-green-500' : 'border-slate-300'}`}>
-                        <Star size={12} className={isReached ? 'text-green-600 fill-green-600' : 'text-slate-300 fill-slate-300'} />
-                        
-                        <span 
-                          className={`absolute left-1/2 -translate-x-1/2 text-[10px] font-black uppercase tracking-wider text-center w-max leading-tight transition-colors
-                          ${chapIdx % 2 === 0 ? 'bottom-full mb-2' : 'top-full mt-2'}
-                          ${isReached ? 'text-green-600' : 'text-slate-400'}`}
-                        >
-                          {chap.chapter.split('\n').map((line, i) => (
-                            <React.Fragment key={i}>
-                              {line}
-                              {i !== chap.chapter.split('\n').length - 1 && <br />}
-                            </React.Fragment>
-                          ))}
-                        </span>
+                      <div className={`absolute right-0 top-1/2 -translate-y-1/2 translate-x-1/2 w-5 h-5 bg-white rounded-full border flex items-center justify-center z-10 hidden md:flex shadow-xs transition-colors ${isReached ? 'border-emerald-700 text-emerald-700' : 'border-stone-400 text-stone-400'}`}>
+                        <Star size={10} className={isReached ? 'fill-emerald-700' : 'fill-stone-200'} />
                       </div>
                     </div>
                   );

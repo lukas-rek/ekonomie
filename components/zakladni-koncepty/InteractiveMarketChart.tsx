@@ -2,7 +2,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 
 const getSubscript = (n: number) => {
-  const subs = ['₀', '₁', '₂', '₃', '₄', '₅', '₆', '▱', '₈', '₉'];
+  const subs = ['₀', '₁', '₂', '₃', '₄', '₅', '₆', '₇', '₈', '₉'];
   return n >= 0 && n <= 9 ? subs[n] : n.toString();
 };
 
@@ -39,14 +39,14 @@ export default function DraggableMarketChart() {
     setTimeline([{ d: 0, s: 0 }]);
   };
 
-  // --- 1. ROZMĚRY PLÁTNA A GRAFU ---
-  const width = 520;       // Zvětšeno z 450 pro širší bílý rámeček
+  // ROZMĚRY PLÁTNA A GRAFU
+  const width = 520;
   const height = 400;
-  const paddingLeft = 50;  // Místo pro osu Y
-  const paddingRight = 120;// Extra místo pro nápis Množství (Q)
-  const paddingY = 50;     // Místo nahoře a dole
+  const paddingLeft = 50;
+  const paddingRight = 120;
+  const paddingY = 50;
   
-  const graphWidth = width - paddingLeft - paddingRight; // Vlastní šířka mřížky (350px - stejná jako dřív)
+  const graphWidth = width - paddingLeft - paddingRight;
 
   const getX = (val: number) => paddingLeft + (val / 100) * graphWidth;
   const getY = (val: number) => (height - paddingY) - (val / 100) * (height - paddingY * 2);
@@ -59,7 +59,6 @@ export default function DraggableMarketChart() {
       const pixelToLogical = width / rect.width;
       
       const deltaXPixels = e.clientX - dragging.startX;
-      // Převod na logické jednotky s ohledem na novou šířku mřížky
       const deltaXLogical = deltaXPixels * pixelToLogical * (100 / graphWidth);
       
       let newShift = dragging.startShift + deltaXLogical;
@@ -88,15 +87,22 @@ export default function DraggableMarketChart() {
     };
   }, [dragging, demands, supplies, width, graphWidth]);
 
-
   return (
-    <div className="my-8 flex flex-col items-center bg-slate-50 p-6 rounded-xl border border-slate-200 select-none">
+    <div className="my-8 flex flex-col items-center bg-[#FDFCF9] p-6 rounded-xl border border-stone-300 select-none shadow-sm">
 
-      <div className="flex gap-4 mb-6 w-full max-w-lg">
-        <button onClick={addDemand} disabled={demands.length >= 4} className="flex-1 py-2 px-4 bg-blue-100 text-blue-700 font-bold rounded border border-blue-200 hover:bg-blue-200 hover:shadow-sm disabled:opacity-50 transition-all">
+      <div className="flex gap-3 mb-6 w-full max-w-lg">
+        <button 
+          onClick={addDemand} 
+          disabled={demands.length >= 4} 
+          className="flex-1 py-2.5 px-4 bg-blue-50 text-blue-800 font-sans font-bold text-xs uppercase tracking-wider rounded-lg border border-blue-300 hover:bg-blue-100 hover:border-blue-400 disabled:opacity-40 transition-all shadow-xs"
+        >
           + Přidat poptávku (D)
         </button>
-        <button onClick={addSupply} disabled={supplies.length >= 4} className="flex-1 py-2 px-4 bg-red-100 text-red-700 font-bold rounded border border-red-200 hover:bg-red-200 hover:shadow-sm disabled:opacity-50 transition-all">
+        <button 
+          onClick={addSupply} 
+          disabled={supplies.length >= 4} 
+          className="flex-1 py-2.5 px-4 bg-red-50 text-red-800 font-sans font-bold text-xs uppercase tracking-wider rounded-lg border border-red-300 hover:bg-red-100 hover:border-red-400 disabled:opacity-40 transition-all shadow-xs"
+        >
           + Přidat nabídku (S)
         </button>
       </div>
@@ -105,29 +111,26 @@ export default function DraggableMarketChart() {
         ref={svgRef} 
         width="100%" 
         viewBox={`0 0 ${width} ${height}`} 
-        className="max-w-xl bg-white rounded-lg shadow-sm border border-slate-100 overflow-visible touch-none"
+        className="max-w-xl bg-[#F7F4EE] rounded-lg shadow-xs border border-stone-300 overflow-visible touch-none"
       >
         <defs>
           <marker id="arrowHead" markerWidth="10" markerHeight="10" refX="7" refY="3" orient="auto">
-            <path d="M0,0 L0,6 L9,3 z" fill="#334155" />
+            <path d="M0,0 L0,6 L9,3 z" fill="#1C1917" />
           </marker>
           <marker id="arrowHead2" markerWidth="10" markerHeight="10" refX="7" refY="3" orient="270">
-            <path d="M0,0 L0,6 L9,3 z" fill="#334155" />
+            <path d="M0,0 L0,6 L9,3 z" fill="#1C1917" />
           </marker>
           <marker id="pathArrow" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto">
-            <path d="M0,0 L0,6 L8,3 z" fill="#94a3b8" />
+            <path d="M0,0 L0,6 L8,3 z" fill="#78716C" />
           </marker>
         </defs>
 
         {/* --- OSY --- */}
-        {/* Osa Y */}
-        <line x1={paddingLeft} y1={paddingY - 10} x2={paddingLeft} y2={height - paddingY} stroke="#334155" strokeWidth="2" markerStart="url(#arrowHead2)" />
-        <text x={paddingLeft} y={paddingY - 25} textAnchor="middle" className="text-sm font-bold fill-slate-700">Cena (P)</text>
+        <line x1={paddingLeft} y1={paddingY - 10} x2={paddingLeft} y2={height - paddingY} stroke="#1C1917" strokeWidth="2" markerStart="url(#arrowHead2)" />
+        <text x={paddingLeft} y={paddingY - 25} textAnchor="middle" className="text-xs font-serif font-bold fill-stone-900">Cena (P)</text>
         
-        {/* Osa X */}
-        <line x1={paddingLeft} y1={height - paddingY} x2={paddingLeft + graphWidth + 15} y2={height - paddingY} stroke="#334155" strokeWidth="2" markerEnd="url(#arrowHead)" />
-        {/* OPRAVENO: Text vrácen vedle šipky a rámeček už ho neusekne */}
-        <text x={paddingLeft + graphWidth + 25} y={height - paddingY + 4} textAnchor="start" dominantBaseline="middle" className="text-sm font-bold fill-slate-700">Množství (Q)</text>
+        <line x1={paddingLeft} y1={height - paddingY} x2={paddingLeft + graphWidth + 15} y2={height - paddingY} stroke="#1C1917" strokeWidth="2" markerEnd="url(#arrowHead)" />
+        <text x={paddingLeft + graphWidth + 25} y={height - paddingY + 4} textAnchor="start" dominantBaseline="middle" className="text-xs font-serif font-bold fill-stone-900">Množství (Q)</text>
 
         {/* POPTÁVKY */}
         {demands.map((d, i) => {
@@ -139,15 +142,15 @@ export default function DraggableMarketChart() {
             <g key={`d-${i}`}>
               <line 
                 x1={getX(qTop)} y1={getY(90)} x2={getX(qBot)} y2={getY(10)} 
-                stroke="#2563eb" strokeWidth={isActive ? "3" : "1.5"} 
-                strokeDasharray={i === 0 ? "none" : "6,6"} opacity={isActive ? 1 : 0.4}
+                stroke="#2563EB" strokeWidth={isActive ? "3" : "1.5"} 
+                strokeDasharray={i === 0 ? "none" : "6,6"} opacity={isActive ? 1 : 0.45}
               />
               <line 
                 x1={getX(qTop)} y1={getY(90)} x2={getX(qBot)} y2={getY(10)} 
-                stroke="transparent" strokeWidth="20" className={dragging ? "cursor-grabbing" : "cursor-grab"}
+                stroke="transparent" strokeWidth="22" className={dragging ? "cursor-grabbing" : "cursor-grab"}
                 onPointerDown={(e) => setDragging({ type: 'D', index: i, startX: e.clientX, startShift: d.shift })}
               />
-              <text x={getX(qBot) + 8} y={getY(10) + 10} className={`font-bold ${isActive ? 'fill-blue-600' : 'fill-blue-400'}`}>
+              <text x={getX(qBot) + 8} y={getY(10) + 8} className={`font-bold font-sans ${isActive ? 'fill-blue-700' : 'fill-blue-500 text-xs'}`}>
                 D{getSubscript(i)}
               </text>
             </g>
@@ -164,15 +167,15 @@ export default function DraggableMarketChart() {
             <g key={`s-${i}`}>
               <line 
                 x1={getX(qBot)} y1={getY(10)} x2={getX(qTop)} y2={getY(90)} 
-                stroke="#ef4444" strokeWidth={isActive ? "3" : "1.5"}
-                strokeDasharray={i === 0 ? "none" : "6,6"} opacity={isActive ? 1 : 0.4}
+                stroke="#DC2626" strokeWidth={isActive ? "3" : "1.5"}
+                strokeDasharray={i === 0 ? "none" : "6,6"} opacity={isActive ? 1 : 0.45}
               />
               <line 
                 x1={getX(qBot)} y1={getY(10)} x2={getX(qTop)} y2={getY(90)} 
-                stroke="transparent" strokeWidth="20" className={dragging ? "cursor-grabbing" : "cursor-grab"}
+                stroke="transparent" strokeWidth="22" className={dragging ? "cursor-grabbing" : "cursor-grab"}
                 onPointerDown={(e) => setDragging({ type: 'S', index: i, startX: e.clientX, startShift: s.shift })}
               />
-              <text x={getX(qTop) + 8} y={getY(90)} className={`font-bold ${isActive ? 'fill-red-600' : 'fill-red-400'}`}>
+              <text x={getX(qTop) + 8} y={getY(90)} className={`font-bold font-sans ${isActive ? 'fill-red-700' : 'fill-red-500 text-xs'}`}>
                 S{getSubscript(i)}
               </text>
             </g>
@@ -195,13 +198,13 @@ export default function DraggableMarketChart() {
               {/* Vodicí čáry */}
               {labelsOn && (
                 <>
-                  <line x1={paddingLeft} y1={py} x2={px} y2={py} stroke="#94a3b8" strokeWidth="1" strokeDasharray="3,3" opacity={isLatest ? 1 : 0.4} />
-                  <line x1={px} y1={height - paddingY} x2={px} y2={py} stroke="#94a3b8" strokeWidth="1" strokeDasharray="3,3" opacity={isLatest ? 1 : 0.4} />
+                  <line x1={paddingLeft} y1={py} x2={px} y2={py} stroke="#A8A29E" strokeWidth="1" strokeDasharray="3,3" opacity={isLatest ? 1 : 0.4} />
+                  <line x1={px} y1={height - paddingY} x2={px} y2={py} stroke="#A8A29E" strokeWidth="1" strokeDasharray="3,3" opacity={isLatest ? 1 : 0.4} />
                   
-                  <text x={px} y={height - paddingY + 18} textAnchor="middle" className={`text-xs font-bold ${isLatest ? 'fill-slate-700' : 'fill-slate-400'}`}>
+                  <text x={px} y={height - paddingY + 18} textAnchor="middle" className={`text-xs font-mono font-bold ${isLatest ? 'fill-stone-900' : 'fill-stone-500'}`}>
                     Q{getSubscript(i)}
                   </text>
-                  <text x={paddingLeft - 8} y={py} textAnchor="end" dominantBaseline="middle" className={`text-xs font-bold ${isLatest ? 'fill-slate-700' : 'fill-slate-400'}`}>
+                  <text x={paddingLeft - 8} y={py} textAnchor="end" dominantBaseline="middle" className={`text-xs font-mono font-bold ${isLatest ? 'fill-stone-900' : 'fill-stone-500'}`}>
                     P{getSubscript(i)}
                   </text>
                 </>
@@ -213,18 +216,18 @@ export default function DraggableMarketChart() {
                   x1={getX(50 + (demands[timeline[i-1].d].shift + supplies[timeline[i-1].s].shift) / 2)} 
                   y1={getY(50 + (demands[timeline[i-1].d].shift - supplies[timeline[i-1].s].shift) / 2)} 
                   x2={px} y2={py} 
-                  stroke="#94a3b8" strokeWidth="2" markerEnd="url(#pathArrow)"
+                  stroke="#78716C" strokeWidth="1.5" markerEnd="url(#pathArrow)"
                 />
               )}
 
-              <circle cx={px} cy={py} r={isLatest ? "6" : "4"} fill="#0f172a" stroke="white" strokeWidth="2" opacity={isLatest ? 1 : 0.5} />
+              <circle cx={px} cy={py} r={isLatest ? "6" : "4"} fill="#1C1917" stroke="#FFFFFF" strokeWidth="2" opacity={isLatest ? 1 : 0.5} />
               
               {labelsOn && (
                 <text 
                   x={px} 
                   y={py - 12} 
                   textAnchor="middle" 
-                  className={`font-bold ${isLatest ? 'fill-slate-900' : 'fill-slate-500 text-xs'}`}
+                  className={`font-serif font-bold ${isLatest ? 'fill-stone-900 text-sm' : 'fill-stone-600 text-xs'}`}
                 >
                   E{getSubscript(i)}
                 </text>
@@ -234,11 +237,17 @@ export default function DraggableMarketChart() {
         })}
       </svg>
 
-      <div className="mt-6 flex gap-4 w-full max-w-lg border-t border-slate-200 pt-6">
-        <button onClick={() => setLabelsOn(!labelsOn)} className="flex-1 py-2 bg-slate-100 text-slate-700 rounded font-medium hover:bg-slate-200 transition-colors">
+      <div className="mt-6 flex gap-3 w-full max-w-lg border-t border-stone-200 pt-5">
+        <button 
+          onClick={() => setLabelsOn(!labelsOn)} 
+          className="flex-1 py-2.5 bg-white text-stone-700 border border-stone-300 rounded-lg font-sans font-bold text-xs uppercase tracking-wider hover:bg-stone-50 transition-colors shadow-xs active:scale-95"
+        >
           {labelsOn ? "Skrýt popisky" : "Zobrazit popisky"}
         </button>
-        <button onClick={resetChart} className="flex-1 py-2 bg-slate-800 text-white rounded font-medium hover:bg-slate-700 transition-colors">
+        <button 
+          onClick={resetChart} 
+          className="flex-1 py-2.5 bg-stone-900 text-white rounded-lg font-sans font-bold text-xs uppercase tracking-wider hover:bg-stone-800 transition-colors shadow-sm active:scale-95"
+        >
           Resetovat graf
         </button>
       </div>

@@ -4,41 +4,31 @@ import Link from 'next/link';
 import { 
   ArrowRight, 
   User, 
-  GraduationCap, 
-  Map,
-  ChevronRight,
-  Lightbulb,
-  MousePointerClick,
-  FileDown,
-  Globe2,
-  ArrowDown,
-  Gamepad2
+  Gamepad2, 
+  FileDown, 
+  BookOpen, 
+  Compass,
+  ArrowDown
 } from 'lucide-react';
-
-const ROADMAP = [
-  { title: "Základní ekonomické koncepty", slug: "zakladni-koncepty", color: "bg-blue-500" },
-  { title: "Mikroekonomie", slug: "mikroekonomie", color: "bg-indigo-500" },
-  { title: "Makroekonomie", slug: "makroekonomie", color: "bg-violet-500" },
-  { title: "Peníze a bankovnictví", slug: "penize-a-bankovnictvi", color: "bg-purple-500" },
-  { title: "Dějiny ekonomického myšlení", slug: "dejiny-ekonomie", color: "bg-pink-500" },
-  { title: "Investice a podnikání", slug: "investice-a-podnikani", color: "bg-rose-500" },
-];
 
 export default function Home() {
   return (
-    // scroll-smooth zajistí plynulý posun při kliknutí na kotvu #roadmap
-    <div className="min-h-screen bg-white scroll-smooth">
+    <div className="min-h-screen bg-[#FBF9F5] scroll-smooth">
       
       {/* HERO SEKCE */}
-      <section className="max-w-5xl mx-auto pt-24 pb-12 px-6 text-center">
-
+      <section className="max-w-4xl mx-auto pt-24 pb-16 px-6 text-center">
         
-        <h1 className="text-5xl md:text-7xl font-black text-slate-900 mb-8 tracking-tighter leading-tight">
+        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-stone-100 border border-stone-300 text-stone-700 text-xs font-bold uppercase tracking-widest mb-8">
+          <BookOpen size={14} className="text-orange-700" />
+          <span>Interaktivní Učebnice Ekonomie</span>
+        </div>
+
+        <h1 className="text-5xl md:text-7xl font-serif font-bold text-stone-900 mb-6 tracking-tight leading-tight">
           Vítej v <br />
-          <span className="text-blue-600">(pracovní název)</span>
+          <span className="text-orange-700 italic font-normal">(pracovní název)</span>
         </h1>
         
-        <p className="text-xl text-slate-500 max-w-3xl mx-auto leading-relaxed mb-10">
+        <p className="text-lg md:text-xl text-stone-600 max-w-2xl mx-auto leading-relaxed mb-10 font-sans">
           nějaký krátký úvodní text
         </p>
 
@@ -46,38 +36,45 @@ export default function Home() {
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16">
           <a 
             href="/uvod" 
-            className="w-full sm:w-auto px-10 py-4 bg-blue-600 text-white rounded-2xl font-black uppercase tracking-widest text-sm hover:bg-blue-700 transition-all hover:shadow-xl hover:shadow-blue-200 flex items-center justify-center gap-3 active:scale-95"
+            className="w-full sm:w-auto px-8 py-3.5 bg-stone-900 hover:bg-stone-800 text-white rounded-lg font-sans font-bold text-xs uppercase tracking-widest transition-all shadow-sm flex items-center justify-center gap-2.5 active:scale-95"
           >
-            Studovat teď <ArrowDown size={20} />
+            Studovat teď <ArrowDown size={16} />
           </a>
           <Link 
             href="/o-autorovi" 
-            className="w-full sm:w-auto px-10 py-4 bg-white border-2 border-slate-200 text-slate-600 rounded-2xl font-black uppercase tracking-widest text-sm hover:bg-slate-50 transition-all flex items-center justify-center gap-3"
+            className="w-full sm:w-auto px-8 py-3.5 bg-white border border-stone-300 text-stone-800 hover:bg-stone-50 rounded-lg font-sans font-bold text-xs uppercase tracking-widest transition-all shadow-sm flex items-center justify-center gap-2.5 active:scale-95"
           >
-            O projektu <User size={20} />
+            O projektu <User size={16} />
           </Link>
         </div>
        
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-4xl mx-auto">
-          <Link href="/hry" className="group p-5 bg-slate-50 rounded-2xl border border-slate-200 flex items-center gap-4 hover:bg-white hover:border-blue-400 hover:shadow-lg transition-all text-left">
-            <div className="w-12 h-12 bg-white rounded-xl flex items-center justify-center text-green-600 shadow-sm group-hover:bg-blue-600 group-hover:text-white transition-colors">
-              <Gamepad2 size={24} />
+        {/* ROZCESTNÍK FUNKCÍ */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-5 max-w-3xl mx-auto text-left">
+          <Link 
+            href="/hry" 
+            className="group p-6 bg-[#FDFCF9] rounded-xl border border-stone-300 flex items-start gap-4 hover:border-stone-500 hover:shadow-sm transition-all"
+          >
+            <div className="w-12 h-12 bg-stone-100 border border-stone-200 rounded-lg flex items-center justify-center text-stone-800 group-hover:bg-stone-900 group-hover:text-white transition-colors shrink-0">
+              <Gamepad2 size={22} />
             </div>
             <div>
-              <h4 className="font-bold text-slate-900 text-sm">Ekonomické minihry</h4>
-              <p className="text-xs text-slate-500">Nauč se ekonomické koncepty skrze webové minihry</p>
+              <h4 className="font-serif font-bold text-stone-900 text-base mb-1">Ekonomické minihry</h4>
+              <p className="text-xs text-stone-600 font-sans leading-relaxed">Nauč se ekonomické koncepty skrze webové minihry a interaktivní simulace</p>
             </div>
           </Link>
-          <Link href="/materialy" className="group p-5 bg-slate-50 rounded-2xl border border-slate-200 flex items-center gap-4 hover:bg-white hover:border-blue-400 hover:shadow-lg transition-all text-left">
-            <div className="w-12 h-12 bg-white rounded-xl flex items-center justify-center text-blue-600 shadow-sm group-hover:bg-blue-600 group-hover:text-white transition-colors">
-              <FileDown size={24} />
+
+          <Link 
+            href="/materialy" 
+            className="group p-6 bg-[#FDFCF9] rounded-xl border border-stone-300 flex items-start gap-4 hover:border-stone-500 hover:shadow-sm transition-all"
+          >
+            <div className="w-12 h-12 bg-stone-100 border border-stone-200 rounded-lg flex items-center justify-center text-stone-800 group-hover:bg-stone-900 group-hover:text-white transition-colors shrink-0">
+              <FileDown size={22} />
             </div>
             <div>
-              <h4 className="font-bold text-slate-900 text-sm">Užitečné materiály</h4>
-              <p className="text-xs text-slate-500">Tipy, odkazy a pomůcky ke studiu</p>
+              <h4 className="font-serif font-bold text-stone-900 text-base mb-1">Užitečné materiály</h4>
+              <p className="text-xs text-stone-600 font-sans leading-relaxed">Tipy, odkazy a doplňkové pomůcky ke studiu ekonomických témat</p>
             </div>
           </Link>
-          
         </div>
       </section>
 
