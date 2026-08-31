@@ -6,13 +6,22 @@ import {
   ArrowUpDown, 
   Play, 
   Sparkles, 
-  Gamepad2 
+  Gamepad2,
+  Scale 
 } from 'lucide-react';
 
 const GAMES = [
   {
+    id: "veznovo-dilema",
+    title: "Vězňovo dilema",
+    desc: "Otestuj svou strategii v iterovaném vězňově dilematu proti různým algoritmům (Tit-for-Tat, Grim Trigger a dalším).",
+    icon: Scale,
+    href: "/hry/veznovo-dilema",
+    tag: "Teorie her"
+  },
+  {
     id: "trzni-principy",
-    title: "Tržní principy (Trh s pivem)",
+    title: "Tržní principy",
     desc: "Vyzkoušej si roli trhu. Reaguj na nečekané události a posouvej křivky nabídky a poptávky.",
     icon: LineChart,
     href: "/hry/trzni-principy",

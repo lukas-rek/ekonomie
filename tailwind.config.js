@@ -30,16 +30,9 @@ module.exports = {
           800: '#1C1917',
           900: '#0C0A09',
         },
-        terracotta: {
-          DEFAULT: '#C2410C',
-          50: '#FFF7ED',
-          100: '#FFEDD5',
-          200: '#FED7AA',
-          500: '#F97316',
-          600: '#EA580C',
-          700: '#C2410C',
-          800: '#9A3412',
-          900: '#7C2D12',
+        SFLyellow: {
+          DEFAULT: '#f9c710',
+          
         },
         demand: {
           DEFAULT: '#2563EB',

@@ -1,6 +1,7 @@
 "use client";
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { BookOpen, Menu, X } from 'lucide-react';
 
@@ -98,7 +99,7 @@ export default function Navbar() {
 
           <div className="flex items-center gap-4">
             <span className="text-[11px] font-serif italic text-stone-400">
-              Interaktivní studium
+             ...
             </span>
           </div>
         </div>

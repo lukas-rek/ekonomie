@@ -86,7 +86,7 @@ export default function UvodDoEkonomie() {
           Směry ekonomického myšlení se nazývají ekonomické školy. Různé ekonomické školy přistupují ke zkoumání stejných fenoménů různě. 
           Mezi známé ekonomické školy patří například rakouská ekonomická škola, keynesiánství nebo monetarismus. Školou, která dnes představuje mainstreamový přístup k ekonomické vědě je tzv. neokeynesiánství. 
           Teorie tohoto proudu jsou dnes všeobecně přijímány jako základ ekonomické diskuse.
-          Za neméně důležité však považuji i studium jiných ekonomických škol. Některými se zabýváme v kapitole <a href="/dejiny-ekonomickeho-mysleni" className="text-orange-700 hover:text-orange-900 underline font-medium">Dějiny ekonomického myšlení</a>. Za obzvláště zajímavou pak považuji zejména rakouskou ekonomickou školu (jejímu studiu se můžete věnovat <a href="/rakouska-ekonomicka-skola" className="text-orange-700 hover:text-orange-900 underline font-medium">zde</a>).
+          Některými se zabýváme v kapitole <a href="/dejiny-ekonomickeho-mysleni" className="text-orange-700 hover:text-orange-900 underline font-medium">Dějiny ekonomického myšlení</a>. 
         </p>
 
         <InteractiveQuestion 

@@ -178,17 +178,18 @@ export default function GdpHigherLowerGame() {
       
       {/* Horní lišta */}
       <div className="flex flex-col sm:flex-row justify-between items-center gap-4 mb-8 px-2">
-        <div>
+        <div className="flex items-center gap-3">
           <Link 
-            href="/hry/vetsi-mensi" 
-            className="inline-flex items-center text-xs font-bold uppercase tracking-wider text-stone-500 hover:text-stone-900 transition-colors mb-2 group"
+            href="/hry" 
+            className="inline-flex items-center text-xs font-bold uppercase tracking-wider text-stone-500 hover:text-stone-900 transition-colors group font-sans"
           >
             <ArrowLeft size={14} className="mr-1.5 group-hover:-translate-x-1 transition-transform" />
-            Zpět na výběr
+            Zpět na minihry
           </Link>
-          <h2 className="text-2xl md:text-3xl font-serif font-bold text-stone-900">
+          <span className="text-stone-300">•</span>
+          <h1 className="text-xl md:text-2xl font-serif font-bold text-stone-900 tracking-tight">
             HDP na obyvatele: Vyšší nebo Nižší?
-          </h2>
+          </h1>
         </div>
         
         <div className="flex items-center gap-3">
@@ -283,7 +284,7 @@ function CountryCard({
 
       {/* Obsah */}
       <div className="relative z-20 flex flex-col items-center text-white w-full">
-        <h3 className="text-3xl md:text-4xl font-serif font-bold text-center mb-6 leading-tight drop-shadow-sm">{country.name}</h3>
+        <h3 className="text-white text-3xl md:text-4xl font-serif font-bold text-center mb-6 leading-tight drop-shadow-sm">{country.name}</h3>
         
         <div className="h-[120px] flex flex-col justify-center w-full items-center">
           {revealed ? (

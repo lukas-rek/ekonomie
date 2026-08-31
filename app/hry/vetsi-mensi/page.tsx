@@ -32,25 +32,23 @@ export default function VetsiMensiRozcestnik() {
       
       <div className="max-w-3xl mx-auto w-full">
         
-        {/* Navigace zpět */}
-        <Link 
-          href="/hry" 
-          className="inline-flex items-center text-xs font-bold uppercase tracking-wider text-stone-500 hover:text-stone-900 transition-colors mb-6 group font-sans"
-        >
-          <ArrowLeft size={16} className="mr-2 group-hover:-translate-x-1 transition-transform" />
-          Zpět na minihry
-        </Link>
+        {/* NAVIGACE A HLAVIČKA */}
+        <div className="flex items-center gap-3 mb-6">
+          <Link 
+            href="/hry" 
+            className="inline-flex items-center text-xs font-bold uppercase tracking-wider text-stone-500 hover:text-stone-900 transition-colors group font-sans"
+          >
+            <ArrowLeft size={14} className="mr-1.5 group-hover:-translate-x-1 transition-transform" />
+            Zpět na minihry
+          </Link>
+          <span className="text-stone-300">•</span>
+          <h1 className="text-xl md:text-2xl font-serif font-bold text-stone-900 tracking-tight">
+            Větší / Menší
+          </h1>
+        </div>
 
         {/* HLAVNÍ KARTA */}
         <div className="bg-[#FDFCF9] rounded-xl shadow-sm overflow-hidden border border-stone-300">
-          
-          {/* Hlavička */}
-          <div className="bg-[#F7F4EE] border-b border-stone-200 px-8 py-5 flex items-center gap-3">
-            <div className="w-9 h-9 bg-stone-200/80 border border-stone-300 rounded-lg flex items-center justify-center">
-              <ArrowUpDown size={18} className="text-stone-800" />
-            </div>
-            <h2 className="text-xl font-serif font-bold text-stone-900">Větší / Menší</h2>
-          </div>
 
           {/* Obsah */}
           <div className="p-8">

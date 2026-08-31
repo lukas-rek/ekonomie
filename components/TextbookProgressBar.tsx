@@ -1,6 +1,7 @@
 "use client";
 import React, { useEffect, useState, useRef } from 'react';
 import { usePathname } from 'next/navigation';
+import Link from 'next/link';
 import confetti from 'canvas-confetti';
 import { Star, CheckCircle, ArrowRight, ChevronDown, ChevronUp, Award } from 'lucide-react';
 
@@ -57,7 +58,7 @@ const CURRICULUM = [
     ]
   },
   {
-    chapter: "Stručné dějiny\nekonomického myšlení",
+    chapter: "Dějiny ekonomického myšlení",
     paths: [
       "/dejiny-ekonomickeho-mysleni/uvod",
       "/dejiny-ekonomickeho-mysleni/klasicke-teorie",
@@ -153,6 +154,8 @@ export default function TextbookProgressBar() {
   
   const maxReachedIndex = useRef(-1);
 
+  const currentChapter = CURRICULUM.find(c => c.paths.includes(pathname));
+
   useEffect(() => {
     const currentIndex = ALL_PATHS.indexOf(pathname);
     
@@ -160,15 +163,15 @@ export default function TextbookProgressBar() {
       const currentProgress = ((currentIndex + 1) / ALL_PATHS.length) * 100;
       setProgress(currentProgress);
 
-      const currentChapter = CURRICULUM.find(c => c.paths.includes(pathname));
+      const foundChapter = CURRICULUM.find(c => c.paths.includes(pathname));
 
-      if (currentChapter) {
-        const isTestPage = currentChapter.paths[currentChapter.paths.length - 1] === pathname;
+      if (foundChapter) {
+        const isTestPage = foundChapter.paths[foundChapter.paths.length - 1] === pathname;
 
         if (isTestPage) {
           if (currentIndex > maxReachedIndex.current) {
             maxReachedIndex.current = currentIndex;
-            setCurrentChapName(currentChapter.chapter.replace('\n', ' '));
+            setCurrentChapName(foundChapter.chapter.replace('\n', ' '));
             setShowTestModal(true);
             fireBigConfetti();
           }
@@ -240,21 +243,29 @@ export default function TextbookProgressBar() {
         </button>
 
         {/* SAMOTNÝ PANEL */}
-        <div className="w-full bg-[#FDFCF9] border-t border-stone-300 px-6 py-6 shadow-sm relative">
+        <div className="w-full bg-[#FDFCF9] border-t border-stone-300 px-6 py-4 shadow-sm relative">
           <div className="max-w-4xl mx-auto flex flex-col gap-2 relative">
             
-            <div className="flex justify-between items-center text-xs font-bold text-stone-600 uppercase tracking-wider mb-2 w-full font-sans">
-              <span className="flex items-center gap-1.5">
-                <CheckCircle size={14} className="text-emerald-700" /> Průběh učebnicí
-              </span>
+            <div className="flex justify-between items-center text-xs font-bold text-stone-600 uppercase tracking-wider mb-1 w-full font-sans">
+              <div className="flex items-center gap-2">
+                <span className="flex items-center gap-1.5 text-stone-700">
+                  <CheckCircle size={14} className="text-emerald-700" /> Průběh učebnicí
+                </span>
+                {currentChapter && (
+                  <span className="hidden sm:inline-block text-stone-400 font-normal">
+                    • <span className="font-serif font-semibold text-stone-800 normal-case">{currentChapter.chapter.replace('\n', ' ')}</span>
+                  </span>
+                )}
+              </div>
               <span className="text-stone-900 font-bold">{Math.round(progress)} % hotovo</span>
             </div>
 
-            <div className="relative h-3 w-full">
+            {/* PROGRESS LINKA */}
+            <div className="relative h-2.5 w-full">
               
               <div className="absolute inset-0 bg-stone-200 rounded-full overflow-hidden border border-stone-300">
                 <div 
-                  className="absolute top-0 left-0 h-full bg-stone-800 transition-all duration-500 ease-out rounded-full"
+                  className="absolute top-0 left-0 h-full bg-stone-900 transition-all duration-500 ease-out rounded-full"
                   style={{ width: `${progress}%` }}
                 />
               </div>
@@ -272,8 +283,8 @@ export default function TextbookProgressBar() {
                         <div key={pathIdx} className="h-full border-r border-stone-300/40 last:border-r-0" style={{ width: `${100 / chap.paths.length}%` }} />
                       ))}
                       
-                      <div className={`absolute right-0 top-1/2 -translate-y-1/2 translate-x-1/2 w-5 h-5 bg-white rounded-full border flex items-center justify-center z-10 hidden md:flex shadow-xs transition-colors ${isReached ? 'border-emerald-700 text-emerald-700' : 'border-stone-400 text-stone-400'}`}>
-                        <Star size={10} className={isReached ? 'fill-emerald-700' : 'fill-stone-200'} />
+                      <div className={`absolute right-0 top-1/2 -translate-y-1/2 translate-x-1/2 w-4 h-4 bg-white rounded-full border flex items-center justify-center z-10 hidden md:flex shadow-xs transition-colors ${isReached ? 'border-emerald-700 text-emerald-700' : 'border-stone-400 text-stone-400'}`}>
+                        <Star size={8} className={isReached ? 'fill-emerald-700' : 'fill-stone-200'} />
                       </div>
                     </div>
                   );
@@ -281,6 +292,43 @@ export default function TextbookProgressBar() {
               </div>
 
             </div>
+
+            {/* NÁZVY KAPITOL POD PROGRESS BAREM */}
+            <div className="flex w-full pt-1">
+              {CURRICULUM.map((chap, chapIdx) => {
+                const chapWidth = (chap.paths.length / ALL_PATHS.length) * 100;
+                const isCurrent = chap.paths.includes(pathname);
+                const endOfChapterIndex = ALL_PATHS.indexOf(chap.paths[chap.paths.length - 1]);
+                const isCompleted = currentIndex >= endOfChapterIndex;
+                const formattedName = chap.chapter.replace('\n', ' ');
+
+                return (
+                  <Link
+                    key={chap.chapter}
+                    href={chap.paths[0]}
+                    style={{ width: `${chapWidth}%` }}
+                    className={`pr-2 group transition-colors block text-left ${
+                      isCurrent 
+                        ? 'text-stone-900 font-bold' 
+                        : isCompleted
+                          ? 'text-stone-600 hover:text-stone-900'
+                          : 'text-stone-400 hover:text-stone-600'
+                    }`}
+                    title={formattedName}
+                  >
+                    <div className="flex items-center gap-1">
+                      <span className={`text-[10px] font-sans font-black ${isCurrent ? 'text-orange-700' : isCompleted ? 'text-emerald-700' : 'text-stone-400'}`}>
+                        {chapIdx + 1}.
+                      </span>
+                      <span className="text-[10px] md:text-xs font-serif leading-tight truncate">
+                        {formattedName}
+                      </span>
+                    </div>
+                  </Link>
+                );
+              })}
+            </div>
+
           </div>
         </div>
       </div>
