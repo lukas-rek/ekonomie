@@ -22,13 +22,13 @@ export default function StatekVzacnostUzitekHodnotaPage() {
 
       {/* HLAVIČKA PODKAPITOLY */}
       <header className="mb-8">
-        <span className="text-xs font-mono font-bold text-orange-700 uppercase tracking-widest block mb-2">
+        <span className="text-xs font-mono font-bold text-[#F9C70F] uppercase tracking-widest block mb-2">
           Lekce 03
         </span>
         <h1 className="text-3xl md:text-4xl font-serif font-bold text-stone-900 mb-4 tracking-tight leading-tight">
           Statek, vzácnost, užitek, hodnota
         </h1>
-        <div className="h-[2px] w-16 bg-orange-700"></div>
+        <div className="h-[2px] w-16 bg-[#F9C70F]"></div>
       </header>
 
       {/* HLAVNÍ TEXT */}
@@ -80,7 +80,7 @@ export default function StatekVzacnostUzitekHodnotaPage() {
           Podle vlivu změny důchodu spotřebitele na poptávku po statku:
         </h3>
         <p className="text-sm italic text-stone-600">
-          Více v podkapitolách <a href="/zakladni-koncepty/nabidka-poptavka" className="text-orange-700 hover:text-orange-900 underline font-medium">Nabídka, poptávka a tržní rovnováha</a> a <a href="/mikroekonomie/elasticita" className="text-orange-700 hover:text-orange-900 underline font-medium">Elasticita</a>.
+          Více v podkapitolách <a href="/zakladni-koncepty/nabidka-poptavka" className="text-stone-900 underline decoration-[#F9C70F] decoration-2 hover:text-stone-600 font-medium">Nabídka, poptávka a tržní rovnováha</a> a <a href="/mikroekonomie/elasticita" className="text-stone-900 underline decoration-[#F9C70F] decoration-2 hover:text-stone-600 font-medium">Elasticita</a>.
         </p>
         <p>
           U většiny statků s růstem důchodu spotřebitele roste i poptávka po daném statku. Takový statek nazýváme <strong>normální</strong>.
@@ -258,14 +258,14 @@ export default function StatekVzacnostUzitekHodnotaPage() {
           Ta říká, že není možné změřit užitek, ale spotřebitel je pouze schopný seřadit statky a kombinace statků do jakési preferenční stupnice podle toho, jaký užitek mu přináší.
           Nijak to však nevylučuje výše popsané principy. Jde pouze o to, že užitek nelze vyjádřit konkrétní číselnou hodnotou a není porovnatelný mezi lidmi. 
           Pro ekonomické bádání je totiž zcela postačující vědět, že spotřebitel preferuje statek nebo koš statků A před statkem nebo košem statků B a není potřeba vědět „o kolik“.
-          Více se o teorii užitku dozvíte v kapitole <a href="/mikroekonomie" className="text-orange-700 hover:text-orange-900 underline font-medium">Mikroekonomie</a>.
+          Více se o teorii užitku dozvíte v kapitole <a href="/mikroekonomie" className="text-stone-900 underline decoration-[#F9C70F] decoration-2 hover:text-stone-600 font-medium">Mikroekonomie</a>.
         </p>
 
         <h2 className="text-2xl font-serif font-bold text-stone-900 pt-6">
           Hodnota
         </h2>
         <p>
-          Hodnota byla dlouhá léta předmětem rozporů mezi ekonomy. Dlouho byla vnímána jako objektivní vlastnost statku. Tento koncept však zbořila marginalistická revoluce v 70. letech 19. století. (více o teoriích hodnoty v kapitole <a href="/dejiny-ekonomickeho-mysleni" className="text-orange-700 hover:text-orange-900 underline font-medium">Dějiny ekonomického myšlení</a>). 
+          Hodnota byla dlouhá léta předmětem rozporů mezi ekonomy. Dlouho byla vnímána jako objektivní vlastnost statku. Tento koncept však zbořila marginalistická revoluce v 70. letech 19. století. (více o teoriích hodnoty v kapitole <a href="/dejiny-ekonomickeho-mysleni" className="text-stone-900 underline decoration-[#F9C70F] decoration-2 hover:text-stone-600 font-medium">Dějiny ekonomického myšlení</a>). 
           Carl Menger přišel se subjektivní teorií hodnoty, která tvrdí, že hodnotu statku určuje jeho mezní užitek pro uživatele. 
           Vyřešil tím tak paradox vody a diamantů - Proč je voda, která je nezbytná pro život, tak levná, zatímco diamanty, které jsou v podstatě zbytečné, jsou tak drahé?
           Pojďme se podrobněji podívat na to, co určuje hodnotu. Dejme tomu, že chceme určit hodnotu vody. Opět si můžeme představit našeho cestovatele na poušti s láhvemi vody. 
@@ -332,10 +332,10 @@ export default function StatekVzacnostUzitekHodnotaPage() {
               href="/zakladni-koncepty/metodologie" 
               className="group flex items-start gap-3 max-w-[280px] text-left transition-all"
             >
-              <ArrowLeft size={18} className="shrink-0 text-stone-400 group-hover:text-orange-700 group-hover:-translate-x-1 transition-all mt-1" />
+              <ArrowLeft size={18} className="shrink-0 text-stone-400 group-hover:text-[#F9C70F] group-hover:-translate-x-1 transition-all mt-1" />
               <div className="flex flex-col">
                 <span className="text-[10px] font-black uppercase tracking-widest text-stone-500 mb-1 font-sans">Předchozí</span>
-                <span className="text-sm font-serif font-bold text-stone-900 group-hover:text-orange-700 leading-snug">
+                <span className="text-sm font-serif font-bold text-stone-900 group-hover:text-stone-900 leading-snug">
                   Metodologie a ekonomické modely
                 </span>
               </div>
@@ -349,11 +349,11 @@ export default function StatekVzacnostUzitekHodnotaPage() {
             >
               <div className="flex flex-col">
                 <span className="text-[10px] font-black uppercase tracking-widest text-stone-500 mb-1 font-sans">Další lekce</span>
-                <span className="text-sm font-serif font-bold text-stone-900 group-hover:text-orange-700 leading-snug">
+                <span className="text-sm font-serif font-bold text-stone-900 group-hover:text-stone-900 leading-snug">
                   Výrobní faktory
                 </span>
               </div>
-              <ArrowRight size={18} className="shrink-0 text-stone-400 group-hover:text-orange-700 group-hover:translate-x-1 transition-all mt-1" />
+              <ArrowRight size={18} className="shrink-0 text-stone-400 group-hover:text-[#F9C70F] group-hover:translate-x-1 transition-all mt-1" />
             </Link>
           </div>
         </div>

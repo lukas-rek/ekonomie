@@ -188,8 +188,8 @@ export default function TextbookProgressBar() {
     const duration = 2500;
     const end = Date.now() + duration;
     const frame = () => {
-      confetti({ particleCount: 4, angle: 60, spread: 55, origin: { x: 0, y: 0.8 }, colors: ['#C2410C', '#292524', '#D97706'] });
-      confetti({ particleCount: 4, angle: 120, spread: 55, origin: { x: 1, y: 0.8 }, colors: ['#C2410C', '#292524', '#D97706'] });
+      confetti({ particleCount: 4, angle: 60, spread: 55, origin: { x: 0, y: 0.8 }, colors: ['#F9C70F', '#1C1917', '#EAB308'] });
+      confetti({ particleCount: 4, angle: 120, spread: 55, origin: { x: 1, y: 0.8 }, colors: ['#F9C70F', '#1C1917', '#EAB308'] });
       if (Date.now() < end) requestAnimationFrame(frame);
     };
     frame();
@@ -317,7 +317,7 @@ export default function TextbookProgressBar() {
                     title={formattedName}
                   >
                     <div className="flex items-center gap-1">
-                      <span className={`text-[10px] font-sans font-black ${isCurrent ? 'text-orange-700' : isCompleted ? 'text-emerald-700' : 'text-stone-400'}`}>
+                      <span className={`text-[10px] font-sans font-black ${isCurrent ? 'text-[#F9C70F]' : isCompleted ? 'text-emerald-700' : 'text-stone-400'}`}>
                         {chapIdx + 1}.
                       </span>
                       <span className="text-[10px] md:text-xs font-serif leading-tight truncate">

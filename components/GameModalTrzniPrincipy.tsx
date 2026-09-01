@@ -18,8 +18,8 @@ export default function GameModal({ isOpen, onClose, title, pages }: any) {
         {/* Horní lišta */}
         <div className="shrink-0 px-6 py-4 bg-[#F7F4EE] flex items-center justify-between rounded-t-xl border-b border-stone-200">
           <div className="flex items-center gap-3">
-            <div className="w-8 h-8 bg-orange-100 border border-orange-200 rounded-lg flex items-center justify-center">
-              <LineChart size={16} className="text-orange-700" />
+            <div className="w-8 h-8 bg-[#FEF9C3] border border-[#F9C70F] rounded-lg flex items-center justify-center">
+              <LineChart size={16} className="text-stone-900" />
             </div>
             <h2 className="text-lg font-serif font-bold text-stone-900">{title}</h2>
           </div>
@@ -43,7 +43,7 @@ export default function GameModal({ isOpen, onClose, title, pages }: any) {
             {pages.map((_: any, i: number) => (
               <div 
                 key={i} 
-                className={`h-2 rounded-full transition-all duration-300 ${i === currentPage ? 'w-5 bg-orange-700' : 'w-2 bg-stone-300'}`} 
+                className={`h-2 rounded-full transition-all duration-300 ${i === currentPage ? 'w-5 bg-[#F9C70F]' : 'w-2 bg-stone-300'}`} 
               />
             ))}
           </div>

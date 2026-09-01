@@ -37,7 +37,7 @@ export default function FactorsClassification() {
     <div className="my-8 bg-[#FDFCF9] border border-stone-300 rounded-xl overflow-hidden shadow-sm">
       <div className="p-4 bg-[#F7F4EE] border-b border-stone-200 flex flex-col md:flex-row items-center justify-between gap-4">
         <h3 className="font-serif font-bold tracking-tight text-stone-900 text-base flex items-center gap-2">
-          <Box size={16} className="text-orange-700" /> Cvičení: Výrobní faktory
+          <Box size={16} className="text-stone-900" /> Cvičení: Výrobní faktory
         </h3>
         <div className="flex bg-stone-200/60 p-1 rounded-lg">
           <span className="px-3 py-1 text-xs font-bold text-stone-700 font-sans uppercase tracking-wider">

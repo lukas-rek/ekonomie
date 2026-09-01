@@ -3,59 +3,65 @@ import React from 'react';
 import Link from 'next/link';
 import { 
   BookOpen, 
-  Award, 
-  ArrowRight,
-  ChevronRight,
+  ChevronRight, 
+  ArrowRight, 
+  HelpCircle, 
+  Award,
+  TrendingUp,
+  Layers,
+  Scale,
+  Percent,
+  Compass
 } from 'lucide-react';
 
 const SUBCHAPTERS = [
   {
     title: "Úvod do ekonomie",
     slug: "uvod-ekonomie",
-    desc: "Co ekonomie vlastně zkoumá a proč je důležitá pro náš každodenní život?",
+    desc: "Co je ekonomie, čím se zabývá a proč se jí vyplatí rozumět? Rozdíl mezi mikro a makro ekonomií.",
     time: "5 min"
   },
   {
     title: "Metodologie a ekonomické modely",
     slug: "metodologie",
-    desc: "Jak ekonomové pracují a co jim pomáhá chápat náš svět?",
-    time: "5 min"
+    desc: "Jak ekonomové zkoumají svět? Principy ceteris paribus, homo economicus, pozitivní vs. normativní přístup.",
+    time: "7 min"
   },
   {
-    title: "Statek, vzácnost, užitek",
+    title: "Statek, vzácnost, užitek a hodnota",
     slug: "statek-vzacnost-uzitek-hodnota",
-    desc: "Proč nemůžeme mít všechno a jak určujeme hodnotu věcí kolem nás?",
+    desc: "Základní stavební kameny ekonomie. Proč je diamant dražší než voda a jak funguje mezní užitek.",
     time: "10 min"
   },
   {
     title: "Výrobní faktory",
     slug: "vyrobni-faktory",
-    desc: "Půda, práce, kapitál a technologie - jaké jsou základní stavební kameny bohatství?",
-    time: "5 min"
+    desc: "Půda, práce, kapitál a podnikavost. Produkční funkce a zákon klesajících mezních výnosů.",
+    time: "8 min"
   },
   {
-    title: "Hranice produkčních možností a náklady obětované příležitosti",
+    title: "Hranice produkčních možností (PPF)",
     slug: "hranice-produkcnich-moznosti",
-    desc: "Proč si někdy musíme vybrat a jakou to má cenu?",
-    time: "8 min"
+    desc: "Náklady obětované příležitosti, efektivita výroby a co způsobuje hospodářský růst.",
+    time: "10 min"
   },
   {
     title: "Komparativní a absolutní výhoda",
     slug: "komparativni-absolutni-vyhoda",
-    desc: "Proč je spolupráce a mezinárodní obchod výhodný pro obě strany?",
-    time: "8 min"
+    desc: "Proč se vyplatí specializace a mezinárodní obchod i těm, kteří jsou ve všem horší.",
+    time: "10 min"
   },
   {
     title: "Nabídka, poptávka a tržní rovnováha",
     slug: "nabidka-poptavka",
-    desc: "Základní tržní mechanismy. Jak nabídka a poptávka formují tržní rovnováhu a ceny?",
+    desc: "Marshallův kříž v praxi. Jak vzniká tržní cena a jak reaguje na přebytky a nedostatky.",
     time: "12 min"
   },
   {
     title: "Závěrečný test kapitoly",
     slug: "test",
-    desc: "Otestujte své znalosti a prověřte si porozumění první kapitoly.",
-    time: "8 min"
+    desc: "Prověřte své znalosti z celé 1. kapitoly v interaktivním testu.",
+    time: "10 min"
   }
 ];
 
@@ -81,11 +87,11 @@ export default function ZakladniKonceptyHub() {
           <Link 
             key={sub.slug} 
             href={`/zakladni-koncepty/${sub.slug}`}
-            className="group relative flex flex-col bg-[#FDFCF9] border border-stone-300 rounded-xl p-6 hover:border-stone-500 hover:shadow-sm transition-all duration-200"
+            className="group relative flex flex-col bg-[#FDFCF9] border border-stone-300 rounded-xl p-6 hover:border-[#F9C70F] hover:shadow-sm transition-all duration-200"
           >
             {/* Header karty */}
             <div className="flex items-center justify-between mb-4">
-              <div className="w-8 h-8 bg-[#F7F4EE] border border-stone-300 rounded-md flex items-center justify-center text-stone-800 text-xs font-mono font-bold">
+              <div className="w-8 h-8 bg-[#F7F4EE] border border-stone-300 rounded-md flex items-center justify-center text-stone-800 text-xs font-mono font-bold group-hover:border-[#F9C70F] group-hover:bg-[#FEF9C3] transition-colors">
                 0{idx + 1}
               </div>
               <span className="text-[10px] font-bold uppercase tracking-wider text-stone-500 font-sans">
@@ -95,7 +101,7 @@ export default function ZakladniKonceptyHub() {
 
             {/* Text */}
             <div className="flex-1">
-              <h3 className="text-base font-serif font-bold text-stone-900 mb-2 group-hover:text-orange-700 transition-colors leading-snug">
+              <h3 className="text-base font-serif font-bold text-stone-900 mb-2 group-hover:text-stone-900 transition-colors leading-snug">
                 {sub.title}
               </h3>
               <p className="text-stone-600 text-xs leading-relaxed mb-4 font-sans">
@@ -108,7 +114,7 @@ export default function ZakladniKonceptyHub() {
               <span className="font-bold uppercase tracking-wider text-[10px] group-hover:text-stone-900 transition-colors">
                 Otevřít téma
               </span>
-              <ChevronRight size={14} className="text-stone-400 group-hover:text-stone-900 group-hover:translate-x-1 transition-all" />
+              <ChevronRight size={14} className="text-stone-400 group-hover:text-[#F9C70F] group-hover:translate-x-1 transition-all" />
             </div>
           </Link>
         ))}

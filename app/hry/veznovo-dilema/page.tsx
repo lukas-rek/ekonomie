@@ -82,7 +82,7 @@ export const BOT_STRATEGIES: Record<BotStrategyId, BotStrategyInfo> = {
     description: 'Kooperuje do chvíle, než ji hráč poprvé podrazí. Od toho momentu už nikdy neodpustí a až do konce hry volí pouze zradu.',
     icon: Flame,
     tag: 'Nemilosrdný',
-    tagColor: 'bg-amber-100 text-amber-800 border-amber-300'
+    tagColor: 'bg-[#FEF9C3] text-stone-900 border-[#F9C70F]'
   },
   'always-defect': {
     id: 'always-defect',
@@ -384,10 +384,10 @@ export default function PrisonersDilemmaGame() {
             <button
               type="button"
               onClick={() => setShowTheoryModal(true)}
-              className="inline-flex items-center gap-1 px-2.5 py-1.5 rounded-lg bg-white border border-stone-300 hover:border-stone-400 text-stone-700 hover:text-stone-900 text-xs font-bold uppercase tracking-wider transition-all shadow-xs"
+              className="inline-flex items-center gap-1 px-2.5 py-1.5 rounded-lg bg-white border border-stone-300 hover:border-[#F9C70F] text-stone-700 hover:text-stone-900 text-xs font-bold uppercase tracking-wider transition-all shadow-xs"
               title="Vysvětlení teorie a stochastického konce"
             >
-              <HelpCircle size={14} className="text-orange-700" />
+              <HelpCircle size={14} className="text-[#F9C70F]" />
               <span className="hidden sm:inline">Pravidla & Teorie</span>
             </button>
             {gameState !== 'setup' && (
@@ -418,7 +418,7 @@ export default function PrisonersDilemmaGame() {
             <div className="bg-[#FDFCF9] rounded-xl border border-stone-300 p-4 md:p-5 shadow-xs relative">
               <div className="flex items-center justify-between mb-2.5">
                 <div>
-                  <span className="text-[10px] font-bold uppercase tracking-widest text-orange-700 block">Krok 1 ze 2</span>
+                  <span className="text-[10px] font-bold uppercase tracking-widest text-[#F9C70F] block">Krok 1 ze 2</span>
                   <h2 className="text-base md:text-lg font-serif font-bold text-stone-900">
                     Zvolte soupeře (Bota)
                   </h2>
@@ -486,7 +486,7 @@ export default function PrisonersDilemmaGame() {
                           </button>
 
                           <div className={`w-3.5 h-3.5 rounded-full border flex items-center justify-center ${
-                            isSelected ? 'border-orange-700 bg-orange-700' : 'border-stone-300'
+                            isSelected ? 'border-[#F9C70F] bg-[#F9C70F]' : 'border-stone-300'
                           }`}>
                             {isSelected && <span className="w-1.5 h-1.5 bg-white rounded-full" />}
                           </div>
@@ -573,7 +573,7 @@ export default function PrisonersDilemmaGame() {
                           </button>
 
                           <div className={`w-3.5 h-3.5 rounded-full border flex items-center justify-center ${
-                            isSelected ? 'border-orange-700 bg-orange-700' : 'border-stone-300'
+                            isSelected ? 'border-[#F9C70F] bg-[#F9C70F]' : 'border-stone-300'
                           }`}>
                             {isSelected && <span className="w-1.5 h-1.5 bg-white rounded-full" />}
                           </div>
@@ -613,7 +613,7 @@ export default function PrisonersDilemmaGame() {
             {/* KROK 2: DÉLKA HRY & BODŮ */}
             <div className="bg-[#FDFCF9] rounded-xl border border-stone-300 p-4 md:p-5 shadow-xs">
               <div className="mb-2.5">
-                <span className="text-[10px] font-bold uppercase tracking-widest text-orange-700 block">Krok 2 ze 2</span>
+                <span className="text-[10px] font-bold uppercase tracking-widest text-[#F9C70F] block">Krok 2 ze 2</span>
                 <h2 className="text-base md:text-lg font-serif font-bold text-stone-900">
                   Délka hry (Stochastický konec)
                 </h2>
@@ -632,12 +632,12 @@ export default function PrisonersDilemmaGame() {
                       className={`p-2.5 rounded-lg border text-left transition-all ${
                         isSelected
                           ? 'bg-white border-stone-900 ring-2 ring-stone-900/10 shadow-xs'
-                          : 'bg-[#F7F4EE]/60 border-stone-200 hover:border-stone-400 hover:bg-white'
+                          : 'bg-[#F7F4EE]/60 border-stone-200 hover:border-[#F9C70F] hover:bg-white'
                       }`}
                     >
                       <div className="flex items-center justify-between mb-0.5">
                         <span className="font-serif font-bold text-xs md:text-sm text-stone-900">{len.label}</span>
-                        <span className="text-[10px] font-mono font-bold text-orange-700">min. {len.baseline} kol</span>
+                        <span className="text-[10px] font-mono font-bold text-[#F9C70F]">min. {len.baseline} kol</span>
                       </div>
                       <p className="text-[10px] text-stone-500 leading-tight">
                         {len.description}
@@ -659,7 +659,7 @@ export default function PrisonersDilemmaGame() {
                   Oba D: <strong className="text-stone-700">1, 1</strong>
                 </span>
                 <span className="bg-white px-2 py-0.5 rounded border border-stone-200 text-stone-800 font-mono">
-                  Vy D, Bot C: <strong className="text-amber-700">5, 0</strong>
+                  Vy D, Bot C: <strong className="text-stone-900">5, 0</strong>
                 </span>
                 <span className="bg-white px-2 py-0.5 rounded border border-stone-200 text-stone-800 font-mono">
                   Vy C, Bot D: <strong className="text-rose-700">0, 5</strong>
@@ -694,7 +694,7 @@ export default function PrisonersDilemmaGame() {
                 {/* HRÁČ KARTA */}
                 <div className="col-span-5 bg-white p-2.5 rounded-lg flex items-center justify-between border border-stone-300 shadow-xs">
                   <div className="flex items-center gap-2 min-w-0">
-                    <div className="w-7 h-7 rounded bg-orange-100 border border-orange-200 flex items-center justify-center text-orange-800 shrink-0">
+                    <div className="w-7 h-7 rounded bg-[#FEF9C3] border border-[#F9C70F] flex items-center justify-center text-stone-950 shrink-0">
                       <User size={16} />
                     </div>
                     <div className="truncate">
@@ -713,7 +713,7 @@ export default function PrisonersDilemmaGame() {
                     </div>
                   </div>
                   <div className="text-right shrink-0 pl-1">
-                    <span className="text-2xl font-serif font-bold text-orange-700 leading-none">
+                    <span className="text-2xl font-serif font-bold text-stone-900 leading-none">
                       {playerTotalScore}
                     </span>
                     <span className="text-[9px] font-mono text-stone-400 block uppercase">b.</span>
@@ -844,15 +844,15 @@ export default function PrisonersDilemmaGame() {
                       <motion.div
                         animate={{
                           scale: activeQuadrant === 'DC' ? 1.03 : 1,
-                          backgroundColor: activeQuadrant === 'DC' ? '#FEF3C7' : '#FFFFFF',
-                          borderColor: activeQuadrant === 'DC' ? '#D97706' : '#E7E5E4'
+                          backgroundColor: activeQuadrant === 'DC' ? '#FEF9C3' : '#FFFFFF',
+                          borderColor: activeQuadrant === 'DC' ? '#F9C70F' : '#E7E5E4'
                         }}
                         transition={{ duration: 0.2 }}
                         className={`col-span-4 p-2 rounded border-2 flex flex-col justify-center items-center text-center relative ${
-                          activeQuadrant === 'DC' ? 'shadow-xs ring-2 ring-amber-500/30' : ''
+                          activeQuadrant === 'DC' ? 'shadow-xs ring-2 ring-[#F9C70F]/50' : ''
                         }`}
                       >
-                        <span className="text-base md:text-lg font-serif font-bold text-amber-700 leading-tight">5, 0</span>
+                        <span className="text-base md:text-lg font-serif font-bold text-stone-900 leading-tight">5, 0</span>
                         <span className="text-[9px] text-stone-500 font-medium">Vy D, Bot C</span>
                       </motion.div>
 
@@ -865,61 +865,59 @@ export default function PrisonersDilemmaGame() {
                         }}
                         transition={{ duration: 0.2 }}
                         className={`col-span-4 p-2 rounded border-2 flex flex-col justify-center items-center text-center relative ${
-                          activeQuadrant === 'DD' ? 'shadow-xs ring-2 ring-stone-500/30' : ''
+                          activeQuadrant === 'DD' ? 'shadow-xs ring-2 ring-stone-900/10' : ''
                         }`}
                       >
-                        <span className="text-base md:text-lg font-serif font-bold text-stone-700 leading-tight">1, 1</span>
-                        <span className="text-[9px] text-stone-500 font-medium">Oba D</span>
+                        <span className="text-base md:text-lg font-serif font-bold text-stone-900 leading-tight">1, 1</span>
+                        <span className="text-[9px] text-stone-500 font-medium">Vy D, Bot D</span>
                       </motion.div>
                     </div>
 
                   </div>
                 </div>
 
-                {/* TLAČÍTKA AKCÍ */}
-                <div className="bg-[#FDFCF9] rounded-xl border border-stone-300 p-3 shadow-xs">
-                  <div className="grid grid-cols-2 gap-2.5">
-                    {/* Cooperate */}
-                    <button
-                      type="button"
-                      disabled={gameState !== 'playing'}
-                      onClick={(e) => handlePlayerMove('C', e)}
-                      className="group flex items-center justify-center gap-2 py-3 px-4 rounded-lg border-2 border-emerald-600 bg-white hover:bg-emerald-50 text-emerald-900 disabled:opacity-40 disabled:pointer-events-none transition-all shadow-xs active:scale-[0.98]"
-                    >
-                      <Handshake size={18} className="text-emerald-700 group-hover:scale-110 transition-transform" />
-                      <div className="text-left">
-                        <span className="font-serif font-bold text-sm block leading-none">Spolupracovat</span>
-                        <span className="text-[10px] font-mono text-emerald-700 font-semibold">Volba (C)</span>
-                      </div>
-                    </button>
+                {/* VÝBĚR AKCE: VELKÁ TLAČÍTKA SPOLUPRACOVAT / ZRADIT */}
+                <div className="grid grid-cols-2 gap-3 mt-3">
+                  {/* Cooperate */}
+                  <button
+                    type="button"
+                    disabled={gameState === 'evaluating'}
+                    onClick={(e) => handlePlayerMove('C', e)}
+                    className="group flex items-center justify-center gap-2 py-3 px-4 rounded-lg border-2 border-emerald-600 bg-white hover:bg-emerald-50 text-emerald-900 disabled:opacity-40 disabled:pointer-events-none transition-all shadow-xs active:scale-[0.98]"
+                  >
+                    <Handshake size={18} className="text-emerald-700 group-hover:scale-110 transition-transform" />
+                    <div className="text-left">
+                      <span className="font-serif font-bold text-sm block leading-none">Spolupracovat</span>
+                      <span className="text-[10px] font-mono text-emerald-700 font-semibold">Volba (C)</span>
+                    </div>
+                  </button>
 
-                    {/* Defect */}
-                    <button
-                      type="button"
-                      disabled={gameState !== 'playing'}
-                      onClick={(e) => handlePlayerMove('D', e)}
-                      className="group flex items-center justify-center gap-2 py-3 px-4 rounded-lg border-2 border-rose-600 bg-white hover:bg-rose-50 text-rose-900 disabled:opacity-40 disabled:pointer-events-none transition-all shadow-xs active:scale-[0.98]"
-                    >
-                      <Swords size={18} className="text-rose-700 group-hover:scale-110 transition-transform" />
-                      <div className="text-left">
-                        <span className="font-serif font-bold text-sm block leading-none">Zradit</span>
-                        <span className="text-[10px] font-mono text-rose-700 font-semibold">Volba (D)</span>
-                      </div>
-                    </button>
-                  </div>
-
-                  {/* Stav vyhodnocení */}
-                  {gameState === 'evaluating' && (
-                    <motion.div
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      className="mt-2 text-center text-[11px] font-mono text-stone-600 flex items-center justify-center gap-1.5"
-                    >
-                      <span className="w-1.5 h-1.5 rounded-full bg-orange-600 animate-pulse" />
-                      Vyhodnocuji tah kola {currentRound}...
-                    </motion.div>
-                  )}
+                  {/* Defect */}
+                  <button
+                    type="button"
+                    disabled={gameState === 'evaluating'}
+                    onClick={(e) => handlePlayerMove('D', e)}
+                    className="group flex items-center justify-center gap-2 py-3 px-4 rounded-lg border-2 border-rose-600 bg-white hover:bg-rose-50 text-rose-900 disabled:opacity-40 disabled:pointer-events-none transition-all shadow-xs active:scale-[0.98]"
+                  >
+                    <Swords size={18} className="text-rose-700 group-hover:scale-110 transition-transform" />
+                    <div className="text-left">
+                      <span className="font-serif font-bold text-sm block leading-none">Zradit</span>
+                      <span className="text-[10px] font-mono text-rose-700 font-semibold">Volba (D)</span>
+                    </div>
+                  </button>
                 </div>
+
+                {/* Stav vyhodnocení */}
+                {gameState === 'evaluating' && (
+                  <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    className="mt-2 text-center text-[11px] font-mono text-stone-600 flex items-center justify-center gap-1.5"
+                  >
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#F9C70F] animate-pulse" />
+                    Vyhodnocuji tah kola {currentRound}...
+                  </motion.div>
+                )}
 
               </div>
 
@@ -1015,7 +1013,7 @@ export default function PrisonersDilemmaGame() {
                 className="bg-[#FDFCF9] text-stone-900 rounded-2xl p-6 md:p-7 border border-stone-300 shadow-2xl max-w-md w-full text-center relative overflow-hidden"
               >
                 <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#F7F4EE] border border-stone-300 text-stone-700 text-xs font-bold uppercase tracking-widest mb-3">
-                  <Trophy size={14} className="text-orange-700" /> Konec po {totalRounds} kolech
+                  <Trophy size={14} className="text-[#F9C70F]" /> Konec po {totalRounds} kolech
                 </div>
 
                 <h2 className="text-2xl md:text-3xl font-serif font-bold text-stone-900 mb-3">
@@ -1027,7 +1025,7 @@ export default function PrisonersDilemmaGame() {
                 <div className="my-4 p-3.5 bg-[#F7F4EE] rounded-xl border border-stone-200">
                   <div className="text-xs text-stone-500 mb-1 font-mono uppercase tracking-wider">Konečné skóre</div>
                   <div className="text-3xl font-serif font-bold text-stone-900 flex items-center justify-center gap-3">
-                    <span className="text-orange-700">{playerTotalScore}</span>
+                    <span className="text-[#F9C70F]">{playerTotalScore}</span>
                     <span className="text-stone-400 text-xl font-sans">:</span>
                     <span className="text-stone-800">{botTotalScore}</span>
                   </div>
@@ -1035,7 +1033,7 @@ export default function PrisonersDilemmaGame() {
                   {/* Odhalení tajemného bota */}
                   {isMysteryBot && (
                     <div className="mt-3 pt-2.5 border-t border-stone-200 text-xs text-stone-700">
-                      <span className="text-orange-700 font-bold block mb-0.5">Odhalení soupeře:</span>
+                      <span className="text-stone-900 font-bold block mb-0.5">Odhalení soupeře:</span>
                       Hrál proti vám <strong className="text-stone-900">{BOT_STRATEGIES[effectiveStrategy].name}</strong> • {BOT_STRATEGIES[effectiveStrategy].subtitle}.
                     </div>
                   )}
@@ -1045,7 +1043,7 @@ export default function PrisonersDilemmaGame() {
                   <button
                     type="button"
                     onClick={(e) => handleStartGame(e)}
-                    className="inline-flex items-center justify-center gap-1.5 bg-orange-700 hover:bg-orange-800 text-white px-5 py-2.5 rounded-lg font-sans font-bold text-xs uppercase tracking-widest transition-all shadow-sm active:scale-95"
+                    className="inline-flex items-center justify-center gap-1.5 bg-[#F9C70F] hover:bg-[#EAB308] text-stone-950 px-5 py-2.5 rounded-lg font-sans font-bold text-xs uppercase tracking-widest transition-all shadow-sm active:scale-95 border border-amber-300"
                   >
                     <RotateCcw size={14} />
                     <span>Hrát znovu</span>
@@ -1084,7 +1082,7 @@ export default function PrisonersDilemmaGame() {
               >
                 <div className="flex items-center justify-between pb-3 border-b border-stone-200 mb-3">
                   <div className="flex items-center gap-2">
-                    <div className="w-7 h-7 rounded-lg bg-[#F7F4EE] border border-stone-300 flex items-center justify-center text-orange-700">
+                    <div className="w-7 h-7 rounded-lg bg-[#FEF9C3] border border-[#F9C70F] flex items-center justify-center text-stone-950">
                       <Scale size={16} />
                     </div>
                     <h3 className="text-lg font-serif font-bold text-stone-900">
@@ -1101,9 +1099,9 @@ export default function PrisonersDilemmaGame() {
                 </div>
 
                 <div className="space-y-3 text-xs text-stone-700 overflow-y-auto pr-1 leading-relaxed">
-                  <div className="bg-[#FAF4EB] p-3 rounded-lg border border-orange-200/80">
+                  <div className="bg-[#FEFCE8] p-3 rounded-lg border border-[#F9C70F]/60">
                     <h4 className="font-serif font-bold text-stone-900 text-xs mb-1 flex items-center gap-1">
-                      <Info size={13} className="text-orange-700" /> Jednorázové vs. Opakované dilema
+                      <Info size={13} className="text-stone-900" /> Jednorázové vs. Opakované dilema
                     </h4>
                     <p>
                       V jednorázové hře je <strong className="text-stone-900">zrada dominantní strategií</strong>. Výsledná Nashova rovnováha (1, 1) je však Paretovsky neefektivní — oba by získali více (3, 3) při vzájemné důvěře. V opakované hře naopak vzniká prostor pro trestání zrady a odměňování spolupráce.

@@ -138,7 +138,7 @@ export default function Sidebar() {
                       >
                         <Circle 
                           size={5} 
-                          className={`mr-2 mt-1.5 shrink-0 ${isSubActive ? 'fill-orange-600 text-orange-600' : 'fill-stone-300 text-stone-300'}`} 
+                          className={`mr-2 mt-1.5 shrink-0 ${isSubActive ? 'fill-[#F9C70F] text-[#F9C70F]' : 'fill-stone-300 text-stone-300'}`} 
                         />
                         <span className="leading-snug">
                           {sub.title}

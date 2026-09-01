@@ -41,7 +41,7 @@ export default function GoodsClassification() {
       {/* Horní lišta - Přepínač */}
       <div className="p-4 bg-[#F7F4EE] border-b border-stone-200 flex flex-col md:flex-row items-center justify-between gap-4">
         <h3 className="font-serif font-bold tracking-tight text-stone-900 text-base flex items-center gap-2">
-          <Box size={16} className="text-orange-700" /> Cvičení: Třídění statků
+          <Box size={16} className="text-stone-900" /> Cvičení: Třídění statků
         </h3>
         <div className="flex bg-stone-200/60 p-1 rounded-lg border border-stone-300">
           <button 

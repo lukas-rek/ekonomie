@@ -60,11 +60,11 @@ export default function Navbar() {
         {/* LOGO SEKCE - ZAROVNÁNÍ */}
         <div className="flex items-center gap-3 w-72 px-6 border-r border-stone-800 h-full shrink-0 bg-[#1C1917]">
           <Link href="/" className="flex items-center gap-2.5 font-serif font-bold text-lg tracking-tight group">
-            <div className="w-8 h-8 rounded-lg bg-stone-800 border border-stone-700 flex items-center justify-center text-stone-300 group-hover:text-amber-400 group-hover:border-amber-500/50 transition-colors">
+            <div className="w-8 h-8 rounded-lg bg-stone-800 border border-stone-700 flex items-center justify-center text-stone-300 group-hover:text-[#F9C70F] group-hover:border-[#F9C70F]/50 transition-colors">
               <BookOpen size={18} />
             </div>
             <span className="text-stone-100 group-hover:text-white transition-colors">
-              PRACOVNÍ NÁZEV<span className="text-orange-500 font-sans text-xs ml-0.5 tracking-normal font-bold">.CZ</span>
+              PRACOVNÍ NÁZEV<span className="text-[#F9C70F] font-sans text-xs ml-0.5 tracking-normal font-bold">.CZ</span>
             </span>
           </Link>
         </div>
@@ -90,7 +90,7 @@ export default function Navbar() {
                   
                   {/* Aktivní podtržítko */}
                   {isActive && (
-                    <span className="absolute bottom-[-16px] left-0 w-full h-[2px] bg-orange-500"></span>
+                    <span className="absolute bottom-[-16px] left-0 w-full h-[2px] bg-[#F9C70F]"></span>
                   )}
                 </Link>
               );
@@ -128,7 +128,7 @@ export default function Navbar() {
                 key={link.href}
                 href={link.href}
                 className={`block py-2 text-sm font-semibold uppercase tracking-wider ${
-                  isActive ? 'text-orange-400 font-bold' : 'text-stone-300 hover:text-white'
+                  isActive ? 'text-[#F9C70F] font-bold' : 'text-stone-300 hover:text-white'
                 }`}
               >
                 {link.name}

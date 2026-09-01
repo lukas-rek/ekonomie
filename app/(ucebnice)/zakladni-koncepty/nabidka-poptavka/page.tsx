@@ -23,13 +23,13 @@ export default function NabidkaPoptavkaPage() {
 
       {/* HLAVIČKA PODKAPITOLY */}
       <header className="mb-8">
-        <span className="text-xs font-mono font-bold text-orange-700 uppercase tracking-widest block mb-2">
+        <span className="text-xs font-mono font-bold text-[#F9C70F] uppercase tracking-widest block mb-2">
           Lekce 07
         </span>
         <h1 className="text-3xl md:text-4xl font-serif font-bold text-stone-900 mb-4 tracking-tight leading-tight">
           Nabídka, poptávka a tržní rovnováha
         </h1>
-        <div className="h-[2px] w-16 bg-orange-700"></div>
+        <div className="h-[2px] w-16 bg-[#F9C70F]"></div>
       </header>
 
       {/* HLAVNÍ TEXT */}
@@ -250,10 +250,10 @@ export default function NabidkaPoptavkaPage() {
               href="/zakladni-koncepty/komparativni-absolutni-vyhoda" 
               className="group flex items-start gap-3 max-w-[280px] text-left transition-all"
             >
-              <ArrowLeft size={18} className="shrink-0 text-stone-400 group-hover:text-orange-700 group-hover:-translate-x-1 transition-all mt-1" />
+              <ArrowLeft size={18} className="shrink-0 text-stone-400 group-hover:text-[#F9C70F] group-hover:-translate-x-1 transition-all mt-1" />
               <div className="flex flex-col">
                 <span className="text-[10px] font-black uppercase tracking-widest text-stone-500 mb-1 font-sans">Předchozí</span>
-                <span className="text-sm font-serif font-bold text-stone-900 group-hover:text-orange-700 leading-snug">
+                <span className="text-sm font-serif font-bold text-stone-900 group-hover:text-stone-900 leading-snug">
                   Komparativní a absolutní výhoda
                 </span>
               </div>
@@ -267,11 +267,11 @@ export default function NabidkaPoptavkaPage() {
             >
               <div className="flex flex-col">
                 <span className="text-[10px] font-black uppercase tracking-widest text-stone-500 mb-1 font-sans">Závěr kapitoly</span>
-                <span className="text-sm font-serif font-bold text-stone-900 group-hover:text-orange-700 leading-snug">
+                <span className="text-sm font-serif font-bold text-stone-900 group-hover:text-stone-900 leading-snug">
                   Závěrečný test kapitoly
                 </span>
               </div>
-              <ArrowRight size={18} className="shrink-0 text-stone-400 group-hover:text-orange-700 group-hover:translate-x-1 transition-all mt-1" />
+              <ArrowRight size={18} className="shrink-0 text-stone-400 group-hover:text-[#F9C70F] group-hover:translate-x-1 transition-all mt-1" />
             </Link>
           </div>
         </div>

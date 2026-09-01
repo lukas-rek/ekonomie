@@ -43,7 +43,7 @@ export default function QuizCarousel({ children }: QuizCarouselProps) {
       {/* Progress bar */}
       <div className="h-1.5 w-full bg-stone-200 rounded-full mb-6 overflow-hidden">
         <div 
-          className="h-full bg-orange-600 transition-all duration-300 ease-out rounded-full"
+          className="h-full bg-[#F9C70F] transition-all duration-300 ease-out rounded-full"
           style={{ width: `${progress}%` }}
         ></div>
       </div>

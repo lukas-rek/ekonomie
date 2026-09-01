@@ -2,83 +2,82 @@
 import React from 'react';
 import Link from 'next/link';
 import { 
-  BookOpen, 
-  Award, 
-  ArrowRight,
-  ChevronRight,
-  Activity,
-  User,
+  ChevronRight, 
+  ArrowRight, 
+  Award,
+  Scale,
+  Percent,
+  ShoppingCart,
   Factory,
-  BarChart2,
+  PieChart,
   Gamepad2,
-  Axis3d,
-  Landmark,
-  Store
+  Briefcase,
+  AlertTriangle
 } from 'lucide-react';
 
 const SUBCHAPTERS = [
   {
     title: "Tržní síly a ceny",
     slug: "trzni-sily-a-ceny",
-    desc: "Síly nabídky a poptávky a jak ceny fungují jako informační signál o vzácnosti a koordinují miliony lidí.",
-    icon: <Axis3d className="text-stone-800" size={20} />,
-    time: "10 min"
+    desc: "...",
+    icon: <Scale className="text-stone-700" size={20} />,
+    time: "xx min"
   },
   {
     title: "Elasticita",
     slug: "elasticita",
-    desc: "Měření citlivosti spotřebitelů a výrobců na změny cen a příjmů v krátkém i dlouhém období.",
-    icon: <Activity className="text-stone-800" size={20} />,
-    time: "12 min"
+    desc: "...",
+    icon: <Percent className="text-stone-700" size={20} />,
+    time: "xx min"
   },
   {
     title: "Chování spotřebitele",
     slug: "chovani-spotrebitele",
-    desc: "Užitek, indiferenční analýza a psychologie lidské volby při omezeném rozpočtu.",
-    icon: <User className="text-stone-800" size={20} />,
-    time: "15 min"
+    desc: "...",
+    icon: <ShoppingCart className="text-stone-700" size={20} />,
+    time: "xx min"
   },
   {
-    title: "Chování výrobce",
-    slug: "chovani-vyrobce",
-    desc: "Produkční funkce, mezní produkt a klíčové rozlišení nákladů v krátkém a dlouhém období.",
-    icon: <Factory className="text-stone-800" size={20} />,
-    time: "15 min"
+    title: "Chování firmy",
+    slug: "chovani-firmy",
+    desc: "...",
+    icon: <Factory className="text-stone-700" size={20} />,
+    time: "xx min"
   },
   {
     title: "Tržní struktury",
     slug: "trzni-struktury",
-    desc: "Srovnání dokonalé konkurence s monopolem, oligopolem a monopolistickou konkurencí z hlediska efektivnosti.",
-    icon: <BarChart2 className="text-stone-800" size={20} />,
-    time: "15 min"
+    desc: "...",
+    icon: <PieChart className="text-stone-700" size={20} />,
+    time: "xx min"
   },
   {
     title: "Základy teorie her",
     slug: "teorie-her",
-    desc: "Strategické rozhodování firem, vězňovo dilema a hledání Nashovy rovnováhy.",
-    icon: <Gamepad2 className="text-stone-800" size={20} />,
-    time: "10 min"
+    desc: "...",
+    icon: <Gamepad2 className="text-stone-700" size={20} />,
+    time: "xx min"
   },
   {
     title: "Trh výrobních faktorů",
-    slug: "faktory-a-selhani",
-    desc: "Jak se určují mzdy, nájemné a zisky.",
-    icon: <Store className="text-stone-800" size={20} />,
-    time: "12 min"
+    slug: "trh-vyrobnich-faktoru",
+    desc: "...",
+    icon: <Briefcase className="text-stone-700" size={20} />,
+    time: "xx min"
   },
   {
-    title: "Tržní selhání a státní zásahy",
+    title: "Tržní selhání a zásahy státu",
     slug: "trzni-selhani",
-    desc: "Kdy trhy mohou selhávat a jaké jsou argumenty pro a proti státním zásahům do ekonomiky?",
-    icon: <Landmark className="text-stone-800" size={20} />,
-    time: "12 min"
+    desc: "...",
+    icon: <AlertTriangle className="text-stone-700" size={20} />,
+    time: "xx min"
   },
   {
     title: "Závěrečný test kapitoly",
     slug: "test",
     desc: "Prověřte své pochopení mechanismů rozhodování tržních aktérů a získejte odznak kapitoly.",
-    icon: <Award className="text-orange-700" size={20} />,
-    time: "15 min"
+    icon: <Award className="text-[#F9C70F]" size={20} />,
+    time: "xx min"
   }
 ];
 
@@ -104,11 +103,11 @@ export default function MikroekonomieHub() {
           <Link 
             key={sub.slug} 
             href={`/mikroekonomie/${sub.slug}`}
-            className="group relative flex flex-col bg-[#FDFCF9] border border-stone-300 rounded-xl p-6 hover:border-stone-500 hover:shadow-sm transition-all duration-200"
+            className="group relative flex flex-col bg-[#FDFCF9] border border-stone-300 rounded-xl p-6 hover:border-[#F9C70F] hover:shadow-sm transition-all duration-200"
           >
             {/* Header karty */}
             <div className="flex items-center justify-between mb-4">
-              <div className="w-10 h-10 bg-[#F7F4EE] border border-stone-200 rounded-lg flex items-center justify-center group-hover:border-stone-400 transition-colors">
+              <div className="w-10 h-10 bg-[#F7F4EE] border border-stone-200 rounded-lg flex items-center justify-center group-hover:border-[#F9C70F] group-hover:bg-[#FEF9C3] transition-colors">
                 {sub.icon}
               </div>
               <span className="text-xs font-mono font-bold text-stone-400">
@@ -118,7 +117,7 @@ export default function MikroekonomieHub() {
 
             {/* Text */}
             <div className="flex-1">
-              <h3 className="text-base font-serif font-bold text-stone-900 mb-2 group-hover:text-orange-700 transition-colors leading-snug">
+              <h3 className="text-base font-serif font-bold text-stone-900 mb-2 group-hover:text-stone-900 transition-colors leading-snug">
                 {sub.title}
               </h3>
               <p className="text-stone-600 text-xs leading-relaxed mb-4 font-sans">
@@ -131,7 +130,7 @@ export default function MikroekonomieHub() {
               <span className="font-semibold uppercase tracking-wider text-[10px]">
                 {sub.time}
               </span>
-              <ChevronRight size={14} className="text-stone-400 group-hover:text-stone-900 group-hover:translate-x-1 transition-all" />
+              <ChevronRight size={14} className="text-stone-400 group-hover:text-[#F9C70F] group-hover:translate-x-1 transition-all" />
             </div>
           </Link>
         ))}
@@ -144,10 +143,10 @@ export default function MikroekonomieHub() {
           Doporučujeme postupovat popořadě. Každá podkapitola staví na znalostech té předchozí.
         </p>
         <Link 
-          href="/mikroekonomie/trzni-sily-a-ceny"
+          href="/mikroekonomie/chovani-spotrebitele"
           className="inline-flex items-center gap-2 px-6 py-3 bg-white text-stone-900 hover:bg-stone-100 rounded-lg font-sans font-bold text-xs uppercase tracking-widest transition-all shadow-sm active:scale-95"
         >
-          Spustit kapitolu mikroekonomie <ArrowRight size={16} />
+          Spustit první lekci <ArrowRight size={16} />
         </Link>
       </div>
     </div>

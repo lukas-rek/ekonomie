@@ -731,14 +731,14 @@ export default function MarketGame() {
                 {isCorrect ? <CheckCircle2 size={22} /> : <XCircle size={22} />}
                 {isCorrect ? 'Správně!' : 'Špatně!'}
               </div>
-              <div className="bg-[#FAF4EB] p-4 rounded-lg text-stone-800 text-xs leading-relaxed border border-orange-200/80 mb-5 w-full shadow-xs">
+              <div className="bg-[#FEFCE8] p-4 rounded-lg text-stone-800 text-xs leading-relaxed border border-amber-200/80 mb-5 w-full shadow-xs">
                 <strong className="block text-stone-900 font-bold mb-1 font-serif text-sm">Vysvětlení:</strong>
                 {level.explanation}
               </div>
               <button 
                 type="button"
                 onClick={handleNext} 
-                className="bg-orange-700 hover:bg-orange-800 text-white px-8 py-2.5 rounded-lg font-sans font-bold text-xs uppercase tracking-wider shadow-sm transition-all active:scale-95"
+                className="bg-[#F9C70F] hover:bg-[#EAB308] text-stone-950 px-8 py-2.5 rounded-lg font-sans font-bold text-xs uppercase tracking-wider shadow-sm transition-all active:scale-95 border border-amber-400"
               >
                 Další situace
               </button>

@@ -189,7 +189,7 @@ export default function ZakladniKonceptyTest() {
       particleCount: 80,
       spread: 70,
       origin: { y: 0.6 },
-      colors: ['#C2410C', '#292524', '#D97706']
+      colors: ['#F9C70F', '#1C1917', '#EAB308']
     });
   };
 
@@ -207,11 +207,11 @@ export default function ZakladniKonceptyTest() {
       {/* --- 1. ÚVODNÍ OBRAZOVKA TESTU --- */}
       {currentStep === 'intro' && (
         <div className="bg-[#FDFCF9] border border-stone-300 rounded-xl p-8 md:p-12 shadow-sm text-center">
-          <div className="w-16 h-16 bg-stone-100 border border-stone-300 rounded-full flex items-center justify-center mx-auto mb-6 text-orange-700">
+          <div className="w-16 h-16 bg-[#FEF9C3] border border-[#F9C70F] rounded-full flex items-center justify-center mx-auto mb-6 text-stone-950">
             <Award size={32} />
           </div>
 
-          <span className="text-xs font-mono font-bold text-orange-700 uppercase tracking-widest block mb-2">
+          <span className="text-xs font-mono font-bold text-[#F9C70F] uppercase tracking-widest block mb-2">
             Závěrečné ověření
           </span>
           <h1 className="text-3xl md:text-4xl font-serif font-bold text-stone-900 mb-4 tracking-tight">
@@ -253,7 +253,7 @@ export default function ZakladniKonceptyTest() {
             </div>
             <div className="h-1.5 w-full bg-stone-200 rounded-full overflow-hidden">
               <div 
-                className="h-full bg-orange-700 transition-all duration-300"
+                className="h-full bg-[#F9C70F] transition-all duration-300"
                 style={{ width: `${((currentQuestionIdx + 1) / QUESTIONS.length) * 100}%` }}
               />
             </div>
@@ -329,7 +329,7 @@ export default function ZakladniKonceptyTest() {
               ) : (
                 <button
                   onClick={handleNextQuestion}
-                  className="px-6 py-2.5 bg-orange-700 text-white font-sans font-bold text-xs uppercase tracking-wider rounded-lg hover:bg-orange-800 transition-all shadow-sm active:scale-95 flex items-center gap-2"
+                  className="px-6 py-2.5 bg-[#F9C70F] text-stone-950 font-sans font-bold text-xs uppercase tracking-wider rounded-lg hover:bg-[#EAB308] border border-amber-400 transition-all shadow-sm active:scale-95 flex items-center gap-2"
                 >
                   {currentQuestionIdx < QUESTIONS.length - 1 ? "Další otázka" : "Zobrazit výsledky"} <ArrowRight size={14} />
                 </button>

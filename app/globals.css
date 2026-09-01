@@ -9,6 +9,7 @@
     --ink-body: #44403C;
     --ink-muted: #78716C;
     --border-rule: #E7E5E4;
+    --brand-yellow: #F9C70F;
   }
 
   html {
@@ -73,7 +74,7 @@
   }
 
   .editorial-btn-accent {
-    @apply px-6 py-2.5 bg-terracotta hover:bg-terracotta-800 text-white font-sans font-semibold text-sm rounded-lg shadow-sm border border-terracotta transition-all active:scale-[0.99];
+    @apply px-6 py-2.5 bg-[#F9C70F] hover:bg-[#EAB308] text-stone-950 font-sans font-bold text-sm rounded-lg shadow-sm border border-amber-400 transition-all active:scale-[0.99];
   }
 
   .editorial-btn-secondary {

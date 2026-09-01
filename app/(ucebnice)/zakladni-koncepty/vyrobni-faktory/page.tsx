@@ -21,13 +21,13 @@ export default function VyrobniFaktoryPage() {
 
       {/* HLAVIČKA PODKAPITOLY */}
       <header className="mb-8">
-        <span className="text-xs font-mono font-bold text-orange-700 uppercase tracking-widest block mb-2">
+        <span className="text-xs font-mono font-bold text-[#F9C70F] uppercase tracking-widest block mb-2">
           Lekce 04
         </span>
         <h1 className="text-3xl md:text-4xl font-serif font-bold text-stone-900 mb-4 tracking-tight leading-tight">
           Výrobní faktory
         </h1>
-        <div className="h-[2px] w-16 bg-orange-700"></div>
+        <div className="h-[2px] w-16 bg-[#F9C70F]"></div>
       </header>
 
       {/* HLAVNÍ TEXT */}
@@ -163,10 +163,10 @@ export default function VyrobniFaktoryPage() {
               href="/zakladni-koncepty/statek-vzacnost-uzitek-hodnota" 
               className="group flex items-start gap-3 max-w-[280px] text-left transition-all"
             >
-              <ArrowLeft size={18} className="shrink-0 text-stone-400 group-hover:text-orange-700 group-hover:-translate-x-1 transition-all mt-1" />
+              <ArrowLeft size={18} className="shrink-0 text-stone-400 group-hover:text-[#F9C70F] group-hover:-translate-x-1 transition-all mt-1" />
               <div className="flex flex-col">
                 <span className="text-[10px] font-black uppercase tracking-widest text-stone-500 mb-1 font-sans">Předchozí</span>
-                <span className="text-sm font-serif font-bold text-stone-900 group-hover:text-orange-700 leading-snug">
+                <span className="text-sm font-serif font-bold text-stone-900 group-hover:text-stone-900 leading-snug">
                   Statek, vzácnost, užitek, hodnota
                 </span>
               </div>
@@ -180,11 +180,11 @@ export default function VyrobniFaktoryPage() {
             >
               <div className="flex flex-col">
                 <span className="text-[10px] font-black uppercase tracking-widest text-stone-500 mb-1 font-sans">Další lekce</span>
-                <span className="text-sm font-serif font-bold text-stone-900 group-hover:text-orange-700 leading-snug">
+                <span className="text-sm font-serif font-bold text-stone-900 group-hover:text-stone-900 leading-snug">
                   Hranice produkčních možností
                 </span>
               </div>
-              <ArrowRight size={18} className="shrink-0 text-stone-400 group-hover:text-orange-700 group-hover:translate-x-1 transition-all mt-1" />
+              <ArrowRight size={18} className="shrink-0 text-stone-400 group-hover:text-[#F9C70F] group-hover:translate-x-1 transition-all mt-1" />
             </Link>
           </div>
         </div>

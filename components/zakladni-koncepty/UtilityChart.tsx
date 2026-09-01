@@ -87,10 +87,10 @@ export default function UtilityChart() {
             <Line 
               type="monotone" 
               dataKey="mu" 
-              stroke="#C2410C" 
+              stroke="#EAB308" 
               strokeWidth={3} 
               dot={false}
-              activeDot={{ r: 5, fill: "#C2410C", strokeWidth: 2, stroke: "#FFF" }}
+              activeDot={{ r: 5, fill: "#EAB308", strokeWidth: 2, stroke: "#FFF" }}
               animationDuration={1500}
             />
           </LineChart>
@@ -104,7 +104,7 @@ export default function UtilityChart() {
           <span className="text-xs font-bold uppercase tracking-wider text-stone-600 font-sans">Celkový užitek (TU)</span>
         </div>
         <div className="flex items-center gap-2">
-          <div className="w-6 h-1 bg-orange-700 rounded-full"></div>
+          <div className="w-6 h-1 bg-[#F9C70F] rounded-full"></div>
           <span className="text-xs font-bold uppercase tracking-wider text-stone-600 font-sans">Mezní užitek (MU)</span>
         </div>
       </div>

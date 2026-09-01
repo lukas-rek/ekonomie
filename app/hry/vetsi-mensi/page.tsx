@@ -59,15 +59,15 @@ export default function VetsiMensiRozcestnik() {
 
             <div className="space-y-2.5 text-stone-700 mb-8 pl-1 text-xs font-sans">
               <p className="flex items-center gap-2.5">
-                <span className="w-1.5 h-1.5 rounded-full bg-orange-700 shrink-0" /> 
+                <span className="w-1.5 h-1.5 rounded-full bg-[#F9C70F] shrink-0" /> 
                 Za každou správnou odpověď získáváš bod.
               </p>
               <p className="flex items-center gap-2.5">
-                <span className="w-1.5 h-1.5 rounded-full bg-orange-700 shrink-0" /> 
+                <span className="w-1.5 h-1.5 rounded-full bg-[#F9C70F] shrink-0" /> 
                 Pokračuješ tak dlouho, dokud neuděláš chybu.
               </p>
               <p className="flex items-center gap-2.5">
-                <span className="w-1.5 h-1.5 rounded-full bg-orange-700 shrink-0" /> 
+                <span className="w-1.5 h-1.5 rounded-full bg-[#F9C70F] shrink-0" /> 
                 Cílem je nahrát co nejdelší sérii.
               </p>
             </div>
@@ -86,11 +86,11 @@ export default function VetsiMensiRozcestnik() {
                   <Link
                     key={mode.id}
                     href={mode.href}
-                    className="group text-left bg-white border border-stone-300 rounded-xl p-5 hover:border-stone-500 hover:shadow-sm transition-all duration-200 relative overflow-hidden flex flex-col justify-between"
+                    className="group text-left bg-white border border-stone-300 rounded-xl p-5 hover:border-[#F9C70F] hover:shadow-sm transition-all duration-200 relative overflow-hidden flex flex-col justify-between"
                   >
                     <div>
-                      <div className="w-10 h-10 rounded-lg bg-[#F7F4EE] border border-stone-200 flex items-center justify-center mb-3 group-hover:bg-stone-900 group-hover:text-white transition-colors">
-                        <Icon size={20} className="text-stone-800 group-hover:text-white" />
+                      <div className="w-10 h-10 rounded-lg bg-[#F7F4EE] border border-stone-200 flex items-center justify-center mb-3 group-hover:bg-[#FEF9C3] group-hover:border-[#F9C70F] group-hover:text-stone-950 transition-colors">
+                        <Icon size={20} className="text-stone-800 group-hover:text-stone-950" />
                       </div>
                       <h4 className="font-serif font-bold text-stone-900 text-base mb-1">
                         {mode.title}
@@ -102,7 +102,7 @@ export default function VetsiMensiRozcestnik() {
                     
                     <div className="mt-4 pt-3 border-t border-stone-200 flex items-center justify-between text-xs font-bold uppercase tracking-wider text-stone-500 group-hover:text-stone-900 font-sans">
                       <span>Hrát</span>
-                      <Play size={12} className="ml-1" />
+                      <Play size={12} className="ml-1 group-hover:text-[#F9C70F] transition-colors" />
                     </div>
                   </Link>
                 );

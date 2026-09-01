@@ -7,7 +7,7 @@ export default function Footer() {
         
         <div className="col-span-1 md:col-span-2">
           <h4 className="text-stone-100 font-serif font-bold text-xl mb-3 tracking-tight">
-            PRACOVNÍ NÁZEV<span className="text-orange-500 font-sans text-xs ml-1 font-bold">.CZ</span>
+            PRACOVNÍ NÁZEV<span className="text-[#F9C70F] font-sans text-xs ml-1 font-bold">.CZ</span>
           </h4>
           <p className="text-sm leading-relaxed max-w-sm text-stone-400 font-sans">
             Interaktivní vzdělávací portál a učebnice moderní ekonomie.

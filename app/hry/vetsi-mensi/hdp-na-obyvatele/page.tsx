@@ -202,7 +202,7 @@ export default function GdpHigherLowerGame() {
           </Link>
           
           <div className="text-sm font-bold uppercase tracking-wider bg-stone-900 text-white px-5 py-2.5 rounded-lg shadow-sm border border-stone-800 font-mono">
-            Skóre: <span className="text-orange-400 font-bold ml-1">{score}</span>
+            Skóre: <span className="text-[#F9C70F] font-bold ml-1">{score}</span>
           </div>
         </div>
       </div>
@@ -236,10 +236,10 @@ export default function GdpHigherLowerGame() {
         {gameState === 'gameover' && (
           <div className="absolute z-50 flex flex-col items-center justify-center inset-0 bg-stone-950/85 rounded-xl border border-stone-800 animate-in fade-in duration-300 p-6 text-center">
             <p className="text-4xl md:text-5xl font-serif font-bold text-white mb-2">Konec hry</p>
-            <p className="text-lg text-stone-300 mb-8 font-sans">Konečné skóre: <span className="text-orange-400 font-bold font-mono text-xl">{score}</span></p>
+            <p className="text-lg text-stone-300 mb-8 font-sans">Konečné skóre: <span className="text-[#F9C70F] font-bold font-mono text-xl">{score}</span></p>
             <button 
               onClick={startGame}
-              className="bg-orange-700 text-white px-8 py-3.5 rounded-lg font-sans font-bold text-xs uppercase tracking-widest hover:bg-orange-800 transition-all shadow-sm active:scale-95"
+              className="bg-[#F9C70F] text-stone-950 px-8 py-3.5 rounded-lg font-sans font-bold text-xs uppercase tracking-widest hover:bg-[#EAB308] border border-amber-400 transition-all shadow-sm active:scale-95"
             >
               Hrát znovu
             </button>
@@ -261,7 +261,7 @@ function CountryCard({
   country: Country, 
   revealed: boolean, 
   isWrong: boolean, 
-  hideButtons?: boolean,
+  hideButtons?: boolean, 
   onGuess?: (g: 'higher'|'lower') => void,
   instantReveal?: boolean
 }) {
@@ -290,7 +290,7 @@ function CountryCard({
           {revealed ? (
             <div className="flex flex-col items-center animate-in fade-in zoom-in duration-300">
               <p className="text-xs text-stone-300 mb-1 uppercase tracking-widest font-bold font-sans">HDP na obyvatele</p>
-              <div className={`text-4xl md:text-5xl font-serif font-bold transition-colors duration-300 ${isWrong ? 'text-rose-400' : 'text-orange-400'}`}>
+              <div className={`text-4xl md:text-5xl font-serif font-bold transition-colors duration-300 ${isWrong ? 'text-rose-400' : 'text-[#F9C70F]'}`}>
                 <AnimatedNumber value={country.gdp} play={revealed} instant={instantReveal} />
               </div>
             </div>

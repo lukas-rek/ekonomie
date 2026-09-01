@@ -18,14 +18,11 @@ export default function Home() {
       {/* HERO SEKCE */}
       <section className="max-w-4xl mx-auto pt-24 pb-16 px-6 text-center">
         
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-stone-100 border border-stone-300 text-stone-700 text-xs font-bold uppercase tracking-widest mb-8">
-          <BookOpen size={14} className="text-orange-700" />
-          <span>Interaktivní Učebnice Ekonomie</span>
-        </div>
+
 
         <h1 className="text-5xl md:text-7xl font-serif font-bold text-stone-900 mb-6 tracking-tight leading-tight">
           Vítej v <br />
-          <span className="text-orange-700 italic font-normal">(pracovní název)</span>
+          <span className="text-[#F9C70F] italic font-normal">(pracovní název)</span>
         </h1>
         
         <p className="text-lg md:text-xl text-stone-600 max-w-2xl mx-auto leading-relaxed mb-10 font-sans">
@@ -52,9 +49,9 @@ export default function Home() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5 max-w-3xl mx-auto text-left">
           <Link 
             href="/hry" 
-            className="group p-6 bg-[#FDFCF9] rounded-xl border border-stone-300 flex items-start gap-4 hover:border-stone-500 hover:shadow-sm transition-all"
+            className="group p-6 bg-[#FDFCF9] rounded-xl border border-stone-300 flex items-start gap-4 hover:border-[#F9C70F] hover:shadow-sm transition-all"
           >
-            <div className="w-12 h-12 bg-stone-100 border border-stone-200 rounded-lg flex items-center justify-center text-stone-800 group-hover:bg-stone-900 group-hover:text-white transition-colors shrink-0">
+            <div className="w-12 h-12 bg-stone-100 border border-stone-200 rounded-lg flex items-center justify-center text-stone-800 group-hover:bg-[#F9C70F] group-hover:text-stone-950 group-hover:border-[#F9C70F] transition-colors shrink-0">
               <Gamepad2 size={22} />
             </div>
             <div>
@@ -65,9 +62,9 @@ export default function Home() {
 
           <Link 
             href="/materialy" 
-            className="group p-6 bg-[#FDFCF9] rounded-xl border border-stone-300 flex items-start gap-4 hover:border-stone-500 hover:shadow-sm transition-all"
+            className="group p-6 bg-[#FDFCF9] rounded-xl border border-stone-300 flex items-start gap-4 hover:border-[#F9C70F] hover:shadow-sm transition-all"
           >
-            <div className="w-12 h-12 bg-stone-100 border border-stone-200 rounded-lg flex items-center justify-center text-stone-800 group-hover:bg-stone-900 group-hover:text-white transition-colors shrink-0">
+            <div className="w-12 h-12 bg-stone-100 border border-stone-200 rounded-lg flex items-center justify-center text-stone-800 group-hover:bg-[#F9C70F] group-hover:text-stone-950 group-hover:border-[#F9C70F] transition-colors shrink-0">
               <FileDown size={22} />
             </div>
             <div>

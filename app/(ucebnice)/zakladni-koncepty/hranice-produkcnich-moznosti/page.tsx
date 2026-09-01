@@ -25,13 +25,13 @@ export default function HraniceProdukcnichMoznostiPage() {
 
       {/* HLAVIČKA PODKAPITOLY */}
       <header className="mb-8">
-        <span className="text-xs font-mono font-bold text-orange-700 uppercase tracking-widest block mb-2">
+        <span className="text-xs font-mono font-bold text-[#F9C70F] uppercase tracking-widest block mb-2">
           Lekce 05
         </span>
         <h1 className="text-3xl md:text-4xl font-serif font-bold text-stone-900 mb-4 tracking-tight leading-tight">
           Hranice produkčních možností a náklady obětované příležitosti
         </h1>
-        <div className="h-[2px] w-16 bg-orange-700"></div>
+        <div className="h-[2px] w-16 bg-[#F9C70F]"></div>
       </header>
 
       {/* HLAVNÍ TEXT */}
@@ -88,7 +88,7 @@ export default function HraniceProdukcnichMoznostiPage() {
           points={[
             { x: 30, y: 70, label: "A (efektivní)", showLines: true, color: "#15803D" },
             { x: 65, y: 35, label: "B (efektivní)", showLines: true, color: "#15803D" },
-            { x: 25, y: 25, label: "C (neefektivní)", showLines: true, color: "#EA580C" },
+            { x: 25, y: 25, label: "C (neefektivní)", showLines: true, color: "#EAB308" },
             { x: 70, y: 70, label: "D (nedosažitelný)", showLines: true, color: "#DC2626" },
           ]}
         />
@@ -197,10 +197,10 @@ export default function HraniceProdukcnichMoznostiPage() {
               href="/zakladni-koncepty/vyrobni-faktory" 
               className="group flex items-start gap-3 max-w-[280px] text-left transition-all"
             >
-              <ArrowLeft size={18} className="shrink-0 text-stone-400 group-hover:text-orange-700 group-hover:-translate-x-1 transition-all mt-1" />
+              <ArrowLeft size={18} className="shrink-0 text-stone-400 group-hover:text-[#F9C70F] group-hover:-translate-x-1 transition-all mt-1" />
               <div className="flex flex-col">
                 <span className="text-[10px] font-black uppercase tracking-widest text-stone-500 mb-1 font-sans">Předchozí</span>
-                <span className="text-sm font-serif font-bold text-stone-900 group-hover:text-orange-700 leading-snug">
+                <span className="text-sm font-serif font-bold text-stone-900 group-hover:text-stone-900 leading-snug">
                   Výrobní faktory
                 </span>
               </div>
@@ -214,11 +214,11 @@ export default function HraniceProdukcnichMoznostiPage() {
             >
               <div className="flex flex-col">
                 <span className="text-[10px] font-black uppercase tracking-widest text-stone-500 mb-1 font-sans">Další lekce</span>
-                <span className="text-sm font-serif font-bold text-stone-900 group-hover:text-orange-700 leading-snug">
+                <span className="text-sm font-serif font-bold text-stone-900 group-hover:text-stone-900 leading-snug">
                   Komparativní a absolutní výhoda
                 </span>
               </div>
-              <ArrowRight size={18} className="shrink-0 text-stone-400 group-hover:text-orange-700 group-hover:translate-x-1 transition-all mt-1" />
+              <ArrowRight size={18} className="shrink-0 text-stone-400 group-hover:text-[#F9C70F] group-hover:translate-x-1 transition-all mt-1" />
             </Link>
           </div>
         </div>
