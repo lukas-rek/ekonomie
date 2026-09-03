@@ -84,7 +84,7 @@ export default function NabidkaPoptavkaPage() {
             <strong>Posun PO křivce (z A do B):</strong> Je vyvolán <i>pouze změnou ceny samotného statku</i>. Poptávková křivka se nehýbe, pouze se posouváme do jiného bodu.
           </li>
           <li>
-            <strong>Posun CELÉ křivky (z D do D'):</strong> Nastává, pokud se změní jiné faktory než cena daného statku (např. vzrostou příjmy lidí, změní se móda a preference, zdraží substitut nebo zlevní komplement).
+            <strong>Posun CELÉ křivky (z D do D&apos;):</strong> Nastává, pokud se změní jiné faktory než cena daného statku (např. vzrostou příjmy lidí, změní se móda a preference, zdraží substitut nebo zlevní komplement).
           </li>
         </ul>
 

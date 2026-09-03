@@ -13,7 +13,7 @@ const ROADMAP = [
   { title: "Makroekonomie", slug: "makroekonomie", num: "III" },
   { title: "Peníze a bankovnictví", slug: "penize-a-bankovnictvi", num: "IV" },
   { title: "Dějiny ekonomického myšlení", slug: "dejiny-ekonomie", num: "V" },
-  { title: "Investice a podnikání", slug: "investice-a-podnikani", num: "VI" },
+  //{ title: "Investice a podnikání", slug: "investice-a-podnikani", num: "VI" },
 ];
 
 export default function UvodPage() {

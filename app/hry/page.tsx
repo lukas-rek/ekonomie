@@ -48,7 +48,7 @@ export default function GamesHub() {
             Ekonomické minihry
           </h1>
           <p className="text-base md:text-lg text-stone-600 max-w-xl mx-auto leading-relaxed font-sans">
-            Nejlepší způsob, jak pochopit ekonomické zákonitosti, je vyzkoušet si je v praxi.
+            Nejlepší způsob, jak pochopit ekonomické zákonitosti.
           </p>
         </div>
 

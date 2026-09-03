@@ -22,7 +22,7 @@ export default function Home() {
 
         <h1 className="text-5xl md:text-7xl font-serif font-bold text-stone-900 mb-6 tracking-tight leading-tight">
           Vítej v <br />
-          <span className="text-[#F9C70F] italic font-normal">(pracovní název)</span>
+          <span className="text-[#F9C70F]  font-normal">(pracovní název)</span>
         </h1>
         
         <p className="text-lg md:text-xl text-stone-600 max-w-2xl mx-auto leading-relaxed mb-10 font-sans">
