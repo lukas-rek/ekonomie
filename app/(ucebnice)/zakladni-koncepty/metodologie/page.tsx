@@ -104,9 +104,17 @@ export default function MetodologiePage() {
           Oborem, který se zabývá analýzou, ověřováním a predikcí ekonomických jevů pomocí statistických metod je <strong>ekonometrie</strong>. Je klíčová pro pozitivistický přístup.
           Zatímco ekonomická teorie řekne: „Když lidem vzrostou příjmy, budou víc utrácet,“ ekonometrie spočítá: „Když lidem v Česku stoupne plat o 1 000 Kč, utratí v průměru o 750 Kč více.“
         </p>
-
+        <h3 className="font-serif font-bold text-stone-900 text-xl pt-4">Časté chyby v ekonomickém uvažování</h3>
         <p>
-          To je vše o postupech a metodách ekonomického výzkumu. Příště se již podíváme na základní pojmy z ekonomie.
+          <strong>Korelace vs. kauzalita.</strong> To, že spolu dvě veličiny souvisí, ještě neznamená, že jedna způsobuje druhou. Klasický příklad: prodej deštníků a počet nehod na silnicích spolu rostou zároveň, když prší — déšť je ale skutečnou příčinou obojího, deštníky nezpůsobují nehody. 
+          V ekonomii na to narazíte často: třeba když si všimneme, že země s vyšším počtem lékařů na obyvatele mají vyšší HDP na hlavu, neznamená to nutně, že víc lékařů způsobuje bohatství. Může to být naopak (bohatší země si mohou dovolit víc lékařů), nebo za obojím stojí třetí faktor.
+        </p>
+        <p>
+          <strong>Klam skladby (tzv. fallacy of composition).</strong> Co platí pro jednotlivce nebo malou část celku, nemusí platit pro celek. Pokud jeden divák vstane v hledišti, lépe uvidí. Pokud vstanou všichni, nikdo na tom nezíská. V ekonomii je klasickým příkladem tzv. paradox spořivosti: 
+          pro jednotlivou domácnost je rozumné v době nejistoty víc spořit. Pokud to ale udělají všechny domácnosti najednou, klesne celková poptávka v ekonomice, firmy prodají méně, propustí lidi a celkové bohatství společnosti se nakonec může i snížit.
+        </p>
+        <p>
+          To je již vše o postupech a metodách ekonomického výzkumu. Příště se již podíváme na základní pojmy z ekonomie.
         </p>
       </article>
 

@@ -64,16 +64,14 @@ export default function NabidkaPoptavkaPage() {
           />
           <div className="flex flex-col justify-center text-sm space-y-3 font-sans">
             <p>
-              <strong>Dva důvody, proč je poptávka klesající:</strong>
+              <strong>Proč je poptávka klesající:</strong>
             </p>
-            <ul className="list-disc pl-5 space-y-2 marker:text-stone-400">
-              <li>
-                <strong>Důchodový efekt:</strong> Když statek zdraží, spotřebitelé se cítí reálně chudší (za svůj příjem si koupí méně jednotek).
-              </li>
-              <li>
-                <strong>Substituční efekt:</strong> Když statek zdraží, spotřebitelé ho začnou nahrazovat jinými, relativně levnějšími statky (substituty – např. místo hovězího koupí kuřecí).
-              </li>
-            </ul>
+            <p>
+              Když něco zdraží, reagujeme na to zpravidla dvěma přirozenými způsoby. 
+              Za prvé, zdražený statek si prostě méně &quot;vyplatí&quot; oproti ostatním věcem, které bychom si za stejné peníze mohli koupit a začneme ho proto nahrazovat něčím jiným, relativně levnějším 
+              (např. místo dražšího hovězího koupíme kuřecí). Za druhé, když nám zdraží něco, co běžně kupujeme, náš příjem nám reálně vystačí na méně věcí než dřív a cítíme se tudíž o něco chudší, i když se náš plat nezměnil, a omezíme spotřebu i z tohoto důvodu. 
+              Kombinace obou těchto efektů vede k tomu, že s rostoucí cenou poptávané množství klesá.
+            </p>
           </div>
         </div>
 

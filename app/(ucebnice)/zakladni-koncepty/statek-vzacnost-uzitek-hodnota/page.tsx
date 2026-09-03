@@ -247,15 +247,18 @@ export default function StatekVzacnostUzitekHodnotaPage() {
         </div>
 
         <p>
-          V jakém pořadí bychom měli tyto statky spotřebovávat? Vždy se podíváme na mezní užitky zbývajících alternativ. Jako první spotřebujeme 1. čokoládovou sušenku (MU=10).
+          V jakém pořadí bychom měli tyto statky spotřebovávat? (Pro zjednodušení předpokládejme, že získání jedné jednotky sušenky i jednoho jablka nás stojí stejně např. obojí máme zdarma k dispozici v neomezeném množství a rozhodujeme se jen o pořadí konzumace.)
+          Za tohoto předpokladu se vždy podíváme na mezní užitky zbývajících alternativ. Jako první spotřebujeme 1. čokoládovou sušenku (MU=10).
           Poté následuje 1. jablko (MU=8), 2. jablko (MU=6), 2. sušenka (MU=5), 3. jablko (MU=3) a dále nám již nezbývají statky s kladným mezním užitkem, čili naše spotřeba zde končí - již nám nepřinese užitek. 
           Toto srovnávání mezních užitků provádíme ve složitější podobě intuitivně při každé volbě napříč všemi alternativami.
         </p>
 
         <p>
           Přístup, který jsme zvolili v případě příkladu výše počítá s tím, že užitku můžeme přiřadit nějakou jednotku (obvykle je zvaná util). Takový přístup, tedy že užitek je měřitelný a vyčíslitelný se nazývá <strong>kardinalismus</strong>.
-          Je vhodný a praktický právě například při ilustraci základních principů. V moderní ekonomii je více přijímaná <strong>ordinalistická</strong> teorie užitku. 
+        V moderní ekonomii je více přijímaná <strong>ordinalistická</strong> teorie užitku. 
           Ta říká, že není možné změřit užitek, ale spotřebitel je pouze schopný seřadit statky a kombinace statků do jakési preferenční stupnice podle toho, jaký užitek mu přináší.
+          I když je dnes ordinalistický přístup teoreticky přesnější a všeobecně přijímaný, kardinalistický přístup (jako v příkladu se sušenkami a jablky výše) zůstává velmi užitečným zjednodušením pro ilustraci. 
+          Umožňuje totiž na konkrétních číslech snadno ukázat princip klesajícího mezního užitku a logiku volby mezi alternativami, tedy něco, co se s čistě pořadovým (ordinálním) přístupem hůře znázorňuje na jednoduchém příkladu.
           Nijak to však nevylučuje výše popsané principy. Jde pouze o to, že užitek nelze vyjádřit konkrétní číselnou hodnotou a není porovnatelný mezi lidmi. 
           Pro ekonomické bádání je totiž zcela postačující vědět, že spotřebitel preferuje statek nebo koš statků A před statkem nebo košem statků B a není potřeba vědět „o kolik“.
           Více se o teorii užitku dozvíte v kapitole <a href="/mikroekonomie" className="text-stone-900 underline decoration-[#F9C70F] decoration-2 hover:text-stone-600 font-medium">Mikroekonomie</a>.

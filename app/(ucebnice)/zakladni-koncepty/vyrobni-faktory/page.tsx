@@ -63,7 +63,9 @@ export default function VyrobniFaktoryPage() {
           Zahrnuje jak fyzickou sílu (např. práce dělníka na stavbě), tak duševní úsilí (např. programování softwaru nebo lékařská diagnóza).
         </p>
         <p>
-          Množství práce v ekonomice je limitováno počtem obyvatel, jejich věkovou strukturou a ochotou pracovat. Její kvalita je dána vzděláním, praxí a dovednostmi – tomuto konceptu říkáme <strong>lidský kapitál</strong>.
+         Množství práce v ekonomice je limitováno počtem obyvatel, jejich věkovou strukturou a ochotou pracovat. Její kvalita je dána vzděláním, praxí a dovednostmi. Tomuto konceptu říkáme <strong>lidský kapitál</strong>.
+          Jde o poněkud hybridní pojem: kombinuje vlastnosti práce (je neoddělitelně vázaný na osobu, nedá se prodat ani pronajmout jako stroj) s logikou kapitálu (vzniká investicí, tedy časem a penězi vloženými do vzdělání a tréninku a v čase generuje výnos v podobě vyšší mzdy).
+           Právě proto se řadí mezi výrobní faktory poněkud volněji, obvykle jako podkategorie práce, ne jako plnohodnotný samostatný pátý faktor.
           Odměnou za práci je <strong>mzda</strong> (případně plat).
         </p>
 
@@ -71,15 +73,15 @@ export default function VyrobniFaktoryPage() {
           3. Kapitál
         </h2>
         <p>
-          Na rozdíl od půdy a práce není kapitál (angl. <i>capital</i>) primárním zdrojem – je to <strong>statkem, který byl již dříve vyroben</strong>, aby sloužil k výrobě dalších statků (jde o statky vyššího řádu).
-          Rozlišujeme dvě základní formy kapitálu:
+          Na rozdíl od půdy a práce není kapitál (angl. <i>capital</i>) primárním zdrojem, ale je <strong>statkem, který byl již dříve vyroben</strong>, aby sloužil k výrobě dalších statků (jde o tzv. statky vyššího řádu).
         </p>
-        <ul className="list-disc pl-6 space-y-1 marker:text-stone-400">
-          <li><strong>Reálný (fyzický) kapitál:</strong> Budovy, výrobní linky, stroje, nástroje, počítače nebo zásoby materiálu.</li>
-          <li><strong>Finanční kapitál:</strong> Peníze, cenné papíry či úvěry, které slouží k nákupu fyzického kapitálu. Samy o sobě nic nevyrábějí, ale umožňují investice.</li>
-        </ul>
         <p>
-          Odměnou za poskytnutí kapitálu je <strong>úrok</strong> (nebo <strong>zisk</strong>). 
+          <strong>Reálný (fyzický) kapitál</strong> jsou budovy, výrobní linky, stroje, nástroje, počítače nebo zásoby materiálu.
+           <strong> Finanční kapitál</strong> se často používá v běžné řeči, kde se tímto pojmem označují peníze, cenné papíry či úvěry, které slouží k nákupu fyzického kapitálu. Je ale důležité rozlišovat: 
+           finanční kapitál není výrobním faktorem v ekonomickém smyslu slova, jelikož sám o sobě nic nevyrábí a nevstupuje do produkční funkce. Je to jen prostředek, kterým si firma nebo jednotlivec pořídí skutečný, fyzický kapitál (stroje, budovy), který teprve produkuje.
+        </p>
+        <p>
+          Odměnou za poskytnutí kapitálu je <strong>úrok</strong>. 
           Procesu, kdy se v ekonomice tvoří nový kapitál (např. stavba nové haly), říkáme <strong>investice</strong>. 
           Opotřebení kapitálu v čase se v účetnictví a ekonomii nazývá <strong>odpisy (amortizace)</strong>.
         </p>
@@ -88,12 +90,18 @@ export default function VyrobniFaktoryPage() {
           4. Podnikavost
         </h2>
         <p>
-          Mít k dispozici půdu, lidi a stroje ještě nestačí. Někdo musí tyto tři faktory vzít, zorganizovat je do fungujícího celku, přijít s nápadem a nést <strong>podnikatelské riziko</strong>. 
-          Právě tuto schopnost nazýváme podnikavostí (angl. <i>entrepreneurship</i>).
+          Mít k dispozici půdu, lidi a stroje ještě nestačí. Někdo musí tyto tři faktory vzít, zorganizovat je do fungujícího celku, přijít s nápadem, odhadnout budoucí poptávku a nést podnikatelské riziko. 
+          Právě tuto schopnost nazýváme podnikavostí (angl. entrepreneurship) a v moderních učebnicích se často řadí jako čtvrtý výrobní faktor vedle půdy, práce a kapitálu.
         </p>
         <p>
-          Podnikatel kombinuje vstupy tak, aby uspokojil potřeby zákazníků a ideálně dosáhl kladného hospodářského výsledku. 
-          Odměnou za podstoupené riziko a úspěšné inovace je <strong>čistý ekonomický zisk</strong>.
+          Podnikatel kombinuje vstupy tak, aby uspokojil potřeby zákazníků a ideálně dosáhl kladného hospodářského výsledku. Odměnou za podstoupené riziko a úspěšné inovace je čistý ekonomický zisk a na rozdíl od mzdy, renty či úroku jde o zbytkový (reziduální) a nejistý výnos: 
+          firma ho může stejně tak dobře ztratit.
+        </p>
+
+        <p>
+          <strong>Je podnikavost opravdový výrobní faktor?</strong></p><p>
+            Ne všichni ekonomové s tímto zařazením souhlasí. Rakouská škola (zejména L. von Mises a I. Kirzner) podnikavost jako samostatný, kupovatelný a prodávatelný výrobní faktor typicky neuznává. Argumentuje tím, že na rozdíl od půdy, práce a kapitálu se podnikavost nedá najmout za předem dohodnutou cenu 
+            (jako mzda, renta či úrok), ale je to spíš vlastnost přítomná v každém lidském rozhodování a volbě, ne oddělený vstup do výroby. Podle tohoto pohledu je podnikavost hnací silou celého tržního procesu (neustálé objevování příležitostí k zisku), ne jedna položka vedle tří ostatních.
         </p>
 
         <FactorsClassification />
@@ -136,7 +144,14 @@ export default function VyrobniFaktoryPage() {
           Kuchaři si začnou překážet, čekat na uvolnění stolu a jejich mezní přínos klesá (čtvrtý kuchař přidá k produkci už jen 2 pizzy za hodinu). 
           Pokud bychom přijali desátého kuchaře, celková produkce může dokonce klesnout, protože se v kuchyni ani nehnou (mezní produkt je záporný).
         </p>
-
+        <h2 className="text-2xl font-serif font-bold text-stone-900 pt-6">
+          Substituce a komplementarita výrobních faktorů
+        </h2>
+        <p>
+          Výrobní faktory spolu mohou být ve dvou základních vztazích. <strong>Substituty</strong> jsou faktory, které lze navzájem nahradit. Firma může vyrábět stejné množství výstupu s víc kapitálem a méně prací, nebo naopak. 
+          Příkladem je automatizovaná pokladna v obchodě nahrazující pokladní, nebo sklízecí mlátička nahrazující desítky sběračů. <strong>Komplementy</strong> jsou naopak faktory, které se musí používat společně a jeden bez druhého nefunguje. Traktor je bez řidiče k ničemu, stejně jako řidič bez traktoru nedosáhne stejné produktivity jako s ním. 
+          Většina reálné výroby kombinuje oba vztahy zároveň: v rámci jedné dílny mohou být stroje a pracovníci vzájemnými komplementy, zatímco na úrovni celé firmy se rozhoduje, kolik strojů (kapitálu) nahradí kolik pracovníků (substituce).
+        </p>
         <InteractiveQuestion 
           question="Co je odměnou za výrobní faktor 'Půda'?"
           options={[

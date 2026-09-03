@@ -84,8 +84,7 @@ export default function UvodDoEkonomie() {
           Ekonomové se velmi často neshodnou na závěrech vycházejících klidně ze stejných dat. 
           Často je to tím, jakou váhu přikládají různým faktorům, jaké modely používají nebo jaké proměnné se rozhodnou ve svých předpokladech zanedbat.
           Směry ekonomického myšlení se nazývají ekonomické školy. Různé ekonomické školy přistupují ke zkoumání stejných fenoménů různě. 
-          Mezi známé ekonomické školy patří například rakouská ekonomická škola, keynesiánství nebo monetarismus. Školou, která dnes představuje mainstreamový přístup k ekonomické vědě je tzv. neokeynesiánství. 
-          Teorie tohoto proudu jsou dnes všeobecně přijímány jako základ ekonomické diskuse.
+          Mezi známé ekonomické školy patří například rakouská ekonomická škola, keynesiánství nebo monetarismus. Dnešní mainstream představuje syntéza neoklasické mikroekonomie a novokeynesiánské makroekonomie, často označovaná jako  &quot;neoklasická syntéza&quot;.
           Některými se zabýváme v kapitole <a href="/dejiny-ekonomickeho-mysleni" className="text-stone-900 underline decoration-[#F9C70F] decoration-2 hover:text-stone-600 font-medium">Dějiny ekonomického myšlení</a>. 
         </p>
 
