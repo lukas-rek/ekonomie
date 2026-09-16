@@ -2,9 +2,16 @@
 
 import React, { useState, useRef } from 'react';
 import Link from 'next/link';
-import { motion } from 'framer-motion';
-import { CheckCircle2, XCircle, MousePointer2, ArrowLeft } from 'lucide-react';
-import GameModal from '@/components/GameModalTrzniPrincipy';
+import { motion, AnimatePresence } from 'framer-motion';
+import { 
+  CheckCircle2, 
+  XCircle, 
+  MousePointer2, 
+  ArrowLeft,
+  HelpCircle,
+  X,
+  Trophy
+} from 'lucide-react';
 
 const levels = [
   // --- ÚLOHY S POSUNY KŘIVEK A BODŮ (1 - 15) ---
@@ -273,16 +280,7 @@ export default function MarketGame() {
     setIsCorrect(null);
   };
 
-  const modalPages = [
-    (
-      <div key="page-1" className="space-y-4 animate-in slide-in-from-right-4 duration-300">
-        <h3 className="text-xl font-serif font-bold text-stone-900">Tržní principy v praxi</h3>
-        <p className="text-stone-700 text-sm leading-relaxed font-sans">
-          Nyní se podíváme i na elasticitu! Tažení za kolečka na krajích křivek změní jejich sklon.
-        </p>
-      </div>
-    )
-  ];
+
 
   // --- MATEMATIKA A CÍLOVÉ POZICE GRAFU ---
   let targetShiftSVal = 0;
@@ -520,10 +518,21 @@ export default function MarketGame() {
               Tržní principy
             </h1>
           </div>
+
+          <div className="flex items-center gap-2">
+            <button
+              type="button"
+              onClick={() => setShowModal(true)}
+              className="inline-flex items-center gap-1 px-2.5 py-1.5 rounded-lg bg-white border border-stone-300 hover:border-[#F9C70F] text-stone-700 hover:text-stone-900 text-xs font-bold uppercase tracking-wider transition-all shadow-xs"
+              title="Jak hrát"
+            >
+              <HelpCircle size={14} className="text-[#F9C70F]" />
+              <span className="hidden sm:inline">Jak hrát</span>
+            </button>
+          </div>
         </div>
 
         <div className="p-6 md:p-8 bg-[#FDFCF9] rounded-xl shadow-sm border border-stone-300 flex flex-col md:flex-row gap-8 md:gap-10">
-          <GameModal isOpen={showModal} onClose={() => setShowModal(false)} title="Tržní principy" pages={modalPages} />
           
           {/* LEVÝ SLOUPEC (Graf a tlačítka) */}
           <div className="w-full md:w-1/2 flex flex-col items-center">
@@ -745,9 +754,141 @@ export default function MarketGame() {
             </motion.div>
           )}
         </div>
+        </div>
       </div>
+
+      {/* ========================================================================= */}
+      {/* MODÁLNÍ OKNO JAK HRÁT */}
+      {/* ========================================================================= */}
+      <AnimatePresence>
+        {showModal && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-stone-900/50 backdrop-blur-xs"
+            onClick={() => setShowModal(false)}
+          >
+            <motion.div
+              initial={{ scale: 0.95, y: 15 }}
+              animate={{ scale: 1, y: 0 }}
+              exit={{ scale: 0.95, y: 15 }}
+              onClick={(e) => e.stopPropagation()}
+              className="bg-[#FDFCF9] rounded-2xl border border-stone-300 max-w-2xl w-full p-5 md:p-6 shadow-2xl overflow-hidden max-h-[85vh] flex flex-col"
+            >
+              <div className="flex items-center justify-between pb-3 border-b border-stone-200 mb-3">
+                <div className="flex items-center gap-2.5">
+                  <div className="w-8 h-8 rounded-lg bg-[#FEF9C3] border border-[#F9C70F] flex items-center justify-center text-stone-950">
+                    <HelpCircle size={18} />
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-serif font-bold text-stone-900 leading-tight">
+                      Jak hrát
+                    </h3>
+                    <p className="text-[11px] text-stone-500 font-sans">
+                      Pravidla a ovládání minihry Tržní principy
+                    </p>
+                  </div>
+                </div>
+                <button
+                  type="button"
+                  onClick={() => setShowModal(false)}
+                  className="text-stone-400 hover:text-stone-700 p-1.5 rounded-md hover:bg-stone-100 transition-colors"
+                  aria-label="Zavřít okno"
+                >
+                  <X size={18} />
+                </button>
+              </div>
+
+              <div className="space-y-4 text-xs text-stone-700 overflow-y-auto pr-1 leading-relaxed">
+                {/* 1. CÍL HRY */}
+                <div>
+                  <h4 className="font-serif font-bold text-stone-900 text-xs mb-1.5 flex items-center gap-1.5">
+                    <Trophy size={14} className="text-[#F9C70F]" /> Cíl hry
+                  </h4>
+                  <p className="font-sans text-stone-600">
+                    V každé úrovni se seznámíte s konkrétní událostí na trhu. Vaším úkolem je posoudit ekonomické souvislosti a správně upravit graf – určit, zda dojde k posunu nabídky, poptávky, posunu po křivce, nebo ke změně cenové elasticity.
+                  </p>
+                </div>
+
+                {/* 2. OVLÁDÁNÍ A TAHY V GRAFU */}
+                <div>
+                  <h4 className="font-serif font-bold text-stone-900 text-xs mb-2">
+                    Jak manipulovat s grafem
+                  </h4>
+                  <p className="font-sans mb-2 text-stone-600">
+                    Graf ovládáte přímo tažením myší nebo dotykem prstu:
+                  </p>
+                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 font-sans">
+                    <div className="p-2.5 rounded-lg border border-stone-200 bg-white">
+                      <span className="font-bold text-stone-900 block text-xs mb-1">
+                        1. Posun celé křivky
+                      </span>
+                      <p className="text-[11px] text-stone-600 leading-relaxed">
+                        Chyťte křivku nabídky (S) nebo poptávky (D) a posuňte ji <strong>doleva</strong> (pokles) či <strong>doprava</strong> (růst). U obou křivek lze táhnout přímo za rovnovážný bod <strong>E</strong>.
+                      </p>
+                    </div>
+                    <div className="p-2.5 rounded-lg border border-stone-200 bg-white">
+                      <span className="font-bold text-stone-900 block text-xs mb-1">
+                        2. Posun po křivce
+                      </span>
+                      <p className="text-[11px] text-stone-600 leading-relaxed">
+                        Mění-li se pouze cena samotného statku, křivka se neposouvá. Chyťte bod <strong>A</strong> a posuňte ho po stávající křivce nahoru nebo dolů.
+                      </p>
+                    </div>
+                    <div className="p-2.5 rounded-lg border border-stone-200 bg-white">
+                      <span className="font-bold text-stone-900 block text-xs mb-1">
+                        3. Změna elasticity
+                      </span>
+                      <p className="text-[11px] text-stone-600 leading-relaxed">
+                        V úlohách na elasticitu táhněte za koncová kolečka křivek. Nastavte <strong>strmější</strong> sklon (neelastická) nebo <strong>plošší</strong> sklon (vysoce elastická).
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                {/* 3. KONTROLA A POSTUP */}
+                <div className="border-t border-stone-200 pt-3">
+                  <h4 className="font-serif font-bold text-stone-900 text-xs mb-2">
+                    Kontrola a postup hrou
+                  </h4>
+                  <ul className="space-y-2 font-sans text-stone-600">
+                    <li className="flex items-start gap-2">
+                      <span className="font-mono font-bold text-stone-400 text-xs mt-0.5 shrink-0">1.</span>
+                      <div>
+                        <strong className="text-stone-900">Ověření řešení:</strong> Po nastavení požadovaného posunu klikněte na tlačítko <em>Zkontrolovat řešení</em>.
+                      </div>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="font-mono font-bold text-stone-400 text-xs mt-0.5 shrink-0">2.</span>
+                      <div>
+                        <strong className="text-stone-900">Vysvětlení principu:</strong> Po vyhodnocení se zobrazí podrobné ekonomické vysvětlení, proč k danému posunu dochází.
+                      </div>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="font-mono font-bold text-stone-400 text-xs mt-0.5 shrink-0">3.</span>
+                      <div>
+                        <strong className="text-stone-900">Výběr úrovně:</strong> Mezi jednotlivými situacemi můžete libovolně přepínat pomocí tlačítek <em>Předchozí / Další</em> nebo přímým výběrem čísla otázky.
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+
+              <div className="mt-4 pt-3 border-t border-stone-200 flex justify-end">
+                <button
+                  type="button"
+                  onClick={() => setShowModal(false)}
+                  className="bg-stone-900 hover:bg-stone-800 text-white px-5 py-2 rounded-lg text-xs font-bold uppercase tracking-wider transition-all"
+                >
+                  Rozumím, zavřít
+                </button>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   </div>
-</div>
   );
 }

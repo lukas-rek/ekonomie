@@ -14,6 +14,7 @@ export default function SidebarLayout({ children }: { children: React.ReactNode 
     pathname === '/o-autorovi' || 
     pathname === '/o-projektu' || 
     pathname === '/materialy' || 
+    pathname?.startsWith('/za-5-minut') ||
     pathname?.startsWith('/hry') || 
     pathname?.startsWith('/minihry');
 

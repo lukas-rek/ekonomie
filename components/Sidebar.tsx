@@ -30,6 +30,7 @@ const CHAPTERS = [
       { title: "Tržní struktury", slug: "trzni-struktury" },
       { title: "Základy teorie her", slug: "teorie-her" },
       { title: "Trh výrobních faktorů", slug: "trh-vyrobnich-faktoru" },
+      { title: "Kapitál a úrok", slug: "kapital-a-urok" },
       { title: "Tržní selhání a státní zásahy", slug: "trzni-selhani" },
     ]
   },
@@ -51,7 +52,7 @@ const CHAPTERS = [
     subchapters: [
       { title: "Podstata peněz, jejich funkce a vývoj", slug: "podstata-penez-funkce-a-vyvoj" },
       { title: "Bankovní systém a tvorba peněz", slug: "bankovni-system-a-tvorba-penez" },
-      { title: "Trh peněz, úrok a kapitál", slug: "trh-peněz" },
+      { title: "Trh peněz a úroková sazba", slug: "trh-peněz" },
       { title: "Centrální bankovnictví a monetární politika", slug: "centralni-bankovnictvi-a-monetarni-politika" },
       { title: "Měnový kurz", slug: "menovy-kurz" },
       { title: "Bitcoin, fiat a zlatý standard", slug: "bitcoin-fiat-a-zlaty-standard" },
@@ -60,7 +61,15 @@ const CHAPTERS = [
   { 
     title: "Stručné dějiny ekonomického myšlení", 
     slug: "dejiny-ekonomickeho-mysleni", 
-    subchapters: [] 
+    subchapters: [
+      { title: "Předchůdci: merkantilismus a fyziokraté", slug: "predchudci" },
+      { title: "Klasická ekonomie: Smith, Ricardo, Malthus", slug: "klasicka-ekonomie" },
+      { title: "Marxistická ekonomie", slug: "marxisticka-ekonomie" },
+      { title: "Marginalistická revoluce a neoklasická ekonomie", slug: "neoklasicka-ekonomie" },
+      { title: "Keynesiánství", slug: "keynesianstvi" },
+      { title: "Rakouská škola a monetarismus", slug: "rakouska-skola" },
+      { title: "Moderní směry", slug: "moderní směry" },
+    ] 
   },
 ];
 

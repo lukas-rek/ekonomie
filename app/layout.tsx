@@ -18,7 +18,7 @@ const plusJakartaSans = Plus_Jakarta_Sans({
 });
 
 export const metadata = {
-  title: "Ekonomie Přehledně | Interaktivní Učebnice",
+  title: "Pracovní název",
   description: "Moderní interaktivní učebnice ekonomie s grafy, příklady a cvičeními.",
 };
 

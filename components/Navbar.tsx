@@ -35,6 +35,7 @@ export default function Navbar() {
 
   const navLinks = [
     { name: 'Učebnice ekonomie', href: '/uvod' },
+    { name: 'Za 5 minut', href: '/za-5-minut/uvod' },
     { name: 'Minihry', href: '/hry' },
     { name: 'Materiály', href: '/materialy' },
     { name: 'O projektu', href: '/o-projektu' },

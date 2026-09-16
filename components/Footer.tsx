@@ -10,7 +10,7 @@ export default function Footer() {
             PRACOVNÍ NÁZEV<span className="text-[#F9C70F] font-sans text-xs ml-1 font-bold">.CZ</span>
           </h4>
           <p className="text-sm leading-relaxed max-w-sm text-stone-400 font-sans">
-            Interaktivní vzdělávací portál a učebnice moderní ekonomie.
+            Interaktivní vzdělávací portál.
           </p>
         </div>
       </div>
@@ -20,7 +20,7 @@ export default function Footer() {
           © 2026 PRACOVNÍ NÁZEV. Všechna práva vyhrazena.
         </div>
         <div className="mt-2 sm:mt-0 italic font-serif text-stone-400">
-          Učební a metodický materiál
+          Díky!
         </div>
       </div>
     </footer>

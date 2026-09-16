@@ -385,10 +385,10 @@ export default function PrisonersDilemmaGame() {
               type="button"
               onClick={() => setShowTheoryModal(true)}
               className="inline-flex items-center gap-1 px-2.5 py-1.5 rounded-lg bg-white border border-stone-300 hover:border-[#F9C70F] text-stone-700 hover:text-stone-900 text-xs font-bold uppercase tracking-wider transition-all shadow-xs"
-              title="Vysvětlení teorie a stochastického konce"
+              title="Jak hrát"
             >
               <HelpCircle size={14} className="text-[#F9C70F]" />
-              <span className="hidden sm:inline">Pravidla & Teorie</span>
+              <span className="hidden sm:inline">Jak hrát</span>
             </button>
             {gameState !== 'setup' && (
               <button
@@ -1062,7 +1062,7 @@ export default function PrisonersDilemmaGame() {
         </AnimatePresence>
 
         {/* ========================================================================= */}
-        {/* MODÁLNÍ OKNO S TEORIÍ */}
+        {/* MODÁLNÍ OKNO JAK HRÁT */}
         {/* ========================================================================= */}
         <AnimatePresence>
           {showTheoryModal && (
@@ -1081,50 +1081,154 @@ export default function PrisonersDilemmaGame() {
                 className="bg-[#FDFCF9] rounded-2xl border border-stone-300 max-w-2xl w-full p-5 md:p-6 shadow-2xl overflow-hidden max-h-[85vh] flex flex-col"
               >
                 <div className="flex items-center justify-between pb-3 border-b border-stone-200 mb-3">
-                  <div className="flex items-center gap-2">
-                    <div className="w-7 h-7 rounded-lg bg-[#FEF9C3] border border-[#F9C70F] flex items-center justify-center text-stone-950">
-                      <Scale size={16} />
+                  <div className="flex items-center gap-2.5">
+                    <div className="w-8 h-8 rounded-lg bg-[#FEF9C3] border border-[#F9C70F] flex items-center justify-center text-stone-950">
+                      <HelpCircle size={18} />
                     </div>
-                    <h3 className="text-lg font-serif font-bold text-stone-900">
-                      Vězňovo dilema a teorie her
-                    </h3>
+                    <div>
+                      <h3 className="text-lg font-serif font-bold text-stone-900 leading-tight">
+                        Jak hrát
+                      </h3>
+                      <p className="text-[11px] text-stone-500 font-sans">
+                        Pravidla a průběh hry Vězňovo dilema
+                      </p>
+                    </div>
                   </div>
                   <button
                     type="button"
                     onClick={() => setShowTheoryModal(false)}
-                    className="text-stone-400 hover:text-stone-700 p-1"
+                    className="text-stone-400 hover:text-stone-700 p-1.5 rounded-md hover:bg-stone-100 transition-colors"
+                    aria-label="Zavřít okno"
                   >
                     <X size={18} />
                   </button>
                 </div>
 
-                <div className="space-y-3 text-xs text-stone-700 overflow-y-auto pr-1 leading-relaxed">
-                  <div className="bg-[#FEFCE8] p-3 rounded-lg border border-[#F9C70F]/60">
-                    <h4 className="font-serif font-bold text-stone-900 text-xs mb-1 flex items-center gap-1">
-                      <Info size={13} className="text-stone-900" /> Jednorázové vs. Opakované dilema
-                    </h4>
-                    <p>
-                      V jednorázové hře je <strong className="text-stone-900">zrada dominantní strategií</strong>. Výsledná Nashova rovnováha (1, 1) je však Paretovsky neefektivní — oba by získali více (3, 3) při vzájemné důvěře. V opakované hře naopak vzniká prostor pro trestání zrady a odměňování spolupráce.
-                    </p>
-                  </div>
-
+                <div className="space-y-4 text-xs text-stone-700 overflow-y-auto pr-1 leading-relaxed">
+                  {/* 1. CÍL HRY */}
                   <div>
-                    <h4 className="font-serif font-bold text-stone-900 text-xs mb-1">
-                      Proč stochastický konec (nejistý horizont)?
+                    <h4 className="font-serif font-bold text-stone-900 text-xs mb-1.5 flex items-center gap-1.5">
+                      <Trophy size={14} className="text-[#F9C70F]" /> Cíl hry
                     </h4>
-                    <p>
-                      Kdyby hráči věděli, že hra končí v kole N, nastane jev <strong className="text-stone-900">zpětná indukce (backward induction)</strong>: v posledním kole zradí oba (už nehrozí odveta), což způsobí zradu i v předposledním kole a zhroucení důvěry od 1. kola. Náhodný konec s 20% šancí udržuje <em>stín budoucnosti</em> a umožňuje kooperaci.
+                    <p className="font-sans text-stone-600">
+                      Vaším cílem je získat v průběhu celé hry co nejvyšší celkový počet bodů. Hrajete proti počítačovému soupeři (botovi) v sérii po sobě jdoucích kol.
                     </p>
                   </div>
 
-                  <div className="border-t border-stone-200 pt-2">
-                    <h4 className="font-serif font-bold text-stone-900 text-xs mb-1">
-                      Strategie Tit-for-Tat (Půjčka za oplátku)
+                  {/* 2. VOLBA V KAŽDÉM KOLE */}
+                  <div>
+                    <h4 className="font-serif font-bold text-stone-900 text-xs mb-2">
+                      Volba v každém kole
                     </h4>
-                    <p>
-                      Robert Axelrod v turnajích strategií prokázal, že nejúspěšnější jsou strategie:
-                      (1) <em>Milé</em> (nezradí první), (2) <em>Schopné odvety</em> (okamžitě potrestají zradu), (3) <em>Odpouštějící</em> (po nápravě spolupracují) a (4) <em>Čitelné</em>.
+                    <p className="font-sans mb-2 text-stone-600">
+                      V každém kole se vy i soupeř rozhodujete současně a nezávisle na sobě. Volíte mezi dvěma tahy:
                     </p>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 font-sans">
+                      <div className="p-2.5 rounded-lg border border-emerald-200 bg-emerald-50/60 flex items-start gap-2">
+                        <Handshake size={16} className="text-emerald-700 shrink-0 mt-0.5" />
+                        <div>
+                          <span className="font-bold text-emerald-900 block text-xs">Spolupracovat (C)</span>
+                          <span className="text-[11px] text-emerald-800">
+                            Volíte férovou spolupráci a důvěru. Přináší oboustranně vysoký zisk, pokud spolupracuje i soupeř.
+                          </span>
+                        </div>
+                      </div>
+                      <div className="p-2.5 rounded-lg border border-rose-200 bg-rose-50/60 flex items-start gap-2">
+                        <Swords size={16} className="text-rose-700 shrink-0 mt-0.5" />
+                        <div>
+                          <span className="font-bold text-rose-900 block text-xs">Podrazit (D)</span>
+                          <span className="text-[11px] text-rose-800">
+                            Volíte zradu soupeře. Pokud soupeř spolupracuje, získáte maximum, pokud zradí i on, ztrácíte oba.
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* 3. BODOVÁNÍ / VÝPLATNÍ MATICE */}
+                  <div>
+                    <h4 className="font-serif font-bold text-stone-900 text-xs mb-2 flex items-center gap-1.5">
+                      <Scale size={14} className="text-stone-800" /> Bodování (Výplatní matice)
+                    </h4>
+                    <p className="font-sans mb-2 text-stone-600">
+                      Výsledný bodový zisk v každém kole závisí na kombinaci tahů obou hráčů:
+                    </p>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 font-sans">
+                      <div className="p-2.5 rounded-lg border border-stone-200 bg-white">
+                        <div className="flex items-center justify-between mb-1">
+                          <span className="font-bold text-stone-900 text-xs">Oba spolupracují</span>
+                          <span className="font-mono font-bold text-emerald-700 text-xs bg-emerald-50 px-1.5 py-0.5 rounded border border-emerald-200">
+                            +3 / +3 b.
+                          </span>
+                        </div>
+                        <p className="text-[11px] text-stone-600">
+                          Vzájemná důvěra a úspěšná kooperace přináší stabilní zisk oběma.
+                        </p>
+                      </div>
+
+                      <div className="p-2.5 rounded-lg border border-stone-200 bg-white">
+                        <div className="flex items-center justify-between mb-1">
+                          <span className="font-bold text-stone-900 text-xs">Vy podrazíte, soupeř spolupracuje</span>
+                          <span className="font-mono font-bold text-stone-900 text-xs bg-stone-100 px-1.5 py-0.5 rounded border border-stone-300">
+                            +5 / 0 b.
+                          </span>
+                        </div>
+                        <p className="text-[11px] text-stone-600">
+                          Získáte maximum bodů na úkor podvedeného soupeře.
+                        </p>
+                      </div>
+
+                      <div className="p-2.5 rounded-lg border border-stone-200 bg-white">
+                        <div className="flex items-center justify-between mb-1">
+                          <span className="font-bold text-stone-900 text-xs">Vy spolupracujete, soupeř podrazí</span>
+                          <span className="font-mono font-bold text-rose-700 text-xs bg-rose-50 px-1.5 py-0.5 rounded border border-rose-200">
+                            0 / +5 b.
+                          </span>
+                        </div>
+                        <p className="text-[11px] text-stone-600">
+                          Soupeř zneužil vaši důvěru a vy nezískáte v tomto kole žádný bod.
+                        </p>
+                      </div>
+
+                      <div className="p-2.5 rounded-lg border border-stone-200 bg-white">
+                        <div className="flex items-center justify-between mb-1">
+                          <span className="font-bold text-stone-900 text-xs">Oba podrazí</span>
+                          <span className="font-mono font-bold text-stone-700 text-xs bg-stone-100 px-1.5 py-0.5 rounded border border-stone-200">
+                            +1 / +1 b.
+                          </span>
+                        </div>
+                        <p className="text-[11px] text-stone-600">
+                          Vzájemná zrada a konflikt znamenají pro oba minimální zisk.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* 4. JAK SE HRA HRAJE A PRŮBĚH */}
+                  <div className="border-t border-stone-200 pt-3">
+                    <h4 className="font-serif font-bold text-stone-900 text-xs mb-2">
+                      Jak se hra hraje
+                    </h4>
+                    <ul className="space-y-2 font-sans text-stone-600">
+                      <li className="flex items-start gap-2">
+                        <span className="font-mono font-bold text-stone-400 text-xs mt-0.5 shrink-0">1.</span>
+                        <div>
+                          <strong className="text-stone-900">Volba soupeře:</strong> Můžete hrát proti známému botovi s popsaným chováním, nebo zvolit náhodnou strategii soupeře. Ta se odhalí až po skončení hry.
+                        </div>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <span className="font-mono font-bold text-stone-400 text-xs mt-0.5 shrink-0">2.</span>
+                        <div>
+                          <strong className="text-stone-900">Délka hry a konec:</strong> Zvolíte si základní délku (min. 10, 20 nebo 30 kol). Po odehrání tohoto počtu nastává v každém dalším kole 20% šance, že hra skončí. Přesný počet kol tak dopředu neznáte.
+                        </div>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <span className="font-mono font-bold text-stone-400 text-xs mt-0.5 shrink-0">3.</span>
+                        <div>
+                          <strong className="text-stone-900">Vyhodnocení a historie:</strong> V průběhu hry i po jejím skončení můžete sledovat historii jednotlivých tahů, vývoj skóre v grafu a celkovou úspěšnost spolupráce.
+                        </div>
+                      </li>
+                    </ul>
                   </div>
                 </div>
 
@@ -1134,7 +1238,7 @@ export default function PrisonersDilemmaGame() {
                     onClick={() => setShowTheoryModal(false)}
                     className="bg-stone-900 hover:bg-stone-800 text-white px-5 py-2 rounded-lg text-xs font-bold uppercase tracking-wider transition-all"
                   >
-                    Zavřít
+                    Rozumím, zavřít
                   </button>
                 </div>
               </motion.div>
