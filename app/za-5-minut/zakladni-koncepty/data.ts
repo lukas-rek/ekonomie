@@ -26,42 +26,42 @@ export interface Card {
   options?: string[];
   correctIndex?: number;
   explanation?: string;
-  interactiveType?: 'pizza' | 'workers' | 'ppf' | 'trade' | 'price';
+  interactiveType?: 'pizza' | 'workers' | 'ppf' | 'trade' | 'market_curves' | 'price';
 }
 
 export const cards: Card[] = [
-  // Karta 1 - intro
+  // Karta 1
   {
     id: 1,
     type: 'intro',
     title: 'Základní ekonomické koncepty za 5 minut',
-    text: 'Než se pustíš do celé kapitoly, tohle rychlé shrnutí ti dá ucelený přehled. Zabere ti to jen pár minut.',
+    text: 'Rychlý přehled nejdůležitějších myšlenek, než se pustíš do celé učebnice. Zabere ti to jen pár minut.',
   },
-  // Karta 2 - concept
+  // Karta 2
   {
     id: 2,
     type: 'concept',
     title: 'Co je ekonomie?',
-    text: 'Ekonomie zkoumá, jak lidé a společnost rozhodují o využití vzácných zdrojů.',
+    text: 'Ekonomie zkoumá, jak se lidé rozhodují v situacích, kdy mají omezené zdroje a nemohou mít všechno.',
     icon: 'brain',
   },
-  // Karta 3 - flip
+  // Karta 3
   {
     id: 3,
     type: 'flip',
     title: 'Dělení ekonomie',
     front: 'Mikroekonomie',
-    back: 'Zkoumá chování jednotlivců, domácností a firem.',
+    back: 'Sleduje chování jednotlivců, rodin a konkrétních firem na jednotlivých trzích.',
   },
-  // Karta 4 - flip
+  // Karta 4
   {
     id: 4,
     type: 'flip',
     title: 'Dělení ekonomie',
     front: 'Makroekonomie',
-    back: 'Zkoumá ekonomiku jako celek – inflaci, nezaměstnanost, HDP.',
+    back: 'Dívá se na hospodářství jako na celek. Řeší inflaci, nezaměstnanost a celkový růst ekonomiky.',
   },
-  // Karta 5 - quiz_single
+  // Karta 5
   {
     id: 5,
     type: 'quiz_single',
@@ -69,169 +69,169 @@ export const cards: Card[] = [
     question: 'Zkoumání dopadu inflace na celou zemi patří do:',
     options: ['Mikroekonomie', 'Makroekonomie', 'Ani jedno'],
     correctIndex: 1,
-    explanation: 'Inflace je agregátní ukazatel celé ekonomiky, proto patří do makroekonomie.',
+    explanation: 'Inflace se týká zdražování v celé zemi, proto spadá pod makroekonomii.',
   },
-  // Karta 6 - concept
+  // Karta 6
   {
     id: 6,
     type: 'concept',
-    title: 'Vzácnost a trade-offy',
-    text: 'Každý den děláme rozhodnutí o omezených zdrojích – penězích, čase. Tomu se říká trade-off (kompromis).',
+    title: 'Vzácnost a volby',
+    text: 'Čas i peníze máme spočítané. Když se pro něco rozhodneš, automaticky tím obětuješ jinou možnost. Každá volba něco stojí.',
     icon: 'scale',
   },
-  // Karta 7 - scenario
+  // Karta 7 (Kebab a kino)
   {
     id: 7,
     type: 'scenario',
-    title: 'Rozhodovací scénář',
-    text: 'Máš 200 Kč. Jít do kina, nebo koupit tričko?',
-    options: ['Kino', 'Tričko'],
-    explanation: 'Ať vybereš cokoliv, cena obětované příležitosti je hodnota té druhé možnosti, které ses vzdal/a.',
+    title: 'Kebab, nebo kino?',
+    text: 'Máš v kapse 200 Kč. Dáš si pořádný kebab, nebo půjdeš raději do kina?',
+    options: ['Kebab', 'Kino'],
+    explanation: 'Ať už si vybereš cokoliv, nákladem obětované příležitosti je to druhé, co jsi oželel. Skutečnou cenou tvé volby je právě ztracený zážitek z druhé možnosti.',
   },
-  // Karta 8 - concept
+  // Karta 8
   {
     id: 8,
     type: 'concept',
-    title: 'Statek, užitek a mezní užitek',
-    text: 'Věci mají pro nás užitek – uspokojení, které nám přinášejí. Čím víc jednotek statku máme, tím menší užitek nám přináší další kus.',
+    title: 'Užitek a mezní užitek',
+    text: 'Věci nám dělají radost a přinášejí užitek. Čím víc jich ale máme, tím méně si vážíme každého dalšího kusu.',
     icon: 'pizza',
   },
-  // Karta 9 - interactive_tap (pizza)
+  // Karta 9 (Pizza)
   {
     id: 9,
     type: 'interactive_tap',
     interactiveType: 'pizza',
     title: 'Kolikátý kousek pizzy ti chutná nejvíc?',
-    text: 'Klikni na číslo kousku pizzy a sleduj, jak se mění tvůj dodatečný (mezní) užitek.',
+    text: 'Zvol číslo kousku a sleduj, jak se mění tvůj užitek z každého dalšího sousta.',
   },
-  // Karta 10 - quiz_single
+  // Karta 10
   {
     id: 10,
     type: 'quiz_single',
     title: 'Paradox hodnoty',
-    question: 'Proč je voda levnější než diamanty, i když je pro přežití důležitější?',
+    question: 'Proč je voda levnější než diamanty, i když je pro život důležitější?',
     options: [
-      'Protože je jí hodně, mezní užitek dalšího litru je nízký',
+      'Vody je všude dost, takže další litr má malý mezní užitek',
       'Protože diamanty jsou hezčí',
       'Protože voda není statek',
     ],
     correctIndex: 0,
-    explanation: 'Voda je nezbytná, ale je jí dostatek – proto má další litr nízký mezní užitek a nízkou cenu. Diamantů je málo, takže jejich mezní užitek je vysoký.',
+    explanation: 'Voda je pro přežití zásadní, ale máme jí tolik, že další sklenice nemá velkou hodnotu. Diamantů je málo, proto má každý další kus obrovskou cenu.',
   },
-  // Karta 11 - concept
+  // Karta 11
   {
     id: 11,
     type: 'concept',
     title: 'Výrobní faktory',
-    text: 'Půda, práce, kapitál a podnikavost – čtyři věci, které potřebujeme k výrobě čehokoli.',
+    text: 'Půda, práce, kapitál a podnikavost. To jsou čtyři základní stavební kameny, které potřebuješ k výrobě čehokoliv.',
     icon: 'factory',
   },
-  // Karta 12 - flip_grid (sada 4)
+  // Karta 12
   {
     id: 12,
     type: 'flip_grid',
     title: '4 výrobní faktory',
-    text: 'Klikni na jednotlivé faktory pro zobrazení jejich definice:',
+    text: 'Klepni na jednotlivé faktory pro jejich vysvětlení:',
     miniCards: [
-      { front: 'Půda', back: 'Přírodní zdroje a suroviny (půda, nerosty, voda).' },
-      { front: 'Práce', back: 'Lidský čas a duševní i fyzické úsilí při výrobě.' },
-      { front: 'Kapitál', back: 'Dříve vyrobené statky – stroje, nástroje, budovy.' },
-      { front: 'Podnikavost', back: 'Schopnost organizovat faktory, inovovat a nést riziko.' },
+      { front: 'Půda', back: 'Přírodní zdroje, pozemky, voda, nerosty a energie.' },
+      { front: 'Práce', back: 'Čas i fyzické a duševní úsilí lidí při výrobě.' },
+      { front: 'Kapitál', back: 'Budovy, stroje, auta i nářadí potřebné k práci.' },
+      { front: 'Podnikavost', back: 'Odvaha dát vše dohromady, přijít s nápadem a nést riziko.' },
     ],
   },
-  // Karta 13 - concept
+  // Karta 13
   {
     id: 13,
     type: 'concept',
     title: 'Klesající mezní výnosy',
-    text: 'Přidávat pořád víc pracovníků do stejné dílny nezvyšuje výrobu donekonečna – každý další dělník přidá méně než ten předchozí.',
+    text: 'Když budeš do jedné malé dílny posílat další a další dělníky, výroba neporoste věčně. Každý nový člověk přispěje o něco méně než ten předchozí.',
     icon: 'users',
   },
-  // Karta 14 - interactive_tap (workers)
+  // Karta 14 (Workers)
   {
     id: 14,
     type: 'interactive_tap',
     interactiveType: 'workers',
     title: 'Kolik pracovníků najmeš?',
-    text: 'Přidávej pracovníky do jedné dílny a sleduj, jak se výstup sice zvyšuje, ale přírůstky klesají.',
+    text: 'Přidávej lidi do dílny a sleduj, jak klesá přínos každého dalšího pracovníka.',
   },
-  // Karta 15 - concept
+  // Karta 15
   {
     id: 15,
     type: 'concept',
     title: 'Hranice produkčních možností (PPF)',
-    text: 'Ukazuje maximální kombinace dvou statků, které ekonomika dokáže vyrobit při daných zdrojích.',
+    text: 'Tato křivka ukazuje, kolik toho dokáže země vyrobit, když naplno využije všechny své lidi, stroje i suroviny.',
     icon: 'chart',
   },
-  // Karta 16 - interactive_tap (ppf)
+  // Karta 16
   {
     id: 16,
     type: 'interactive_tap',
     interactiveType: 'ppf',
-    title: 'Vyber bod na hranici produkčních možností',
-    text: 'Klikni na body na křivce pro prozkoumání trade-offu, nebo vyzkoušej vliv investic do technologií.',
+    title: 'Vyber bod na hranici možností',
+    text: 'Zvol bod a sleduj volbu mezi výrobou aut a obilí, nebo vyzkoušej vliv nových technologií.',
   },
-  // Karta 17 - quiz_single
+  // Karta 17
   {
     id: 17,
     type: 'quiz_single',
     title: 'Efektivita PPF',
-    question: 'Bod uvnitř hranice produkčních možností znamená:',
+    question: 'Co znamená bod uvnitř hranice produkčních možností?',
     options: [
-      'Efektivní využití zdrojů',
-      'Nevyužité zdroje, neefektivitu',
-      'Není to možné',
+      'Využíváme všechny zdroje naplno',
+      'Plýtváme zdroji, část jich leží ladem',
+      'Takový stav nemůže nastat',
     ],
     correctIndex: 1,
-    explanation: 'Bod uvnitř křivky znamená, že ekonomika nevyužívá všechny své výrobní zdroje (např. v důsledku nezaměstnanosti či nevyužitých kapacit).',
+    explanation: 'Znamená to neefektivitu. V ekonomice jsou například nezaměstnaní lidé nebo stojí nevyužité továrny.',
   },
-  // Karta 18 - concept
+  // Karta 18
   {
     id: 18,
     type: 'concept',
     title: 'Komparativní výhoda',
-    text: 'I když je někdo ve všem lepší, oběma se vyplatí obchodovat a specializovat se na to, v čem mají nižší náklady obětované příležitosti.',
+    text: 'I když je někdo šikovnější ve všem, vyplatí se rozdělit práci. Každý by se měl věnovat tomu, v čem je relativně nejlepší.',
     icon: 'handshake',
   },
-  // Karta 19 - interactive_tap (trade)
+  // Karta 19
   {
     id: 19,
     type: 'interactive_tap',
     interactiveType: 'trade',
-    title: 'Vyplatí se specializace?',
-    text: 'Přepni mezi situací bez obchodu a se zapojením specializace:',
+    title: 'Proč se vyplatí specializace?',
+    text: 'Podívej se, jak dopadne výroba dvou zemí, když pracují samy, a když se rozdělí o úkoly.',
   },
-  // Karta 20 - concept
+  // Karta 20 (Graf nabídky a poptávky s vysvětlením proč stoupá/klesá)
   {
     id: 20,
-    type: 'concept',
-    title: 'Nabídka a poptávka',
-    text: 'Cena vzniká na trhu, kde se potkává ochota kupujících platit (poptávka) s ochotou prodávajících nabízet (nabídka).',
-    icon: 'market',
+    type: 'interactive_tap',
+    interactiveType: 'market_curves',
+    title: 'Jak funguje nabídka a poptávka?',
+    text: 'Podívej se, jak se chová křivka poptávky a nabídky a proč má každá jiný směr.',
   },
-  // Karta 21 - interactive_tap (price)
+  // Karta 21 (Co se stane při jiné ceně)
   {
     id: 21,
     type: 'interactive_tap',
     interactiveType: 'price',
     title: 'Co se stane při jiné ceně?',
-    text: 'Vyzkoušej, co způsobí odchylka tržní ceny od rovnovážného stavu:',
+    text: 'Vyzkoušej, jak trh reaguje, když se cena odchýlí od rovnováhy.',
   },
-  // Karta 22 - quiz_single
+  // Karta 22
   {
     id: 22,
     type: 'quiz_single',
     title: 'Tržní rovnováha',
-    question: 'Když je cena nad rovnovážnou úrovní, na trhu vzniká:',
-    options: ['Nedostatek', 'Přebytek', 'Rovnováha'],
+    question: 'Když je cena zboží příliš vysoko nad rovnováhou, co se stane?',
+    options: ['Nedostatek zboží', 'Přebytek zboží', 'Trh se sám vyčistí'],
     correctIndex: 1,
-    explanation: 'Při ceně nad rovnováhou chtějí výrobci prodávat více, než kolik jsou spotřebitelé ochotni koupit – na trhu vzniká přebytek.',
+    explanation: 'Při vysoké ceně chtějí firmy hodně prodávat, ale lidé nechtějí nakupovat. Ve skladech se hromadí neprodané zboží.',
   },
-  // Karta 23 - summary_end
+  // Karta 23
   {
     id: 23,
     type: 'summary_end',
-    title: 'Hotovo!',
-    text: 'Prošel/prošla jsi základní ekonomické koncepty za pár minut. Získal/a jsi pevný přehled, na kterém můžeš dál stavět.',
+    title: 'Máš hotovo!',
+    text: 'Během pěti minut jsi prošel hlavní základy ekonomie.',
   },
 ];

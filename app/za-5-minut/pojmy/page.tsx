@@ -1,99 +1,164 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect, Suspense } from "react";
 import Link from "next/link";
-import { 
-  ArrowLeft, 
-  RotateCw, 
-  Search
-} from "lucide-react";
+import { useSearchParams } from "next/navigation";
+import { ArrowLeft, RotateCw, Search } from "lucide-react";
 
 interface Flashcard {
   id: string;
   term: string;
   enTerm?: string;
+  chapter: "Základní koncepty" | "Mikroekonomie" | "Makroekonomie";
+  chapterSlug: "zakladni-koncepty" | "mikroekonomie" | "makroekonomie";
   definition: string;
 }
 
-const FLASHCARDS: Flashcard[] = [
+const ALL_FLASHCARDS: Flashcard[] = [
+  // --- ZÁKLADNÍ KONCEPTY ---
   {
     id: "vzacnost",
     term: "Vzácnost",
     enTerm: "Scarcity",
-    definition: "Stav, kdy jsou lidské potřeby a touhy v podstatě neomezené, zatímco dostupné zdroje (čas, suroviny, práce) jsou konečné. Vzácnost je ústředním problémem ekonomie a nutí nás neustále volit mezi alternativami.",
+    chapter: "Základní koncepty",
+    chapterSlug: "zakladni-koncepty",
+    definition: "Lidé chtějí spoustu věcí, ale čas, peníze i suroviny máme omezené. Proto si musíme pořád vybírat, čemu dáme přednost a co oželíme.",
   },
   {
     id: "naklady-prilezitosti",
     term: "Náklady obětované příležitosti",
     enTerm: "Opportunity Cost",
-    definition: "Hodnota nejlepší alternativní volby, které se musíte vzdát, když se rozhodnete pro určitou akci. Nejde nutně o peněžní výdaj, ale o obětovaný užitek z druhé nejlepší možné varianty.",
+    chapter: "Základní koncepty",
+    chapterSlug: "zakladni-koncepty",
+    definition: "Když si něco vybereš, vzdáváš se toho druhého nejlepšího, co jsi mohl udělat. Skutečnou cenou tvé volby je právě to, o co jsi tím přišel.",
   },
   {
     id: "ceteris-paribus",
     term: "Ceteris paribus",
     enTerm: "All other things being equal",
-    definition: "Latinský metodický princip znamenající „za jinak stejných podmínek“. Umožňuje izolovat a zkoumat vliv jedné konkrétní proměnné (např. nárůstu ceny) s předpokladem, že všechny ostatní faktory zůstávají neměnné.",
+    chapter: "Základní koncepty",
+    chapterSlug: "zakladni-koncepty",
+    definition: "Latinsky to znamená za jinak stejných podmínek. Pomáhá zkoumat vliv jedné věci, třeba zdražení, přičemž předstíráme, že se všechno ostatní kolem vůbec nezměnilo.",
   },
   {
     id: "homo-economicus",
     term: "Homo economicus",
     enTerm: "Economic Human",
-    definition: "Teoretický model racionálního člověka, který jedná cílevědomě ve vlastním zájmu, vyhodnocuje dostupné informace, porovnává přínosy s náklady a usiluje o maximalizaci svého osobního užitku či zisku.",
+    chapter: "Základní koncepty",
+    chapterSlug: "zakladni-koncepty",
+    definition: "Zjednodušený model člověka, který se vždycky rozhoduje s chladnou hlavou. Zvažuje své přínosy i náklady a snaží se z každé situace vytěžit maximum.",
   },
   {
     id: "mezni-uzitek",
     term: "Mezní užitek (MU)",
     enTerm: "Marginal Utility",
-    definition: "Dodatečné uspokojení či prospěch, který spotřebitel získá spotřebou jedné další jednotky daného statku. Podle zákona klesajícího mezního užitku každá další jednotka přináší menší uspokojení než ta předchozí.",
+    chapter: "Základní koncepty",
+    chapterSlug: "zakladni-koncepty",
+    definition: "Radost nebo užitek z každého dalšího kousku, který spotřebuješ. První doušek vody ti v horku zachrání život, desátá sklenice už ti ale nedá skoro nic.",
   },
   {
     id: "ppf",
     term: "Hranice produkčních možností (PPF)",
     enTerm: "Production Possibility Frontier",
-    definition: "Grafický model znázorňující všechny maximálně dosažitelné kombinace dvou statků, které ekonomika dokáže vyrobit při plném a efektivním využití všech dostupných zdrojů a existující technologie.",
+    chapter: "Základní koncepty",
+    chapterSlug: "zakladni-koncepty",
+    definition: "Křivka, která ukazuje, kolik toho dokáže společnost maximálně vyrobit, když zapojí všechny své lidi, stroje i suroviny. Pokud chce vyrábět víc jednoho zboží, musí ubrat na druhém.",
   },
   {
     id: "pobidky",
     term: "Ekonomické pobídky",
     enTerm: "Incentives",
-    definition: "Odměny, sankce nebo signály (jako změna cen, dotace, pokuty), které mění relativní náklady a výnosy a tím motivují lidi upravit své jednání. Racionální aktéři na pobídky přirozeně reagují.",
+    chapter: "Základní koncepty",
+    chapterSlug: "zakladni-koncepty",
+    definition: "Všechno, co tě motivuje změnit chování. Může to být sleva, vyšší plat, ale i pokuta nebo zdražení. Jakmile se změní podmínky, lidé se jim přizpůsobí.",
   },
   {
     id: "komparativni-vyhoda",
     term: "Komparativní výhoda",
     enTerm: "Comparative Advantage",
-    definition: "Schopnost jednotlivce nebo země vyrábět určitý statek s relativně nižšími náklady obětované příležitosti než ostatní. Je hlavním ekonomickým argumentem pro specializaci a vzájemný dobrovolný obchod.",
+    chapter: "Základní koncepty",
+    chapterSlug: "zakladni-koncepty",
+    definition: "Když dokážeš něco vyrobit s menší obětí než ostatní, vyplatí se ti dělat právě to. I kdyby byl někdo lepší ve všem, pořád má smysl se rozdělit o práci a obchodovat.",
   },
   {
     id: "vyrobni-faktory",
     term: "Výrobní faktory",
     enTerm: "Factors of Production",
-    definition: "Čtyři základní vstupy nezbytné k produkci statků a služeb: půda (přírodní zdroje), práce (lidská činnost a čas), kapitál (stroje, nástroje, budovy) a podnikavost (schopnost inovovat a nést riziko).",
+    chapter: "Základní koncepty",
+    chapterSlug: "zakladni-koncepty",
+    definition: "Čtyři věci, bez kterých nic nevyrobíš. Potřebuješ přírodní zdroje, lidskou práci, stroje a nářadí, a někoho s nápadem a odvahou to celé zorganizovat.",
   },
   {
     id: "statky",
     term: "Volný vs. vzácný statek",
     enTerm: "Free vs. Economic Good",
-    definition: "Volný statek existuje v takovém množství, že je volně dostupný bez nutnosti vynaložit úsilí (např. vzduch). Vzácný (ekonomický) statek je omezený a k jeho získání či výrobě je nutné obětovat vzácné zdroje.",
+    chapter: "Základní koncepty",
+    chapterSlug: "zakladni-koncepty",
+    definition: "Vzduchu k dýchání je kolem nás dost, takže je volný a zadarmo. Většina věcí je ale vzácná, protože na jejich výrobu padne čas, práce i materiál.",
   },
   {
     id: "pozitivni-normativni",
     term: "Pozitivní vs. normativní ekonomie",
     enTerm: "Positive vs. Normative Economics",
-    definition: "Pozitivní ekonomie popisuje svět takový, jaký objektivně je, a formuluje ověřitelná tvrzení. Normativní ekonomie obsahuje hodnotové soudy a doporučení o tom, jaký by svět měl být.",
+    chapter: "Základní koncepty",
+    chapterSlug: "zakladni-koncepty",
+    definition: "Pozitivní ekonomie popisuje fakta a to, jak věci opravdu fungují. Normativní ekonomie říká, jak by věci fungovat měly, a opírá se o osobní názory či hodnoty.",
   },
   {
     id: "klesajici-vynosy",
     term: "Zákon klesajících mezních výnosů",
     enTerm: "Law of Diminishing Returns",
-    definition: "Ekonomický princip říkající, že pokud postupně přidáváme variabilní vstup (např. počet pracovníků) k fixnímu množství ostatních vstupů (např. jedna dílna), dodatečný přírůstek produkce od určitého bodu začne klesat.",
+    chapter: "Základní koncepty",
+    chapterSlug: "zakladni-koncepty",
+    definition: "Když do jedné malé kuchyně pošleš dalšího kuchaře, jídlo půjde rychleji. Když jich tam ale pošleš deset, začnou si překážet a výroba začne váznout.",
   },
+
+  // --- MIKROEKONOMIE ---
+  {
+    id: "elasticita",
+    term: "Cenová elasticita poptávky",
+    enTerm: "Price Elasticity of Demand",
+    chapter: "Mikroekonomie",
+    chapterSlug: "mikroekonomie",
+    definition: "Ukazuje, jak citlivě lidé reagují na zdražení. U léků lidé nakupují dál i po zdražení, u dovolených při růstu ceny okamžitě hledají levnější alternativu.",
+  },
+  
+
+  // --- MAKROEKONOMIE ---
+  {
+    id: "hdp",
+    term: "Hrubý domácí produkt (HDP)",
+    enTerm: "Gross Domestic Product (GDP)",
+    chapter: "Makroekonomie",
+    chapterSlug: "makroekonomie",
+    definition: "Celková peněžní hodnota všeho nového zboží a služeb, které se v zemi vyrobí za jeden rok. Používá se jako hlavní ukazatel síly a růstu hospodářství.",
+  },
+  
 ];
 
-export default function PojmyPage() {
+type ChapterFilter = "all" | "zakladni-koncepty" | "mikroekonomie" | "makroekonomie";
+
+function PojmyContent() {
+  const searchParams = useSearchParams();
+  const initialKapitola = searchParams.get("kapitola");
+
+  const [selectedChapter, setSelectedChapter] = useState<ChapterFilter>("all");
   const [flippedCards, setFlippedCards] = useState<Record<string, boolean>>({});
   const [searchQuery, setSearchQuery] = useState("");
   const [activeMode, setActiveMode] = useState<"terms" | "definitions">("terms");
+
+  // Sync with URL query parameter when coming from mindmap or direct link
+  useEffect(() => {
+    if (initialKapitola === "zakladni-koncepty") {
+      setSelectedChapter("zakladni-koncepty");
+    } else if (initialKapitola === "mikroekonomie") {
+      setSelectedChapter("mikroekonomie");
+    } else if (initialKapitola === "makroekonomie") {
+      setSelectedChapter("makroekonomie");
+    } else {
+      setSelectedChapter("all");
+    }
+  }, [initialKapitola]);
 
   const toggleCard = (id: string) => {
     setFlippedCards((prev) => ({
@@ -104,21 +169,30 @@ export default function PojmyPage() {
 
   const flipAll = (state: boolean) => {
     const updated: Record<string, boolean> = {};
-    FLASHCARDS.forEach((card) => {
+    ALL_FLASHCARDS.forEach((card) => {
       updated[card.id] = state;
     });
     setFlippedCards(updated);
     setActiveMode(state ? "definitions" : "terms");
   };
 
-  const filteredCards = FLASHCARDS.filter((card) => {
+  const filteredCards = ALL_FLASHCARDS.filter((card) => {
+    const matchesChapter =
+      selectedChapter === "all" || card.chapterSlug === selectedChapter;
     const query = searchQuery.toLowerCase();
-    return (
+    const matchesSearch =
       card.term.toLowerCase().includes(query) ||
       (card.enTerm && card.enTerm.toLowerCase().includes(query)) ||
-      card.definition.toLowerCase().includes(query)
-    );
+      card.definition.toLowerCase().includes(query);
+    return matchesChapter && matchesSearch;
   });
+
+  const chapters: { label: string; slug: ChapterFilter }[] = [
+    { label: "Vše", slug: "all" },
+    { label: "Základní koncepty", slug: "zakladni-koncepty" },
+    { label: "Mikroekonomie", slug: "mikroekonomie" },
+    { label: "Makroekonomie", slug: "makroekonomie" },
+  ];
 
   return (
     <div className="min-h-screen bg-[#FBF9F5] text-stone-900 pb-20 pt-6 px-4 sm:px-6 lg:px-8">
@@ -140,7 +214,7 @@ export default function PojmyPage() {
       `}</style>
 
       <div className="max-w-6xl mx-auto">
-        {/* Top Navigation: Zpět na mindmapu */}
+        {/* Top Navigation */}
         <div className="flex items-center justify-between gap-4 mb-8">
           <Link
             href="/za-5-minut/uvod"
@@ -154,18 +228,18 @@ export default function PojmyPage() {
         {/* Header Title */}
         <div className="text-center max-w-3xl mx-auto mb-10">
           <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight font-serif text-stone-900 mb-3">
-            Pojmy ze základních konceptů
+            Ekonomické pojmy
           </h1>
           <p className="text-stone-600 text-base sm:text-lg leading-relaxed">
-            Klikněte na libovolnou kartičku pro její otočení. Zopakujte si klíčové ekonomické pojmy a jejich přesné definice.
+            Otáčecí kartičky s klíčovými pojmy a jejich vysvětlením. Můžeš procházet všechny pojmy najednou, nebo filtrovat podle jednotlivých kapitol.
           </p>
         </div>
 
-        {/* Controls: Search, Filter (Vše), Mode Toggles (Pojmy / Definice) */}
+        {/* Controls: Search, Chapter Filter Tabs, Mode Toggles */}
         <div className="bg-white rounded-2xl border border-stone-200/90 p-4 sm:p-5 shadow-sm mb-8">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-4">
+          <div className="flex flex-col lg:flex-row items-center justify-between gap-4">
             {/* Search Input */}
-            <div className="relative w-full md:w-80">
+            <div className="relative w-full lg:w-72">
               <Search className="w-4 h-4 text-stone-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
               <input
                 type="text"
@@ -176,17 +250,28 @@ export default function PojmyPage() {
               />
             </div>
 
-            {/* Category Filter: Jen Vše (ve žluté SFLyellow) */}
-            <div className="flex items-center gap-2">
-              <button
-                type="button"
-                className="px-4 py-1.5 rounded-lg text-xs font-semibold bg-[#f9c710] text-stone-950 shadow-sm cursor-default"
-              >
-                Vše
-              </button>
+            {/* Chapter Filter Tabs */}
+            <div className="flex flex-wrap items-center justify-center gap-1.5 w-full lg:w-auto">
+              {chapters.map((ch) => {
+                const isActive = selectedChapter === ch.slug;
+                return (
+                  <button
+                    key={ch.slug}
+                    type="button"
+                    onClick={() => setSelectedChapter(ch.slug)}
+                    className={`px-3.5 py-1.5 rounded-xl text-xs font-semibold transition-all cursor-pointer ${
+                      isActive
+                        ? "bg-[#f9c710] text-stone-950 shadow-sm"
+                        : "bg-stone-100 text-stone-600 hover:bg-stone-200 hover:text-stone-900"
+                    }`}
+                  >
+                    {ch.label}
+                  </button>
+                );
+              })}
             </div>
 
-            {/* Pojmy / Definice Toggle (s aktivním žlutým vybarvením) */}
+            {/* Mode Toggles: Pojmy / Definice */}
             <div className="flex items-center gap-1.5 shrink-0 bg-stone-100 p-1 rounded-xl">
               <button
                 type="button"
@@ -245,7 +330,11 @@ export default function PojmyPage() {
                     {/* Front of Card (Pojem) */}
                     <div className="absolute inset-0 w-full h-full backface-hidden rounded-2xl border border-stone-200 bg-white p-6 shadow-sm hover:shadow-md hover:border-[#f9c710] transition-all flex flex-col justify-between">
                       <div>
-                        <div className="flex items-center justify-end mb-4">
+                        <div className="flex items-center justify-between mb-4">
+                          {/* Tag kapitoly */}
+                          <span className="text-[11px] font-semibold tracking-wider text-stone-400 uppercase">
+                            {card.chapter}
+                          </span>
                           <span className="text-xs text-stone-400 font-medium flex items-center gap-1 group-hover:text-stone-700 transition-colors">
                             <RotateCw className="w-3 h-3 transition-transform group-hover:rotate-45" />
                             Otočit
@@ -267,11 +356,10 @@ export default function PojmyPage() {
                       </div>
                     </div>
 
-                    {/* Back of Card (Definice - bez žlutého pozadí, jen text v tmavším odstínu žluté) */}
+                    {/* Back of Card (Definice) */}
                     <div className="absolute inset-0 w-full h-full backface-hidden rotate-y-180 rounded-2xl border border-stone-200 bg-[#FAF7F0] p-6 shadow-sm flex flex-col justify-between">
                       <div>
                         <div className="flex items-center justify-between gap-2 mb-3">
-                          {/* Pojem bez pozadí, v tmavším odstínu žluté dle zadání */}
                           <span className="text-sm font-serif font-bold text-[#b48306] tracking-tight">
                             {card.term}
                           </span>
@@ -286,7 +374,10 @@ export default function PojmyPage() {
                         </p>
                       </div>
 
-                      <div className="pt-3 border-t border-stone-200/60 text-right text-xs text-stone-400">
+                      <div className="pt-3 border-t border-stone-200/60 flex items-center justify-between text-xs text-stone-400">
+                        <span className="text-[11px] uppercase tracking-wider text-stone-400 font-medium">
+                          {card.chapter}
+                        </span>
                         <span>← Klikněte pro návrat</span>
                       </div>
                     </div>
@@ -301,22 +392,30 @@ export default function PojmyPage() {
         <div className="mt-14 p-6 sm:p-8 rounded-2xl bg-white border border-stone-200/90 shadow-sm flex flex-col sm:flex-row items-center justify-between gap-6">
           <div>
             <h4 className="text-lg font-bold font-serif text-stone-900 mb-1">
-              Cítíte se v pojmech jistí?
+              Chceš si znalosti vyzkoušet v praxi?
             </h4>
             <p className="text-sm text-stone-600">
-              Otestujte své porozumění v 5minutové interaktivní lekci se scénářem nákladů příležitosti.
+              Spusť si 5 minutovou interaktivní lekci se scénářem a rychlými kvízy.
             </p>
           </div>
           <div className="flex items-center gap-3 shrink-0">
             <Link
-              href="/za-5-minut/zakladni-koncepty"
+              href="/za-5-minut/uvod"
               className="px-5 py-2.5 rounded-xl bg-[#f9c710] hover:bg-[#eab308] text-stone-950 font-semibold text-sm transition-colors shadow-sm cursor-pointer"
             >
-              Spustit 5minutovou lekci
+              5 minutová lekce
             </Link>
           </div>
         </div>
       </div>
     </div>
+  );
+}
+
+export default function PojmyPage() {
+  return (
+    <Suspense fallback={<div className="min-h-screen bg-[#FBF9F5] p-10 text-center text-stone-400">Načítání pojmů...</div>}>
+      <PojmyContent />
+    </Suspense>
   );
 }

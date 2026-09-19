@@ -3,12 +3,13 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
-import { ArrowUp, Move } from "lucide-react";
+import { ArrowUp, Move, ZoomIn, ZoomOut, RotateCcw } from "lucide-react";
 
 export default function MindmapPage() {
   // 0 = centered on root "Za 5 minut"
   // 1 = zoomed in on "Základní koncepty" and its 3 sub-nodes
   const [currentLayer, setCurrentLayer] = useState<number>(0);
+  const [userZoom, setUserZoom] = useState<number>(1);
 
   const isZoomed = currentLayer === 1;
 
@@ -20,13 +21,33 @@ export default function MindmapPage() {
     setCurrentLayer(0);
   };
 
-  // Camera targets: shift camera to focus on Základní koncepty and its subnodes
+  const handleZoomIn = () => {
+    setUserZoom((prev) => Math.min(prev + 0.15, 2.2));
+  };
+
+  const handleZoomOut = () => {
+    setUserZoom((prev) => Math.max(prev - 0.15, 0.55));
+  };
+
+  const handleResetZoom = () => {
+    setUserZoom(1);
+  };
+
+  const handleWheel = (e: React.WheelEvent) => {
+    const factor = e.deltaY < 0 ? 1.08 : 0.92;
+    setUserZoom((prev) => Math.min(Math.max(prev * factor, 0.55), 2.2));
+  };
+
+  // Base camera targets: shift camera to focus on Základní koncepty and its subnodes
   const cameraTarget = isZoomed
     ? { x: -440, y: 0, scale: 1.05 }
     : { x: 0, y: 0, scale: 1 };
 
   return (
-    <div className="relative w-full h-[calc(100vh-4rem)] min-h-[680px] overflow-hidden bg-[#FBF9F5] select-none">
+    <div 
+      onWheel={handleWheel}
+      className="relative w-full h-[calc(100vh-4rem)] min-h-[680px] overflow-hidden bg-[#FBF9F5] select-none"
+    >
       {/* Background Dot Matrix */}
       <div 
         className="absolute inset-0 pointer-events-none opacity-45"
@@ -36,7 +57,7 @@ export default function MindmapPage() {
         }}
       />
 
-      {/* Floating Prominent Button: Go up a layer (VÝRAZNÉ TLAČÍTKO BEZ TEXTU V BARVĚ SFLyellow) */}
+      {/* Floating Prominent Button: Go up a layer (BEZ TEXTU V BARVĚ SFLyellow) */}
       <AnimatePresence>
         {isZoomed && (
           <motion.div
@@ -57,27 +78,57 @@ export default function MindmapPage() {
         )}
       </AnimatePresence>
 
+      {/* Floating Zoom In / Zoom Out Controls */}
+      <div className="absolute top-6 right-6 z-40 flex items-center gap-1.5 bg-white/95 backdrop-blur border border-stone-200/90 shadow-md p-1.5 rounded-2xl">
+        <button
+          onClick={handleZoomIn}
+          aria-label="Přiblížit"
+          title="Přiblížit (nebo kolečko myši)"
+          className="w-9 h-9 rounded-xl flex items-center justify-center text-stone-700 hover:text-stone-950 hover:bg-stone-100 transition-colors cursor-pointer"
+        >
+          <ZoomIn className="w-4 h-4" />
+        </button>
+        <button
+          onClick={handleZoomOut}
+          aria-label="Oddálit"
+          title="Oddálit (nebo kolečko myši)"
+          className="w-9 h-9 rounded-xl flex items-center justify-center text-stone-700 hover:text-stone-950 hover:bg-stone-100 transition-colors cursor-pointer"
+        >
+          <ZoomOut className="w-4 h-4" />
+        </button>
+        <div className="w-px h-5 bg-stone-200 mx-0.5" />
+        <button
+          onClick={handleResetZoom}
+          aria-label="Výchozí měřítko"
+          title="Výchozí měřítko (100%)"
+          className="px-2.5 h-9 rounded-xl flex items-center justify-center gap-1 text-xs font-semibold text-stone-600 hover:text-stone-950 hover:bg-stone-100 transition-colors cursor-pointer"
+        >
+          <RotateCcw className="w-3 h-3" />
+          <span>{Math.round(userZoom * 100)}%</span>
+        </button>
+      </div>
+
       {/* Subtle Bottom Helper */}
       <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-30 pointer-events-none">
         <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-white/90 backdrop-blur border border-stone-200/80 shadow-sm text-xs text-stone-500">
           <Move className="w-3.5 h-3.5 text-stone-400" />
-          <span>Tažením myši posouváte mapu</span>
+          <span>Tažením myši posouváte mapu • Kolečkem myši přibližujete</span>
         </div>
       </div>
 
       {/* Interactive Draggable Mindmap Canvas */}
       <motion.div
         drag
-        dragConstraints={{ left: -750, right: 750, top: -500, bottom: 500 }}
+        dragConstraints={{ left: -900, right: 900, top: -700, bottom: 700 }}
         dragElastic={0.12}
         className="w-full h-full flex items-center justify-center cursor-grab active:cursor-grabbing"
       >
-        {/* Animated Camera Rig */}
+        {/* Animated Camera Rig with Dynamic Zoom */}
         <motion.div
           animate={{
             x: cameraTarget.x,
             y: cameraTarget.y,
-            scale: cameraTarget.scale,
+            scale: cameraTarget.scale * userZoom,
           }}
           transition={{
             type: "spring",
@@ -95,18 +146,16 @@ export default function MindmapPage() {
             className="absolute -top-[600px] -left-[600px] w-[1800px] h-[1200px] pointer-events-none z-0 overflow-visible"
             viewBox="-600 -600 1800 1200"
           >
-            {/* 1. Branch: Root (0,0) -> Základní koncepty (300, 0) */}
-            {/* Underlay faint guide */}
+            {/* 1. Branch: Zvětšený Root (0,0, radius 120) -> Základní koncepty (300, 0) */}
             <path
-              d="M 96 0 L 300 0"
+              d="M 120 0 L 300 0"
               fill="none"
               stroke="#E7E5E4"
               strokeWidth="2"
               strokeLinecap="round"
             />
-            {/* Main dashed line */}
             <path
-              d="M 96 0 L 300 0"
+              d="M 120 0 L 300 0"
               fill="none"
               stroke={isZoomed ? "#D6D3D1" : "#f9c710"}
               strokeWidth="2.5"
@@ -115,16 +164,16 @@ export default function MindmapPage() {
               className="transition-colors duration-300"
             />
 
-            {/* 2. Branch: Root (0,0) -> Mikroekonomie (-150, -250) (120°) */}
+            {/* 2. Branch: Zvětšený Root (0,0) -> Mikroekonomie (-150, -250) (120°) */}
             <path
-              d="M -48 -83 C -80 -140, -100 -180, -120 -210"
+              d="M -60 -104 C -90 -155, -110 -185, -120 -210"
               fill="none"
               stroke="#E7E5E4"
               strokeWidth="2"
               strokeLinecap="round"
             />
             <path
-              d="M -48 -83 C -80 -140, -100 -180, -120 -210"
+              d="M -60 -104 C -90 -155, -110 -185, -120 -210"
               fill="none"
               stroke="#D6D3D1"
               strokeWidth="2"
@@ -132,16 +181,16 @@ export default function MindmapPage() {
               strokeLinecap="round"
             />
 
-            {/* 3. Branch: Root (0,0) -> Makroekonomie (-150, 250) (240°) */}
+            {/* 3. Branch: Zvětšený Root (0,0) -> Makroekonomie (-150, 250) (240°) */}
             <path
-              d="M -48 83 C -80 140, -100 180, -120 210"
+              d="M -60 104 C -90 155, -110 185, -120 210"
               fill="none"
               stroke="#E7E5E4"
               strokeWidth="2"
               strokeLinecap="round"
             />
             <path
-              d="M -48 83 C -80 140, -100 180, -120 210"
+              d="M -60 104 C -90 155, -110 185, -120 210"
               fill="none"
               stroke="#D6D3D1"
               strokeWidth="2"
@@ -212,7 +261,7 @@ export default function MindmapPage() {
           </svg>
 
           {/* ============================================================== */}
-          {/* 1. CENTRAL ROOT BUBBLE: "Za 5 minut" (0, 0)                     */}
+          {/* 1. CENTRAL ROOT BUBBLE: "Za 5 minut" (ZVĚTŠENO NA w-60 h-60)    */}
           {/* ============================================================== */}
           <div
             onClick={isZoomed ? handleLevelUp : handleDrillDown}
@@ -224,12 +273,12 @@ export default function MindmapPage() {
           >
             <motion.div
               whileHover={!isZoomed ? { scale: 1.04 } : {}}
-              className="w-48 h-48 rounded-full bg-white border-2 border-stone-900 shadow-xl flex flex-col items-center justify-center text-center p-6"
+              className="w-60 h-60 rounded-full bg-white border-2 border-stone-900 shadow-2xl flex flex-col items-center justify-center text-center p-6"
             >
-              <h1 className="text-2xl font-bold font-serif text-stone-900 leading-tight">
+              <h1 className="text-3xl font-bold font-serif text-stone-900 leading-tight">
                 Za 5 minut
               </h1>
-              <p className="text-xs text-stone-500 mt-1.5 leading-snug">
+              <p className="text-sm text-stone-500 mt-2 leading-snug max-w-[170px]">
                 Úvod do ekonomie
               </p>
             </motion.div>
@@ -328,7 +377,7 @@ export default function MindmapPage() {
                   Základní koncepty za 5 minut
                 </h3>
                 <p className="text-xs text-stone-600 mt-1.5 leading-relaxed">
-                  Interaktivní duolingo-styl lekce s rychlými kvízy a rozhodovacím scénářem.
+                  Interaktivní lekce s rychlými kvízy a rozhodovacím scénářem.
                 </p>
               </motion.div>
             </Link>
@@ -342,7 +391,7 @@ export default function MindmapPage() {
                 : "opacity-20 pointer-events-none scale-95"
             }`}
           >
-            <Link href="/za-5-minut/zakladni-koncepty/pojmy" className="block group">
+            <Link href="/za-5-minut/pojmy?kapitola=zakladni-koncepty" className="block group">
               <motion.div
                 whileHover={isZoomed ? { scale: 1.04, x: 4 } : {}}
                 whileTap={isZoomed ? { scale: 0.98 } : {}}
@@ -352,7 +401,7 @@ export default function MindmapPage() {
                   Pojmy ze základních konceptů
                 </h3>
                 <p className="text-xs text-stone-600 mt-1.5 leading-relaxed">
-                  Otáčecí kartičky s klíčovými definicemi, pravidly a praktickými příklady.
+                  Otáčecí kartičky s klíčovými definicemi a pravidly.
                 </p>
               </motion.div>
             </Link>
@@ -372,7 +421,7 @@ export default function MindmapPage() {
                 whileTap={isZoomed ? { scale: 0.98 } : {}}
                 className="w-72 rounded-[28px] bg-white border border-stone-200 p-5 shadow-md group-hover:shadow-xl group-hover:border-[#f9c710] transition-all"
               >
-                <h3 className="text-lg font-bold font-serif text-stone-900 group-hover:text-stone-900 transition-colors leading-snug">
+                <h3 className="text-lg font-bold font-serif text-stone-900 group-hover:text-stone-700 transition-colors leading-snug">
                   Podrobný přehled
                 </h3>
                 <p className="text-xs text-stone-600 mt-1.5 leading-relaxed">

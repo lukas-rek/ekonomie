@@ -12,7 +12,6 @@ import {
   Pizza, 
   Factory, 
   Users, 
-  TrendingDown, 
   LineChart, 
   Handshake, 
   ShoppingCart,
@@ -20,8 +19,7 @@ import {
   XCircle,
   Gamepad2,
   BookOpen,
-  MapPin,
-  Sparkles
+  MapPin
 } from "lucide-react";
 
 export default function ZakladniKonceptyLessonPage() {
@@ -37,6 +35,7 @@ export default function ZakladniKonceptyLessonPage() {
   const [ppfPoint, setPpfPoint] = useState<"A" | "B" | "C">("B");
   const [ppfTechShift, setPpfTechShift] = useState<boolean>(false);
   const [tradeMode, setTradeMode] = useState<"no_trade" | "specialization">("no_trade");
+  const [marketTab, setMarketTab] = useState<"demand" | "supply" | "equilibrium">("demand");
   const [priceLevel, setPriceLevel] = useState<"low" | "equilibrium" | "high">("equilibrium");
 
   const totalCards = cards.length;
@@ -149,11 +148,11 @@ export default function ZakladniKonceptyLessonPage() {
             transition={{ duration: 0.22, ease: "easeOut" }}
             className="rounded-3xl border border-stone-200 bg-white p-6 sm:p-8 shadow-sm flex flex-col justify-between min-h-[440px]"
           >
-            {/* CARD TYPE 1: INTRO */}
+            {/* CARD TYPE 1: INTRO (s kolečkem "5 min.") */}
             {currentCard.type === "intro" && (
               <div className="flex-1 flex flex-col items-center justify-center text-center my-auto py-6">
-                <div className="w-20 h-20 rounded-full bg-[#f9c710]/25 border border-[#f9c710]/40 flex items-center justify-center mb-6">
-                  <Sparkles className="w-10 h-10 text-stone-900" />
+                <div className="w-20 h-20 rounded-full bg-[#f9c710] border border-stone-800/10 flex items-center justify-center font-serif font-bold text-stone-950 text-xl shadow-sm mb-6">
+                  5 min.
                 </div>
                 <h1 className="text-2xl sm:text-3xl font-bold font-serif text-stone-900 mb-4 leading-snug">
                   {currentCard.title}
@@ -340,7 +339,7 @@ export default function ZakladniKonceptyLessonPage() {
               </div>
             )}
 
-            {/* CARD TYPE 6: SCENARIO */}
+            {/* CARD TYPE 6: SCENARIO (Kebab a kino) */}
             {currentCard.type === "scenario" && (
               <div className="flex-1 flex flex-col justify-center my-auto py-2">
                 <span className="text-xs uppercase tracking-wider text-stone-400 font-semibold mb-2">
@@ -388,17 +387,17 @@ export default function ZakladniKonceptyLessonPage() {
                   {currentCard.text}
                 </p>
 
-                {/* 1. PIZZA MARGINAL UTILITY */}
+                {/* 1. PIZZA MARGINAL UTILITY (Lidské popisky) */}
                 {currentCard.interactiveType === "pizza" && (() => {
                   const utilityValues: Record<number, { utility: number; label: string }> = {
-                    1: { utility: 100, label: "1. kousek: Obrovský hlad, nejlepší kousek!" },
-                    2: { utility: 80, label: "2. kousek: Stále chutná skvěle." },
-                    3: { utility: 60, label: "3. kousek: Hlad ustupuje." },
-                    4: { utility: 40, label: "4. kousek: Už jsi v podstatě nasycen/a." },
-                    5: { utility: 20, label: "5. kousek: Dojídáš jen z chuti." },
-                    6: { utility: 10, label: "6. kousek: Žaludek už protestuje." },
-                    7: { utility: 0, label: "7. kousek: Nulový přínos, stačilo." },
-                    8: { utility: -25, label: "8. kousek: Přejedení! Záporný mezní užitek." },
+                    1: { utility: 100, label: "Největší hlad, chutná úplně nejlíp." },
+                    2: { utility: 80, label: "Pořád dobrý, hlad pomalu mizí." },
+                    3: { utility: 60, label: "Už jsi docela plný." },
+                    4: { utility: 40, label: "Máš dost, ale ještě kousek zvládneš." },
+                    5: { utility: 20, label: "Už sotva dojídáš." },
+                    6: { utility: 10, label: "Začíná ti být těžko." },
+                    7: { utility: 0, label: "Tenhle kousek ti nepřinesl vůbec nic." },
+                    8: { utility: -25, label: "Přejedení, už je ti regulérně špatně." },
                   };
                   const current = utilityValues[pizzaPiece];
 
@@ -439,15 +438,15 @@ export default function ZakladniKonceptyLessonPage() {
                   );
                 })()}
 
-                {/* 2. WORKERS DIMINISHING RETURNS */}
+                {/* 2. WORKERS DIMINISHING RETURNS (Bez emojis, lidské popisky) */}
                 {currentCard.interactiveType === "workers" && (() => {
                   const workerData: Record<number, { total: number; delta: number; desc: string }> = {
-                    1: { total: 10, delta: 10, desc: "1 dělník vyrobí 10 ks (přírůstek +10)" },
-                    2: { total: 22, delta: 12, desc: "2 dělníci: specializace práce (přírůstek +12)" },
-                    3: { total: 30, delta: 8, desc: "3 dělníci: dílna se plní (přírůstek +8)" },
-                    4: { total: 35, delta: 5, desc: "4 dělníci: čekají na nářadí (přírůstek +5)" },
-                    5: { total: 37, delta: 2, desc: "5 dělníků: začínají si překážet (přírůstek +2)" },
-                    6: { total: 36, delta: -1, desc: "6 dělníků: chaos v dílně! (přírůstek -1)" },
+                    1: { total: 10, delta: 10, desc: "1 pracovník: vyrobí 10 kusů." },
+                    2: { total: 22, delta: 12, desc: "2 pracovníci: vyrobí 22 kusů (přínos dalších +12 kusů díky rozdělení práce)." },
+                    3: { total: 30, delta: 8, desc: "3 pracovníci: vyrobí 30 kusů (přínos +8 kusů)." },
+                    4: { total: 35, delta: 5, desc: "4 pracovníci: vyrobí 35 kusů (přínos +5 kusů)." },
+                    5: { total: 37, delta: 2, desc: "5 pracovníků: vyrobí 37 kusů (přínos už jen +2 kusy)." },
+                    6: { total: 36, delta: -1, desc: "6 pracovníků: vyrobí 36 kusů (ztráta -1 kus, v malé dílně si už jen překážejí)." },
                   };
                   const current = workerData[workerCount];
 
@@ -464,7 +463,7 @@ export default function ZakladniKonceptyLessonPage() {
                                 : "bg-white border border-stone-200 text-stone-600 hover:bg-stone-100"
                             }`}
                           >
-                            {num} 👷
+                            {num}
                           </button>
                         ))}
                       </div>
@@ -481,12 +480,12 @@ export default function ZakladniKonceptyLessonPage() {
                   );
                 })()}
 
-                {/* 3. PPF (Hranice produkčních možností) */}
+                {/* 3. PPF (Hranice produkčních možností - bod leží přesně na křivce) */}
                 {currentCard.interactiveType === "ppf" && (() => {
                   const points = {
-                    A: { cars: 100, grain: 0, text: "Všechny zdroje v průmyslu: 100 aut, 0 t obilí." },
-                    B: { cars: 70, grain: 60, text: "Vyvážený stav: 70 aut a 60 t obilí." },
-                    C: { cars: 0, grain: 100, text: "Všechny zdroje v zemědělství: 0 aut, 100 t obilí." },
+                    A: { cars: 100, grain: 0, text: "Všechny zdroje v průmyslu: 100 aut, 0 tun obilí." },
+                    B: { cars: 70, grain: 60, text: "Vyvážená výroba: 70 aut a 60 tun obilí." },
+                    C: { cars: 0, grain: 100, text: "Všechny zdroje v zemědělství: 0 aut, 100 tun obilí." },
                   };
 
                   return (
@@ -513,29 +512,32 @@ export default function ZakladniKonceptyLessonPage() {
                               : "bg-white text-stone-700 border-stone-200 hover:bg-stone-100"
                           }`}
                         >
-                          ⚡ Investice do technologií
+                          Investice do technologií
                         </button>
                       </div>
 
-                      {/* SVG Mini Curve */}
+                      {/* SVG Mini Curve - bod B leží přesně na eliptickém oblouku */}
                       <div className="h-28 flex items-center justify-center mb-2">
                         <svg className="w-56 h-28 overflow-visible" viewBox="0 0 200 100">
                           {/* Axes */}
-                          <line x1="20" y1="90" x2="190" y2="90" stroke="#78716C" strokeWidth="2" />
-                          <line x1="20" y1="90" x2="20" y2="10" stroke="#78716C" strokeWidth="2" />
+                          <line x1="25" y1="90" x2="190" y2="90" stroke="#78716C" strokeWidth="1.5" />
+                          <line x1="25" y1="90" x2="25" y2="10" stroke="#78716C" strokeWidth="1.5" />
                           {/* Labels */}
                           <text x="180" y="85" fontSize="9" fill="#78716C" textAnchor="end">Obilí</text>
-                          <text x="25" y="18" fontSize="9" fill="#78716C">Auta</text>
-                          {/* Base Curve */}
-                          <path d="M 20 20 Q 110 25 180 90" fill="none" stroke="#D6D3D1" strokeWidth="2.5" />
+                          <text x="30" y="18" fontSize="9" fill="#78716C">Auta</text>
+                          
+                          {/* Base Curve: Elliptical arc from (30,20) to (170,90) */}
+                          <path d="M 30 20 A 140 70 0 0 1 170 90" fill="none" stroke="#D6D3D1" strokeWidth="2.5" />
+                          
                           {/* Tech Shift Curve */}
                           {ppfTechShift && (
-                            <path d="M 20 10 Q 140 15 195 90" fill="none" stroke="#f9c710" strokeWidth="3" strokeDasharray="4 4" />
+                            <path d="M 30 10 A 165 80 0 0 1 195 90" fill="none" stroke="#f9c710" strokeWidth="3" strokeDasharray="4 4" />
                           )}
-                          {/* Active point marker */}
-                          {ppfPoint === "A" && <circle cx="20" cy="20" r="5" fill="#f9c710" stroke="#000" strokeWidth="1.5" />}
-                          {ppfPoint === "B" && <circle cx="85" cy="45" r="5" fill="#f9c710" stroke="#000" strokeWidth="1.5" />}
-                          {ppfPoint === "C" && <circle cx="180" cy="90" r="5" fill="#f9c710" stroke="#000" strokeWidth="1.5" />}
+                          
+                          {/* Active points lying exactly on the curve */}
+                          {ppfPoint === "A" && <circle cx="30" cy="20" r="5" fill="#f9c710" stroke="#1C1917" strokeWidth="1.5" />}
+                          {ppfPoint === "B" && <circle cx="129" cy="40.5" r="5" fill="#f9c710" stroke="#1C1917" strokeWidth="1.5" />}
+                          {ppfPoint === "C" && <circle cx="170" cy="90" r="5" fill="#f9c710" stroke="#1C1917" strokeWidth="1.5" />}
                         </svg>
                       </div>
 
@@ -543,8 +545,8 @@ export default function ZakladniKonceptyLessonPage() {
                         {points[ppfPoint].text}
                       </p>
                       {ppfTechShift && (
-                        <p className="text-[11px] text-amber-800 font-medium mt-1">
-                          ✨ Hospodářský růst: Nová technologie posunula celou křivku ven!
+                        <p className="text-[11px] text-[#b48306] font-semibold mt-1">
+                          Hospodářský růst: Nová technologie posunula celou křivku dál, vyrobíme víc obou statků.
                         </p>
                       )}
                     </div>
@@ -581,38 +583,127 @@ export default function ZakladniKonceptyLessonPage() {
                       {tradeMode === "no_trade" ? (
                         <>
                           <div className="flex justify-between text-stone-600">
-                            <span>Země A (vyrábí obojí):</span> <strong>10 vína + 10 sýra</strong>
+                            <span>Země A (dělá obojí):</span> <strong>10 vína a 10 sýra</strong>
                           </div>
                           <div className="flex justify-between text-stone-600">
-                            <span>Země B (vyrábí obojí):</span> <strong>5 vína + 5 sýra</strong>
+                            <span>Země B (dělá obojí):</span> <strong>5 vína a 5 sýra</strong>
                           </div>
                           <div className="pt-2 border-t border-stone-100 flex justify-between font-bold text-stone-900">
-                            <span>Celková světová výroba:</span> <span>15 vína + 15 sýra</span>
+                            <span>Celková výroba:</span> <span>15 vína a 15 sýra</span>
                           </div>
                         </>
                       ) : (
                         <>
                           <div className="flex justify-between text-stone-600">
-                            <span>Země A (specializace na sýr):</span> <strong>0 vína + 30 sýra</strong>
+                            <span>Země A (jen sýr):</span> <strong>0 vína a 30 sýra</strong>
                           </div>
                           <div className="flex justify-between text-stone-600">
-                            <span>Země B (specializace na víno):</span> <strong>20 vína + 0 sýra</strong>
+                            <span>Země B (jen víno):</span> <strong>20 vína a 0 sýra</strong>
                           </div>
                           <div className="pt-2 border-t border-stone-100 flex justify-between font-bold text-[#b48306]">
-                            <span>Celková světová výroba:</span> <span>20 vína + 30 sýra (+5 vína, +15 sýra!)</span>
+                            <span>Celková výroba:</span> <span>20 vína a 30 sýra (+5 vína, +15 sýra navíc)</span>
                           </div>
                         </>
                       )}
                     </div>
                     <p className="text-xs text-stone-600">
                       {tradeMode === "no_trade"
-                        ? "Každá země dělá všechno sama a vyrobí méně."
-                        : "Díky specializaci na komparativní výhodu je celkový výstup obou zemí výrazně vyšší."}
+                        ? "Každá země dělá všechno sama a dohromady mají méně."
+                        : "Když se každý věnuje tomu, v čem má výhodu, vydělají na tom oba."}
                     </p>
                   </div>
                 )}
 
-                {/* 5. PRICE SUPPLY/DEMAND */}
+                {/* 5. GRAF NABÍDKY A POPTÁVKY (PROČ STOUPÁ / KLESÁ) */}
+                {currentCard.interactiveType === "market_curves" && (
+                  <div className="bg-stone-50 p-4 rounded-2xl border border-stone-200 text-center">
+                    <div className="flex items-center justify-center gap-1.5 mb-3">
+                      <button
+                        onClick={() => setMarketTab("demand")}
+                        className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer ${
+                          marketTab === "demand"
+                            ? "bg-[#f9c710] text-stone-950 shadow-sm"
+                            : "bg-white border border-stone-200 text-stone-600 hover:bg-stone-100"
+                        }`}
+                      >
+                        Poptávka (klesá)
+                      </button>
+                      <button
+                        onClick={() => setMarketTab("supply")}
+                        className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer ${
+                          marketTab === "supply"
+                            ? "bg-[#f9c710] text-stone-950 shadow-sm"
+                            : "bg-white border border-stone-200 text-stone-600 hover:bg-stone-100"
+                        }`}
+                      >
+                        Nabídka (stoupá)
+                      </button>
+                      <button
+                        onClick={() => setMarketTab("equilibrium")}
+                        className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer ${
+                          marketTab === "equilibrium"
+                            ? "bg-stone-900 text-white shadow-sm"
+                            : "bg-white border border-stone-200 text-stone-600 hover:bg-stone-100"
+                        }`}
+                      >
+                        Rovnovážný bod
+                      </button>
+                    </div>
+
+                    {/* SVG Marshall Cross */}
+                    <div className="h-32 flex items-center justify-center mb-2">
+                      <svg className="w-56 h-32 overflow-visible" viewBox="0 0 200 110">
+                        {/* Axes */}
+                        <line x1="25" y1="95" x2="190" y2="95" stroke="#78716C" strokeWidth="1.5" />
+                        <line x1="25" y1="95" x2="25" y2="10" stroke="#78716C" strokeWidth="1.5" />
+                        <text x="180" y="90" fontSize="9" fill="#78716C" textAnchor="end">Množství (Q)</text>
+                        <text x="30" y="16" fontSize="9" fill="#78716C">Cena (P)</text>
+
+                        {/* Demand curve (D) */}
+                        <line 
+                          x1="35" y1="25" x2="165" y2="85" 
+                          stroke={marketTab === "demand" ? "#1C1917" : "#A8A29E"} 
+                          strokeWidth={marketTab === "demand" ? "3" : "2"} 
+                          strokeLinecap="round"
+                        />
+                        <text x="170" y="88" fontSize="10" fontWeight="bold" fill={marketTab === "demand" ? "#1C1917" : "#A8A29E"}>D</text>
+
+                        {/* Supply curve (S) */}
+                        <line 
+                          x1="35" y1="85" x2="165" y2="25" 
+                          stroke={marketTab === "supply" ? "#f9c710" : "#A8A29E"} 
+                          strokeWidth={marketTab === "supply" ? "3.5" : "2"} 
+                          strokeLinecap="round"
+                        />
+                        <text x="170" y="27" fontSize="10" fontWeight="bold" fill={marketTab === "supply" ? "#b48306" : "#A8A29E"}>S</text>
+
+                        {/* Equilibrium Point (E) */}
+                        <circle cx="100" cy="55" r={marketTab === "equilibrium" ? "6" : "4"} fill="#f9c710" stroke="#1C1917" strokeWidth="1.5" />
+                        <text x="108" y="52" fontSize="9" fontWeight="bold" fill="#1C1917">E</text>
+                      </svg>
+                    </div>
+
+                    <div className="bg-white p-2.5 rounded-xl border border-stone-200 text-xs text-stone-700 min-h-[44px] flex items-center justify-center">
+                      {marketTab === "demand" && (
+                        <span>
+                          <strong>Poptávka klesá:</strong> Čím je zboží dražší, tím méně lidí si ho koupí. Když zlevní, zájem zákazníků roste.
+                        </span>
+                      )}
+                      {marketTab === "supply" && (
+                        <span>
+                          <strong>Nabídka stoupá:</strong> Čím vyšší je cena na trhu, tím víc se prodejcům vyplatí zboží vyrobit a dodat.
+                        </span>
+                      )}
+                      {marketTab === "equilibrium" && (
+                        <span>
+                          <strong>Rovnovážná cena (bod E):</strong> Cena, při které chtějí zákazníci koupit přesně tolik, kolik prodejci nabízejí.
+                        </span>
+                      )}
+                    </div>
+                  </div>
+                )}
+
+                {/* 6. CO SE STANE PŘI JINÉ CENĚ */}
                 {currentCard.interactiveType === "price" && (
                   <div className="bg-stone-50 p-4 rounded-2xl border border-stone-200 text-center">
                     <div className="flex items-center justify-center gap-2 mb-4">
@@ -650,23 +741,23 @@ export default function ZakladniKonceptyLessonPage() {
 
                     <div className="bg-white p-3 rounded-xl border border-stone-200 text-xs mb-3">
                       {priceLevel === "low" && (
-                        <div className="text-rose-700 font-semibold">
-                          Poptávka (80 ks) &gt; Nabídka (30 ks) → <strong>Nedostatek na trhu</strong> (fronty a vyprodané zboží)
+                        <div className="text-rose-700 font-medium">
+                          Poptávka převyšuje nabídku. Na trhu vzniká <strong>nedostatek</strong> a tvoří se fronty.
                         </div>
                       )}
                       {priceLevel === "equilibrium" && (
-                        <div className="text-emerald-700 font-semibold">
-                          Poptávka (50 ks) = Nabídka (50 ks) → <strong>Tržní rovnováha</strong> (trh je vyčištěn)
+                        <div className="text-emerald-700 font-medium">
+                          Poptávka i nabídka jsou v rovnováze. Trh je <strong>vyčištěný</strong> a zboží plynule obíhá.
                         </div>
                       )}
                       {priceLevel === "high" && (
-                        <div className="text-amber-800 font-semibold">
-                          Nabídka (80 ks) &gt; Poptávka (30 ks) → <strong>Přebytek na trhu</strong> (neprodané zboží leží ve skladu)
+                        <div className="text-[#b48306] font-medium">
+                          Nabídka převyšuje poptávku. Na trhu je <strong>přebytek</strong> a neprodané zboží zůstává na skladě.
                         </div>
                       )}
                     </div>
                     <p className="text-xs text-stone-600">
-                      Cenový mechanismus přirozeně tlačí cenu směrem k rovnováze.
+                      Cenový mechanismus sám tlačí cenu zpátky k rovnováze.
                     </p>
                   </div>
                 )}
@@ -691,14 +782,14 @@ export default function ZakladniKonceptyLessonPage() {
                     className="w-full flex items-center justify-center gap-2 p-3 rounded-xl bg-stone-900 hover:bg-stone-800 text-white text-sm font-semibold transition-colors shadow-sm"
                   >
                     <Gamepad2 className="w-4 h-4" />
-                    Vyzkoušet minihru
+                    Vyzkoušet minihry
                   </Link>
                   <Link
                     href="/zakladni-koncepty"
                     className="w-full flex items-center justify-center gap-2 p-3 rounded-xl bg-[#f9c710] hover:bg-[#eab308] text-stone-950 text-sm font-semibold transition-colors shadow-sm"
                   >
                     <BookOpen className="w-4 h-4" />
-                    Chci vědět víc – plná lekce
+                    Číst celou lekci v učebnici
                   </Link>
                   <Link
                     href="/za-5-minut/uvod"

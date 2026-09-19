@@ -1,5 +1,5 @@
-import PojmyPage from "@/app/za-5-minut/zakladni-koncepty/pojmy/page";
+import { redirect } from "next/navigation";
 
 export default function Page() {
-  return <PojmyPage />;
+  redirect("/za-5-minut/pojmy?kapitola=zakladni-koncepty");
 }

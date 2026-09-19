@@ -70,8 +70,8 @@ export default function ZakladniKonceptyHub() {
     <div className="max-w-4xl mx-auto py-10">
       {/* HERO SEKCE */}
       <div className="mb-12 text-center md:text-left">
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-stone-100 border border-stone-300 text-stone-700 text-xs font-bold uppercase tracking-widest mb-4">
-          <span>Kapitola I</span>
+        <div className="text-stone-500 text-xs font-bold uppercase tracking-widest mb-3">
+          Kapitola I
         </div>
         <h1 className="text-4xl md:text-5xl font-serif font-bold text-stone-900 mb-4 tracking-tight">
           Základní ekonomické koncepty
